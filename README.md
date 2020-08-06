@@ -1,4 +1,4 @@
-# Advanced Android by Tutorials: Materials
+# Real-World Android by Tutorials: Materials
 
 This repo contains all the downloadable materials and projects associated with the **[Advanced Android by Tutorials](https://store.raywenderlich.com/)** from [raywenderlich.com](https://www.raywenderlich.com).
 
