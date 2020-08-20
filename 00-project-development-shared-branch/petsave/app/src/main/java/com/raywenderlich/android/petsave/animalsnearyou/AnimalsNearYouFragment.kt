@@ -48,6 +48,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.presentation.Event
+import com.raywenderlich.android.petsave.core.presentation.InfiniteScrollListener
 import dagger.hilt.android.AndroidEntryPoint
 import okio.IOException
 import retrofit2.HttpException

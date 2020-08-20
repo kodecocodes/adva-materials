@@ -32,37 +32,59 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou
+package com.raywenderlich.android.petsave.core
 
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.raywenderlich.android.petsave.R
+import com.raywenderlich.android.petsave.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class InfiniteScrollListener(
-    private val layoutManager: GridLayoutManager,
-    private val pageSize: Int
-) :
-    RecyclerView.OnScrollListener() {
+/**
+ * Main Screen
+ */
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-  override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-    super.onScrolled(recyclerView, dx, dy)
+  private val binding get() = _binding!!
+  private var _binding: ActivityMainBinding? = null
 
-    val visibleItemCount = layoutManager.childCount
-    val totalItemCount = layoutManager.itemCount
-    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-    if (!isLoading() && !isLastPage()) {
-      if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
-          && firstVisibleItemPosition >= 0
-          && totalItemCount >= pageSize
-      ) {
-        loadMoreItems()
-      }
-    }
+  private val navController by lazy { findNavController(R.id.nav_host_fragment) }
+  private val appBarConfiguration by lazy {
+    AppBarConfiguration(topLevelDestinationIds = setOf(R.id.animalsNearYou, R.id.search))
   }
 
-  abstract fun loadMoreItems()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    // Switch to AppTheme for displaying the activity
+    setTheme(R.style.AppTheme)
 
-  abstract fun isLastPage(): Boolean
+    super.onCreate(savedInstanceState)
+    _binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-  abstract fun isLoading(): Boolean
+    setupActionBar()
+    setupBottomNav()
+  }
+
+  override fun onSupportNavigateUp(): Boolean {
+    return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+  }
+
+  private fun setupActionBar() {
+    setupActionBarWithNavController(navController, appBarConfiguration)
+  }
+
+  private fun setupBottomNav() {
+    binding.bottomNavigation.setupWithNavController(navController)
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    _binding = null
+  }
 }
