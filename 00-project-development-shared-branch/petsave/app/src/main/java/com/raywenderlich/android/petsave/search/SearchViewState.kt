@@ -32,10 +32,15 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou.model
+package com.raywenderlich.android.petsave.search
 
-data class AnimalNearYou(
-    val id: Long,
-    val name: String,
-    val photo: String
+import com.raywenderlich.android.petsave.core.presentation.Event
+import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
+
+data class SearchViewState(
+    val inInitialState: Boolean = true,
+    val searchResults: List<UIAnimal>,
+    val ageMenuValues: List<String>,
+    val typeMenuValues: List<String>,
+    val failure: Event<Exception>? = null
 )

@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou.model.mappers
+package com.raywenderlich.android.petsave.core.presentation.model.mappers
 
 interface UiMapper<E, V> {
 

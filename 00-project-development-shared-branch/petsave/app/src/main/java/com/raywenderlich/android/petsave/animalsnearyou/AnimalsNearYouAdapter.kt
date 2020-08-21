@@ -40,10 +40,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.android.petsave.databinding.RecyclerViewAnimalNearYouItemBinding
-import com.raywenderlich.android.petsave.animalsnearyou.model.AnimalNearYou
+import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
 import com.raywenderlich.android.petsave.core.utils.setImage
 
-class AnimalsNearYouAdapter: ListAdapter<AnimalNearYou, AnimalsNearYouAdapter.AnimalNearYouViewHolder>(ITEM_COMPARATOR) {
+class AnimalsNearYouAdapter: ListAdapter<UIAnimal, AnimalsNearYouAdapter.AnimalNearYouViewHolder>(ITEM_COMPARATOR) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalNearYouViewHolder {
     val binding = RecyclerViewAnimalNearYouItemBinding
@@ -53,7 +53,7 @@ class AnimalsNearYouAdapter: ListAdapter<AnimalNearYou, AnimalsNearYouAdapter.An
   }
 
   override fun onBindViewHolder(holder: AnimalNearYouViewHolder, position: Int) {
-    val item: AnimalNearYou = getItem(position)
+    val item: UIAnimal = getItem(position)
 
     holder.bind(item)
   }
@@ -62,19 +62,19 @@ class AnimalsNearYouAdapter: ListAdapter<AnimalNearYou, AnimalsNearYouAdapter.An
       private val binding: RecyclerViewAnimalNearYouItemBinding
   ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: AnimalNearYou) {
+    fun bind(item: UIAnimal) {
       binding.name.text = item.name
       binding.photo.setImage(item.photo)
     }
   }
 }
 
-private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<AnimalNearYou>() {
-  override fun areItemsTheSame(oldItem: AnimalNearYou, newItem: AnimalNearYou): Boolean {
+private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<UIAnimal>() {
+  override fun areItemsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
     return oldItem.id == newItem.id
   }
 
-  override fun areContentsTheSame(oldItem: AnimalNearYou, newItem: AnimalNearYou): Boolean {
+  override fun areContentsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
     return oldItem.name == newItem.name && oldItem.photo == newItem.photo
   }
 }

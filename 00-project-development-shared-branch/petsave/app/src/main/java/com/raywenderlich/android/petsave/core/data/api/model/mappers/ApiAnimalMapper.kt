@@ -98,7 +98,9 @@ class ApiAnimalMapper @Inject constructor(
   private fun parseSize(size: String?): AnimalWithDetails.Details.Size {
     if (size.isNullOrEmpty()) return AnimalWithDetails.Details.Size.UNKNOWN
 
-    return AnimalWithDetails.Details.Size.valueOf(size.toUpperCase(Locale.ROOT))
+    return AnimalWithDetails.Details.Size.valueOf(
+        size.replace(' ', '_').toUpperCase(Locale.ROOT)
+    )
   }
 
   private fun parseCoat(coat: String?): AnimalWithDetails.Details.Coat {

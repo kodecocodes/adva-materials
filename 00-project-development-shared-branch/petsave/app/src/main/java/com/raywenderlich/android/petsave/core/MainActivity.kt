@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun setupActionBar() {
+    setSupportActionBar(binding.toolbar)
     setupActionBarWithNavController(navController, appBarConfiguration)
   }
 

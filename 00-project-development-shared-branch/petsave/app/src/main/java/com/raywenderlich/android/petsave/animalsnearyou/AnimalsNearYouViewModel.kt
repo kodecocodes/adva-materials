@@ -43,7 +43,7 @@ import com.raywenderlich.android.petsave.core.domain.model.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.core.presentation.Event
-import com.raywenderlich.android.petsave.animalsnearyou.model.mappers.AnimalNearYouMapper
+import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -57,7 +57,7 @@ import kotlin.Exception
 class AnimalsNearYouViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val animalRepository: AnimalRepository,
-    private val animalNearYouMapper: AnimalNearYouMapper,
+    private val uiAnimalMapper: UiAnimalMapper,
     private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
@@ -136,7 +136,7 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
 
   private fun onNewAnimalList(animals: List<Animal>) {
     Logger.d("Got more animals!")
-    val animalsNearYou = animals.map { animalNearYouMapper.mapToView(it) }
+    val animalsNearYou = animals.map { uiAnimalMapper.mapToView(it) }
 
     // This ensures that new items are added below the already existing ones, thus avoiding
     // repositioning of items that are already visible, as it can provide for a confusing UX.

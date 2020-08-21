@@ -34,12 +34,12 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou
 
-import com.raywenderlich.android.petsave.animalsnearyou.model.AnimalNearYou
+import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
 import com.raywenderlich.android.petsave.core.presentation.Event
 import java.lang.Exception
 
 data class AnimalsNearYouViewState(
     val loading: Boolean = true,
-    val animals: List<AnimalNearYou> = emptyList(),
+    val animals: List<UIAnimal> = emptyList(),
     val failure: Event<Exception>? = null
 )

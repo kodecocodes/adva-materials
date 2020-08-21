@@ -32,35 +32,10 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.search
+package com.raywenderlich.android.petsave.core.presentation.model
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import com.raywenderlich.android.petsave.databinding.FragmentSearchBinding
-import com.raywenderlich.android.petsave.databinding.FragmentSearchInitialBinding
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class SearchFragment: Fragment() {
-
-  private val binding get() = _binding!!
-  private var _binding: FragmentSearchBinding? = null
-
-  private val initialStateBinding get() = _initialStateBinding!!
-  private var _initialStateBinding: FragmentSearchInitialBinding? = null
-
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
-    _binding = FragmentSearchBinding.inflate(inflater, container, false)
-    _initialStateBinding = FragmentSearchInitialBinding.bind(binding.root)
-
-    return binding.root
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    _binding = null
-    _initialStateBinding = null
-  }
-}
+data class UIAnimal(
+    val id: Long,
+    val name: String,
+    val photo: String
+)

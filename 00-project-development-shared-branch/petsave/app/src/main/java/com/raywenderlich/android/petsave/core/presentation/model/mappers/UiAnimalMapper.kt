@@ -32,16 +32,16 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou.model.mappers
+package com.raywenderlich.android.petsave.core.presentation.model.mappers
 
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
-import com.raywenderlich.android.petsave.animalsnearyou.model.AnimalNearYou
+import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
 import javax.inject.Inject
 
-class AnimalNearYouMapper @Inject constructor(): UiMapper<Animal, AnimalNearYou> {
+class UiAnimalMapper @Inject constructor(): UiMapper<Animal, UIAnimal> {
 
-  override fun mapToView(input: Animal): AnimalNearYou {
-    return AnimalNearYou(
+  override fun mapToView(input: Animal): UIAnimal {
+    return UIAnimal(
         id = input.id,
         name = input.name,
         photo = input.media.getFirstSmallestAvailablePhoto()

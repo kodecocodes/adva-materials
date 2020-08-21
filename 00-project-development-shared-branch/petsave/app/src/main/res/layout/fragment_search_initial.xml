@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+  <ImageView
+      android:id="@+id/initial_search_image_view"
+      android:layout_width="@dimen/default_card_size"
+      android:layout_height="@dimen/default_card_size"
+      android:contentDescription="@string/a_derpy_cat"
+      android:src="@drawable/cat_derp"
+      app:layout_constraintBottom_toTopOf="@id/initial_search_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_chainStyle="packed" />
+
+  <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/initial_search_text"
+      style="@style/TextAppearance.MaterialComponents.Caption"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:text="@string/search_initial_text"
+      android:textAlignment="center"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/initial_search_image_view" />
+</merge>

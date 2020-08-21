@@ -101,7 +101,7 @@ data class AnimalWithDetails(
       SMALL,
       MEDIUM,
       LARGE,
-      XLARGE
+      EXTRA_LARGE
     }
 
     enum class Coat {

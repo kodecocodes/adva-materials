@@ -37,6 +37,7 @@ package com.raywenderlich.android.petsave.core.domain.repositories
 import com.raywenderlich.android.petsave.core.domain.Result
 import com.raywenderlich.android.petsave.core.domain.model.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import io.reactivex.Flowable
 
 interface AnimalRepository {
@@ -44,4 +45,8 @@ interface AnimalRepository {
   fun getStoredNearbyAnimals(): Flowable<List<Animal>>
 
   suspend fun fetchAndStoreNearbyAnimals(pageToLoad: Int, numberOfItems: Int): Result<Pagination>
+
+  fun getAllTypes(): Flowable<List<String>>
+
+  fun getAllAges(): List<AnimalWithDetails.Details.Age>
 }

@@ -44,6 +44,7 @@ import com.raywenderlich.android.petsave.core.domain.Result
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.domain.model.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
 import dagger.hilt.android.scopes.ActivityRetainedScoped
@@ -63,7 +64,6 @@ class PetFinderAnimalRepository @Inject constructor(
 
   private val parentJob = SupervisorJob()
   private val repositoryScope = CoroutineScope(parentJob + dispatchersProvider.io())
-
 
   override fun getStoredNearbyAnimals(): Flowable<List<Animal>> {
     return cache.getNearbyAnimals()
@@ -109,5 +109,13 @@ class PetFinderAnimalRepository @Inject constructor(
       exception.printStackTrace()
       Result.Error(exception)
     }
+  }
+
+  override fun getAllTypes(): Flowable<List<String>> {
+    return cache.getAllTypes()
+  }
+
+  override fun getAllAges(): List<AnimalWithDetails.Details.Age> {
+    return AnimalWithDetails.Details.Age.values().toList()
   }
 }

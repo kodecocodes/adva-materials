@@ -53,7 +53,6 @@ abstract class AnimalsDao {
       tags: List<CachedTag>
   )
 
-  @Insert(entity = CachedAnimalWithDetails::class)
   fun insertAnimalsWithDetails(animalAggregates: List<CachedAnimalAggregate>) {
     for (animalAggregate in animalAggregates) {
       insertAnimalAggregate(
@@ -64,4 +63,7 @@ abstract class AnimalsDao {
       )
     }
   }
+
+  @Query("select distinct type from animals")
+  abstract fun getAllTypes(): Flowable<List<String>>
 }

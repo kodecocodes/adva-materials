@@ -34,33 +34,26 @@
 
 package com.raywenderlich.android.petsave.search
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import com.raywenderlich.android.petsave.databinding.FragmentSearchBinding
-import com.raywenderlich.android.petsave.databinding.FragmentSearchInitialBinding
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import io.reactivex.disposables.CompositeDisposable
 
-@AndroidEntryPoint
-class SearchFragment: Fragment() {
+class SearchFragmentViewModel @ViewModelInject constructor(
+    private val repository: AnimalRepository,
+    private val compositeDisposable: CompositeDisposable
+): ViewModel() {
 
-  private val binding get() = _binding!!
-  private var _binding: FragmentSearchBinding? = null
+  val viewState: LiveData<SearchViewState>
+    get() = _viewState
 
-  private val initialStateBinding get() = _initialStateBinding!!
-  private var _initialStateBinding: FragmentSearchInitialBinding? = null
+  private val _viewState: MutableLiveData<SearchViewState> = MutableLiveData()
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
-    _binding = FragmentSearchBinding.inflate(inflater, container, false)
-    _initialStateBinding = FragmentSearchInitialBinding.bind(binding.root)
 
-    return binding.root
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    _binding = null
-    _initialStateBinding = null
+  override fun onCleared() {
+    super.onCleared()
+    compositeDisposable.clear()
   }
 }
