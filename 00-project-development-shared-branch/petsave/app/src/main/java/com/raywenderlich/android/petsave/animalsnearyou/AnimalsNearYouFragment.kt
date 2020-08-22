@@ -52,6 +52,7 @@ import com.raywenderlich.android.petsave.core.presentation.InfiniteScrollListene
 import dagger.hilt.android.AndroidEntryPoint
 import okio.IOException
 import retrofit2.HttpException
+import java.lang.Exception
 
 @AndroidEntryPoint
 class AnimalsNearYouFragment : Fragment() {
@@ -123,19 +124,26 @@ class AnimalsNearYouFragment : Fragment() {
   private fun updateScreenState(state: AnimalsNearYouViewState, adapter: AnimalsNearYouAdapter) {
     binding.progressBar.isVisible = state.loading
     adapter.submitList(state.animals)
+    handleNoMoreAnimalsNearby(state.noMoreAnimalsNearby)
     handleFailures(state.failure)
   }
 
-  private fun handleFailures(failure: Event<Exception>?) {
-    val unhandledFailure = failure?.getContentIfNotHandled() ?: return
-
-    handleException(unhandledFailure)
+  private fun handleNoMoreAnimalsNearby(noMoreAnimalsNearby: Boolean) {
+    // hide everything, show a warning message and a prompt for the user to try a different
+    // distance or postcode
   }
 
-  private fun handleException(exception: Exception) {
+  private fun handleFailures(failure: Event<Throwable>?) {
+    val unhandledFailure = failure?.getContentIfNotHandled() ?: return
+
+    handleThrowable(unhandledFailure)
+  }
+
+  private fun handleThrowable(exception: Throwable) {
+    val fallbackMessage = "An error occurred. Please try again later."
     val snackbarMessage = when (exception) {
-      is NoMoreAnimalsException -> exception.message!!
-      is IOException, is HttpException -> "An error occurred. Please try again later."
+      is NoMoreAnimalsException -> exception.message ?: fallbackMessage
+      is IOException, is HttpException -> fallbackMessage
       else -> ""
     }
 

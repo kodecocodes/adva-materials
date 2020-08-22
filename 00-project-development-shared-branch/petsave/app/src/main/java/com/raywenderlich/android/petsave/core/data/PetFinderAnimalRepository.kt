@@ -40,9 +40,7 @@ import com.raywenderlich.android.petsave.core.data.api.model.mappers.ApiPaginati
 import com.raywenderlich.android.petsave.core.data.cache.Cache
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedanimal.CachedAnimalAggregate
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedorganization.CachedOrganization
-import com.raywenderlich.android.petsave.core.domain.Result
-import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.core.domain.model.Pagination
+import com.raywenderlich.android.petsave.core.domain.model.PaginatedAnimals
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
@@ -65,7 +63,7 @@ class PetFinderAnimalRepository @Inject constructor(
   private val parentJob = SupervisorJob()
   private val repositoryScope = CoroutineScope(parentJob + dispatchersProvider.io())
 
-  override fun getStoredNearbyAnimals(): Flowable<List<Animal>> {
+  override fun getAnimals(): Flowable<List<Animal>> {
     return cache.getNearbyAnimals()
         .distinctUntilChanged()
         .filter { it.isNotEmpty() }
@@ -74,15 +72,14 @@ class PetFinderAnimalRepository @Inject constructor(
         }
   }
 
-  override suspend fun fetchAndStoreNearbyAnimals(
+  override suspend fun requestMoreAnimals(
       pageToLoad: Int,
       numberOfItems: Int
-  ): Result<Pagination> {
+  ): PaginatedAnimals {
     // fetch these from shared preferences, after storing them in onboarding screen
     val postcode = "07097"
     val maxDistanceMiles = 100
 
-    return try {
       val (apiAnimals, apiPagination) = api.getNearbyAnimals(
           pageToLoad,
           numberOfItems,
@@ -90,32 +87,27 @@ class PetFinderAnimalRepository @Inject constructor(
           maxDistanceMiles
       )
 
-      val animals = apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty()
-      val pagination = apiPaginationMapper.mapToDomain(apiPagination)
-
-      if (animals.isEmpty()) {
-        Result.Error(NoMoreAnimalsException("No animals nearby :("))
-      } else {
-
-        with(cache) {
-          val organizations = animals.map { CachedOrganization.fromDomain(it.details.organization) }
-          storeOrganizations(organizations)
-          storeNearbyAnimals(animals.map { CachedAnimalAggregate.fromDomain(it) })
-        }
-
-        Result.Success(pagination)
-      }
-    } catch (exception: Exception) {
-      exception.printStackTrace()
-      Result.Error(exception)
-    }
+      return PaginatedAnimals(
+          apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty(),
+          apiPaginationMapper.mapToDomain(apiPagination)
+      )
   }
 
-  override fun getAllTypes(): Flowable<List<String>> {
+  override suspend fun storeAnimals(animals: List<AnimalWithDetails>) {
+    // Organizations have a 1-to-many relation with animals, so we need to insert them first in
+    // order for Room not to complain about foreign keys being invalid (since we have the
+    // organizationId as a foreign key in the animals table)
+    val organizations = animals.map { CachedOrganization.fromDomain(it.details.organization) }
+
+    cache.storeOrganizations(organizations)
+    cache.storeNearbyAnimals(animals.map { CachedAnimalAggregate.fromDomain(it) })
+  }
+
+  override suspend fun getAnimalTypes(): List<String> {
     return cache.getAllTypes()
   }
 
-  override fun getAllAges(): List<AnimalWithDetails.Details.Age> {
+  override fun getAnimalAges(): List<AnimalWithDetails.Details.Age> {
     return AnimalWithDetails.Details.Age.values().toList()
   }
 }

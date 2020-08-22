@@ -58,7 +58,7 @@ class RoomCache @Inject constructor(
     animalsDao.insertAnimalsWithDetails(animals)
   }
 
-  override fun getAllTypes(): Flowable<List<String>> {
+  override suspend fun getAllTypes(): List<String> {
     return animalsDao.getAllTypes()
   }
 }

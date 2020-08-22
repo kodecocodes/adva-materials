@@ -32,9 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.domain
+package com.raywenderlich.android.petsave.core.domain.model
 
-sealed class Result<out R> {
-  data class Success<out T>(val data: T) : Result<T>()
-  data class Error(val failure: Exception) : Result<Nothing>()
-}
+import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
+
+data class PaginatedAnimals(
+    val animals: List<AnimalWithDetails>,
+    val pagination: Pagination
+)

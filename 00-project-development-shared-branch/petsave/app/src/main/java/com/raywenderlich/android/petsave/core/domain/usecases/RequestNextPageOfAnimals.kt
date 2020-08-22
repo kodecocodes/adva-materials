@@ -32,39 +32,28 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.search
+package com.raywenderlich.android.petsave.core.domain.usecases
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import com.raywenderlich.android.petsave.databinding.FragmentSearchBinding
-import com.raywenderlich.android.petsave.databinding.FragmentSearchInitialBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.core.domain.model.Pagination
+import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import javax.inject.Inject
 
-@AndroidEntryPoint
-class SearchFragment: Fragment() {
+class RequestNextPageOfAnimals @Inject constructor(
+    private val animalRepository: AnimalRepository
+){
 
-  private val binding get() = _binding!!
-  private var _binding: FragmentSearchBinding? = null
-
-  private val initialStateBinding get() = _initialStateBinding!!
-  private var _initialStateBinding: FragmentSearchInitialBinding? = null
-
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
-    _binding = FragmentSearchBinding.inflate(inflater, container, false)
-    _initialStateBinding = FragmentSearchInitialBinding.bind(binding.root)
-
-    return binding.root
+  companion object {
+    private const val PAGE_SIZE = 20
   }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-  }
+  suspend operator fun invoke(pageToLoad: Int, pageSize: Int = PAGE_SIZE): Pagination {
+    val (animals, pagination) = animalRepository.requestMoreAnimals(pageToLoad, pageSize)
 
-  override fun onDestroy() {
-    super.onDestroy()
-    _binding = null
-    _initialStateBinding = null
+    if (animals.isEmpty()) throw NoMoreAnimalsException("No animals nearby :(")
+
+    animalRepository.storeAnimals(animals)
+
+    return pagination
   }
 }

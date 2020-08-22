@@ -38,11 +38,18 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
+import com.raywenderlich.android.petsave.core.utils.createExceptionHandler
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.*
 
 class SearchFragmentViewModel @ViewModelInject constructor(
     private val repository: AnimalRepository,
+    private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
 
@@ -51,9 +58,56 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private val _viewState: MutableLiveData<SearchViewState> = MutableLiveData()
 
+  fun handleEvents(event: SearchEvent) {
+    when(event) {
+      is SearchEvent.LoadMenuValues -> loadMenuValues()
+      is SearchEvent.QueryInput -> searchAnimals(event.input)
+      is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
+      is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
+    }
+  }
+
+  private fun loadMenuValues() {
+    val errorMessage = "Failed to get menu values!"
+    val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) {
+      handleFailure(MenuValueException(it))
+    }
+
+    viewModelScope.launch(exceptionHandler) {
+      val (ages, types) = withContext(dispatchersProvider.io()) {
+        val ages = repository.getAnimalAges().map {
+          it.name.toLowerCase(Locale.ROOT).capitalize()
+        }
+
+        val types = repository.getAnimalTypes()
+
+        Pair(ages, types)
+      }
+
+
+    }
+  }
+
+  private fun searchAnimals(input: String) {
+    TODO("Not yet implemented")
+  }
+
+  private fun updateAgeValue(age: String) {
+    TODO("Not yet implemented")
+  }
+
+  private fun updateTypeValue(type: String) {
+    TODO("Not yet implemented")
+  }
+
+  private fun handleFailure(exception: Exception) {
+
+  }
 
   override fun onCleared() {
     super.onCleared()
     compositeDisposable.clear()
   }
+
+  class MenuValueException(throwable: Throwable): Exception(throwable)
 }

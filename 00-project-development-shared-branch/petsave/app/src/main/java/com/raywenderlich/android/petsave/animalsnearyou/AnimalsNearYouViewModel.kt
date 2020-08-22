@@ -38,17 +38,18 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.raywenderlich.android.logging.Logger
-import com.raywenderlich.android.petsave.core.domain.Result
+import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.domain.model.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
-import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.core.domain.usecases.GetAnimals
+import com.raywenderlich.android.petsave.core.domain.usecases.RequestNextPageOfAnimals
 import com.raywenderlich.android.petsave.core.presentation.Event
 import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
+import com.raywenderlich.android.petsave.core.utils.createExceptionHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.RuntimeException
@@ -56,7 +57,8 @@ import kotlin.Exception
 
 class AnimalsNearYouViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
-    private val animalRepository: AnimalRepository,
+    private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
+    private val getAnimals: GetAnimals,
     private val uiAnimalMapper: UiAnimalMapper,
     private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
@@ -84,15 +86,15 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
   init {
     _state.value = AnimalsNearYouViewState()
 
-    subscribeToDataUpdates()
+    subscribeToAnimalUpdates()
   }
 
-  private fun subscribeToDataUpdates() {
-    animalRepository.getStoredNearbyAnimals()
+  private fun subscribeToAnimalUpdates() {
+    getAnimals()
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
             { onNewAnimalList(it) },
-            { onFailure(Exception(it)) }
+            { onFailure(it) }
         )
         .addTo(compositeDisposable)
   }
@@ -100,37 +102,20 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
   private fun loadNextAnimalPage() {
     isLoadingMoreAnimals = true
     val errorMessage = "Failed to fetch nearby animals"
-    val exceptionHandler = createExceptionHandler(errorMessage) {
-      onFailure(RuntimeException(it))
+    val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) {
+      onFailure(it)
     }
 
     viewModelScope.launch(exceptionHandler) {
-      val result = withContext(dispatchersProvider.io()) {
+      val pagination = withContext(dispatchersProvider.io()) {
         Logger.d("Requesting more animals.")
 
-        animalRepository.fetchAndStoreNearbyAnimals(++currentPage, PAGE_SIZE)
+        requestNextPageOfAnimals(++currentPage)
       }
 
-      when (result) {
-        is Result.Success<Pagination> -> onPaginationInfoObtained(result.data)
-        is Result.Error -> onFailure(result.failure)
-      }
+      onPaginationInfoObtained(pagination)
 
       isLoadingMoreAnimals = false
-    }
-  }
-
-  private inline fun createExceptionHandler(
-      message: String,
-      crossinline action: (throwable: Throwable) -> Unit
-  ) = CoroutineExceptionHandler { _, throwable ->
-    Logger.e(throwable, message)
-
-    // The handler can be called from any thread. So, since we want to update the state's LiveData
-    // in the main thread (avoiding the call to postValue), we just run a coroutine on the main
-    // thread here.
-    viewModelScope.launch {
-      action(throwable)
     }
   }
 
@@ -139,7 +124,9 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
     val animalsNearYou = animals.map { uiAnimalMapper.mapToView(it) }
 
     // This ensures that new items are added below the already existing ones, thus avoiding
-    // repositioning of items that are already visible, as it can provide for a confusing UX.
+    // repositioning of items that are already visible, as it can provide for a confusing UX. A
+    // nice alternative to this would be to add an "updatedAt" field to the Room entities, so
+    // that we could actually order them by something that we completely control.
     val currentList = state.value?.animals.orEmpty()
     val newAnimals = animalsNearYou.subtract(currentList)
     val updatedList = currentList + newAnimals
@@ -155,8 +142,12 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
     isLastPage = !pagination.canLoadMore
   }
 
-  private fun onFailure(failure: Exception) {
-    _state.value = state.value?.copy(failure = Event(failure))
+  private fun onFailure(failure: Throwable) {
+    val noMoreAnimalsNearby = failure is NoMoreAnimalsException
+    _state.value = state.value?.copy(
+        noMoreAnimalsNearby = noMoreAnimalsNearby,
+        failure = Event(failure)
+    )
   }
 
   override fun onCleared() {

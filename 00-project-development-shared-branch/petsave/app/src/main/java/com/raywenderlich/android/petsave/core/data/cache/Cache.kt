@@ -42,5 +42,5 @@ interface Cache {
   fun getNearbyAnimals(): Flowable<List<CachedAnimalAggregate>>
   fun storeOrganizations(organizations: List<CachedOrganization>)
   fun storeNearbyAnimals(animals: List<CachedAnimalAggregate>)
-  fun getAllTypes(): Flowable<List<String>>
+  suspend fun getAllTypes(): List<String>
 }

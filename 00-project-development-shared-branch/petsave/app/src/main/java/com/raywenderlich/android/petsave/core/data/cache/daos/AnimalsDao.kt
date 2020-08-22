@@ -65,5 +65,5 @@ abstract class AnimalsDao {
   }
 
   @Query("select distinct type from animals")
-  abstract fun getAllTypes(): Flowable<List<String>>
+  abstract suspend fun getAllTypes(): List<String>
 }

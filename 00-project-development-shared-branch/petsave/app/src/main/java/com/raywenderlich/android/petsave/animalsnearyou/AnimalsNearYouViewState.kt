@@ -41,5 +41,6 @@ import java.lang.Exception
 data class AnimalsNearYouViewState(
     val loading: Boolean = true,
     val animals: List<UIAnimal> = emptyList(),
-    val failure: Event<Exception>? = null
+    val noMoreAnimalsNearby: Boolean = false,
+    val failure: Event<Throwable>? = null
 )
