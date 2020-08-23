@@ -32,11 +32,45 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.search
+package com.raywenderlich.android.petsave.search.domain.usecases
 
-sealed class SearchEvent {
-  object LoadMenuValues : SearchEvent()
-  data class QueryInput(val input: String): SearchEvent()
-  data class AgeValueSelected(val age: String): SearchEvent()
-  data class TypeValueSelected(val type: String): SearchEvent()
+import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.core.domain.model.search.SearchFilters
+import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.search.domain.MenuValueException
+import com.raywenderlich.android.petsave.search.presentation.SearchFragmentViewModel
+import java.util.*
+import javax.inject.Inject
+
+class GetSearchFilters @Inject constructor(
+  private val animalRepository: AnimalRepository
+) {
+
+  companion object {
+    private const val DEFAULT_VALUE = "Any"
+    private const val DEFAULT_VALUE_LOWERCASE = "any"
+  }
+
+  suspend operator fun invoke(): SearchFilters {
+    val types = animalRepository.getAnimalTypes()
+
+    val filteringTypes = if (types.any { it.toLowerCase(Locale.ROOT) == DEFAULT_VALUE_LOWERCASE }) {
+      types
+    } else {
+      listOf(DEFAULT_VALUE) + types
+    }
+
+    if (types.isEmpty()) throw MenuValueException("No animal types")
+
+    val ages = animalRepository.getAnimalAges()
+        .map { it.name }
+        .replace(AnimalWithDetails.Details.Age.UNKNOWN.name, DEFAULT_VALUE)
+        .map { it.toLowerCase(Locale.ROOT).capitalize() }
+
+    return SearchFilters(ages, filteringTypes)
+  }
+
+  private fun List<String>.replace(old: String, new: String): List<String> {
+    return map { if (it == old) new else it }
+  }
 }

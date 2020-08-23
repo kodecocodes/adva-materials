@@ -5,9 +5,9 @@
   <string name="search">Search</string>
   <string name="animals_near_you_screen_label">Animals near you</string>
   <string name="search_screen_label">Find your future pet</string>
-  <string name="search_hint">Search for names, breeds…</string>
+  <string name="search_hint">Search for names or breeds</string>
   <string name="a_derpy_cat">A derpy cat</string>
   <string name="search_initial_text">Use the above search field to find your new pet! Don\'t forget to use the filters to narrow down the search.</string>
-  <string name="age_dropdown_menu_hint">Age dropdown menu</string>
-  <string name="animal_type_dropdown_menu_hint">Animal type dropdown menu</string>
+  <string name="age_dropdown_menu_hint">Age</string>
+  <string name="animal_type_dropdown_menu_hint">Type</string>
 </resources>

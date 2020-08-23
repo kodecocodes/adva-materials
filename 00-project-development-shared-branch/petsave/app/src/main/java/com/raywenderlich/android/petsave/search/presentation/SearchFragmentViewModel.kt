@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.search
+package com.raywenderlich.android.petsave.search.presentation
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -40,74 +40,90 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.core.presentation.Event
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.core.utils.createExceptionHandler
+import com.raywenderlich.android.petsave.search.domain.usecases.GetSearchFilters
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
 class SearchFragmentViewModel @ViewModelInject constructor(
-    private val repository: AnimalRepository,
+    private val getSearchFilters: GetSearchFilters,
     private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
 
-  val viewState: LiveData<SearchViewState>
-    get() = _viewState
+  val state: LiveData<SearchViewState>
+    get() = _state
 
-  private val _viewState: MutableLiveData<SearchViewState> = MutableLiveData()
+  private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
+
+  private val querySubject = BehaviorSubject.create<String>()
+  private val ageSubject = BehaviorSubject.create<String>()
+  private val typeSubject = BehaviorSubject.create<String>()
+
+  init {
+    _state.value = SearchViewState()
+  }
 
   fun handleEvents(event: SearchEvent) {
     when(event) {
-      is SearchEvent.LoadMenuValues -> loadMenuValues()
+      is SearchEvent.PrepareForSearch -> prepareForSearch()
       is SearchEvent.QueryInput -> searchAnimals(event.input)
       is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
       is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
     }
   }
 
+  private fun prepareForSearch() {
+    loadMenuValues()
+    setupQuerySubscription()
+  }
+
   private fun loadMenuValues() {
     val errorMessage = "Failed to get menu values!"
     val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) {
-      handleFailure(MenuValueException(it))
+      handleFailure(it)
     }
 
     viewModelScope.launch(exceptionHandler) {
-      val (ages, types) = withContext(dispatchersProvider.io()) {
-        val ages = repository.getAnimalAges().map {
-          it.name.toLowerCase(Locale.ROOT).capitalize()
-        }
-
-        val types = repository.getAnimalTypes()
-
-        Pair(ages, types)
-      }
-
-
+      val (ages, types) = withContext(dispatchersProvider.io()) { getSearchFilters() }
+      updateStateWithMenuValues(ages, types)
     }
   }
 
+  private fun updateStateWithMenuValues(ages: List<String>, types: List<String>) {
+    _state.value = state.value!!.copy(
+        ageMenuValues = ages,
+        typeMenuValues = types
+    )
+  }
+
+  private fun setupQuerySubscription() {
+
+  }
+
   private fun searchAnimals(input: String) {
-    TODO("Not yet implemented")
+    querySubject.onNext(input)
   }
 
   private fun updateAgeValue(age: String) {
-    TODO("Not yet implemented")
+    ageSubject.onNext(age)
   }
 
   private fun updateTypeValue(type: String) {
-    TODO("Not yet implemented")
+    typeSubject.onNext(type)
   }
 
-  private fun handleFailure(exception: Exception) {
-
+  private fun handleFailure(throwable: Throwable) {
+    _state.value = state.value?.copy(failure = Event(throwable))
   }
 
   override fun onCleared() {
     super.onCleared()
     compositeDisposable.clear()
   }
-
-  class MenuValueException(throwable: Throwable): Exception(throwable)
 }

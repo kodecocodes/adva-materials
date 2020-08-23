@@ -32,11 +32,8 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.domain.model
+package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
-
-data class PaginatedAnimals(
-    val animals: List<AnimalWithDetails>,
-    val pagination: Pagination
-)
+sealed class AnimalsNearYouEvent {
+  object LoadAnimals: AnimalsNearYouEvent()
+}

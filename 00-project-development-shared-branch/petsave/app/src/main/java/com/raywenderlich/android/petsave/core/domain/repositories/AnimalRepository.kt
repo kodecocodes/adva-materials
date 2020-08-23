@@ -34,7 +34,7 @@
 
 package com.raywenderlich.android.petsave.core.domain.repositories
 
-import com.raywenderlich.android.petsave.core.domain.model.PaginatedAnimals
+import com.raywenderlich.android.petsave.core.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import io.reactivex.Flowable

@@ -35,7 +35,7 @@
 package com.raywenderlich.android.petsave.core.data.api.model.mappers
 
 import com.raywenderlich.android.petsave.core.data.api.model.ApiPagination
-import com.raywenderlich.android.petsave.core.domain.model.Pagination
+import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import javax.inject.Inject
 
 class ApiPaginationMapper @Inject constructor(): ApiMapper<ApiPagination?, Pagination> {

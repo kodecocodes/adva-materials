@@ -32,28 +32,15 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.domain.usecases
+package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
-import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
-import javax.inject.Inject
+import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
+import com.raywenderlich.android.petsave.core.presentation.Event
+import java.lang.Exception
 
-class RequestNextPageOfAnimals @Inject constructor(
-    private val animalRepository: AnimalRepository
-){
-
-  companion object {
-    private const val PAGE_SIZE = 20
-  }
-
-  suspend operator fun invoke(pageToLoad: Int, pageSize: Int = PAGE_SIZE): Pagination {
-    val (animals, pagination) = animalRepository.requestMoreAnimals(pageToLoad, pageSize)
-
-    if (animals.isEmpty()) throw NoMoreAnimalsException("No animals nearby :(")
-
-    animalRepository.storeAnimals(animals)
-
-    return pagination
-  }
-}
+data class AnimalsNearYouViewState(
+    val loading: Boolean = true,
+    val animals: List<UIAnimal> = emptyList(),
+    val noMoreAnimalsNearby: Boolean = false,
+    val failure: Event<Throwable>? = null
+)

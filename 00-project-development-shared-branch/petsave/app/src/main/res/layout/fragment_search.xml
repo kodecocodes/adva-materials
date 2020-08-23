@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:elevation="0dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,23 +24,47 @@
           android:id="@+id/search_card_view"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:cardCornerRadius="10dp"
-          app:layout_scrollFlags="snap|scroll|enterAlways"
           android:layout_margin="@dimen/default_margin"
-          android:background="@drawable/card_view_border">
+          android:background="@drawable/card_view_border"
+          app:cardCornerRadius="10dp"
+          app:layout_scrollFlags="snap|scroll|enterAlways">
 
-        <include layout="@layout/filtered_search_widget"
-            android:layout_margin="8dp"
+        <include
+            layout="@layout/filtered_search_widget"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:layout_margin="8dp" />
 
       </com.google.android.material.card.MaterialCardView>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/fragment_search_initial" />
+    <ImageView
+        android:id="@+id/initial_search_image_view"
+        android:layout_width="@dimen/default_card_size"
+        android:layout_height="@dimen/default_card_size"
+        android:contentDescription="@string/a_derpy_cat"
+        android:src="@drawable/cat_derp"
+        app:layout_constraintBottom_toTopOf="@id/initial_search_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/collapsible_search_params_container"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/initial_search_text"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/search_initial_text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/initial_search_image_view" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/searchRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/default_margin"

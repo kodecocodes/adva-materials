@@ -40,7 +40,7 @@ import com.raywenderlich.android.petsave.core.data.api.model.mappers.ApiPaginati
 import com.raywenderlich.android.petsave.core.data.cache.Cache
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedanimal.CachedAnimalAggregate
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedorganization.CachedOrganization
-import com.raywenderlich.android.petsave.core.domain.model.PaginatedAnimals
+import com.raywenderlich.android.petsave.core.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
@@ -66,7 +66,6 @@ class PetFinderAnimalRepository @Inject constructor(
   override fun getAnimals(): Flowable<List<Animal>> {
     return cache.getNearbyAnimals()
         .distinctUntilChanged()
-        .filter { it.isNotEmpty() }
         .map { animalList ->
           animalList.map { it.animal.toAnimalDomain(it.photos, it.videos, it.tags) }
         }

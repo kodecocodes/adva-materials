@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".animalsnearyou.AnimalsNearYouFragment">
+    tools:context=".animalsnearyou.presentation.AnimalsNearYouFragment">
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/animals_recycler_view"

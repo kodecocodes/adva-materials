@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.search
+package com.raywenderlich.android.petsave.search.presentation
 
 import com.raywenderlich.android.petsave.core.presentation.Event
 import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
@@ -44,5 +44,5 @@ data class SearchViewState(
     val ageSelectedValue: String = "",
     val typeMenuValues: List<String> = emptyList(),
     val typeSelectedValue: String = "",
-    val failure: Event<Exception>? = null
+    val failure: Event<Throwable>? = null
 )

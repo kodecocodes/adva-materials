@@ -32,39 +32,50 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.search
+package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import com.raywenderlich.android.petsave.databinding.FragmentSearchBinding
-import com.raywenderlich.android.petsave.databinding.FragmentSearchInitialBinding
-import dagger.hilt.android.AndroidEntryPoint
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.raywenderlich.android.petsave.databinding.RecyclerViewAnimalNearYouItemBinding
+import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
+import com.raywenderlich.android.petsave.core.utils.setImage
 
-@AndroidEntryPoint
-class SearchFragment: Fragment() {
+class AnimalsNearYouAdapter: ListAdapter<UIAnimal, AnimalsNearYouAdapter.AnimalNearYouViewHolder>(
+    ITEM_COMPARATOR) {
 
-  private val binding get() = _binding!!
-  private var _binding: FragmentSearchBinding? = null
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalNearYouViewHolder {
+    val binding = RecyclerViewAnimalNearYouItemBinding
+        .inflate(LayoutInflater.from(parent.context), parent, false)
 
-  private val initialStateBinding get() = _initialStateBinding!!
-  private var _initialStateBinding: FragmentSearchInitialBinding? = null
-
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
-    _binding = FragmentSearchBinding.inflate(inflater, container, false)
-    _initialStateBinding = FragmentSearchInitialBinding.bind(binding.root)
-
-    return binding.root
+    return AnimalNearYouViewHolder(binding)
   }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
+  override fun onBindViewHolder(holder: AnimalNearYouViewHolder, position: Int) {
+    val item: UIAnimal = getItem(position)
+
+    holder.bind(item)
   }
 
-  override fun onDestroy() {
-    super.onDestroy()
-    _binding = null
-    _initialStateBinding = null
+  class AnimalNearYouViewHolder(
+      private val binding: RecyclerViewAnimalNearYouItemBinding
+  ) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(item: UIAnimal) {
+      binding.name.text = item.name
+      binding.photo.setImage(item.photo)
+    }
+  }
+}
+
+private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<UIAnimal>() {
+  override fun areItemsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
+    return oldItem.id == newItem.id
+  }
+
+  override fun areContentsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
+    return oldItem.name == newItem.name && oldItem.photo == newItem.photo
   }
 }

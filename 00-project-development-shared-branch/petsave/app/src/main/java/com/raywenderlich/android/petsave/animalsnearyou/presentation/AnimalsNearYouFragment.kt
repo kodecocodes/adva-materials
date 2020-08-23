@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou
+package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -52,7 +52,6 @@ import com.raywenderlich.android.petsave.core.presentation.InfiniteScrollListene
 import dagger.hilt.android.AndroidEntryPoint
 import okio.IOException
 import retrofit2.HttpException
-import java.lang.Exception
 
 @AndroidEntryPoint
 class AnimalsNearYouFragment : Fragment() {
@@ -61,7 +60,7 @@ class AnimalsNearYouFragment : Fragment() {
     private const val ITEMS_PER_ROW = 2
   }
 
-  private val viewModel: AnimalsNearYouViewModel by viewModels()
+  private val viewModel: AnimalsNearYouFragmentViewModel by viewModels()
   private val binding get() = _binding!!
 
   private var _binding: FragmentAnimalsNearYouBinding? = null
@@ -84,7 +83,7 @@ class AnimalsNearYouFragment : Fragment() {
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewModelUpdates(adapter)
+    observeViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsNearYouAdapter {
@@ -104,14 +103,14 @@ class AnimalsNearYouFragment : Fragment() {
   private fun createInfiniteScrollListener(
       layoutManager: GridLayoutManager
   ): RecyclerView.OnScrollListener {
-    return object : InfiniteScrollListener(layoutManager, AnimalsNearYouViewModel.PAGE_SIZE) {
+    return object : InfiniteScrollListener(layoutManager, AnimalsNearYouFragmentViewModel.PAGE_SIZE) {
       override fun loadMoreItems() { requestAnimals() }
       override fun isLoading(): Boolean = viewModel.isLoadingMoreAnimals
       override fun isLastPage(): Boolean = viewModel.isLastPage
     }
   }
 
-  private fun observeViewModelUpdates(adapter: AnimalsNearYouAdapter) {
+  private fun observeViewStateUpdates(adapter: AnimalsNearYouAdapter) {
     viewModel.state.observe(viewLifecycleOwner) {
       updateScreenState(it, adapter)
     }

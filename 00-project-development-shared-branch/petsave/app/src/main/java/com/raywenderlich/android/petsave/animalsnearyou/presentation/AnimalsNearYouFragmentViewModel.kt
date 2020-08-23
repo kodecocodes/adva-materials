@@ -32,14 +32,14 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou
+package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.raywenderlich.android.logging.Logger
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.core.domain.model.Pagination
+import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.usecases.GetAnimals
 import com.raywenderlich.android.petsave.core.domain.usecases.RequestNextPageOfAnimals
@@ -52,10 +52,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.RuntimeException
-import kotlin.Exception
 
-class AnimalsNearYouViewModel @ViewModelInject constructor(
+class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
     private val getAnimals: GetAnimals,
@@ -68,14 +66,16 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
     const val PAGE_SIZE = 10
   }
 
+  val state: LiveData<AnimalsNearYouViewState> get() = _state
   var isLoadingMoreAnimals: Boolean = false
   var isLastPage = false
 
-  val state: LiveData<AnimalsNearYouViewState>
-    get() = _state
-
   private val _state = MutableLiveData<AnimalsNearYouViewState>()
   private var currentPage = 0
+
+  init {
+    _state.value = AnimalsNearYouViewState()
+  }
 
   fun handleEvent(event: AnimalsNearYouEvent) {
     when(event) {
@@ -131,10 +131,10 @@ class AnimalsNearYouViewModel @ViewModelInject constructor(
     val newAnimals = animalsNearYou.subtract(currentList)
     val updatedList = currentList + newAnimals
 
-    _state.value = state.value?.copy(
+    _state.value = state.value!!.copy(
         loading = false,
         animals = updatedList
-    ) ?: AnimalsNearYouViewState(loading = false, animals = updatedList)
+    )
   }
 
   private fun onPaginationInfoObtained(pagination: Pagination) {

@@ -32,49 +32,20 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou
+package com.raywenderlich.android.petsave.core.domain.model.pagination
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.raywenderlich.android.petsave.databinding.RecyclerViewAnimalNearYouItemBinding
-import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
-import com.raywenderlich.android.petsave.core.utils.setImage
+data class Pagination(
+    val currentPage: Int,
+    val totalPages: Int
+) {
 
-class AnimalsNearYouAdapter: ListAdapter<UIAnimal, AnimalsNearYouAdapter.AnimalNearYouViewHolder>(ITEM_COMPARATOR) {
-
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalNearYouViewHolder {
-    val binding = RecyclerViewAnimalNearYouItemBinding
-        .inflate(LayoutInflater.from(parent.context), parent, false)
-
-    return AnimalNearYouViewHolder(binding)
+  companion object {
+    // For the cases when we store the current page locally, but haven't yet requested a new page
+    // from the remote source. Total pages should change with time, so we'll handle the value as
+    // unknown before updating.
+    const val UNKNOWN_TOTAL = -1
   }
 
-  override fun onBindViewHolder(holder: AnimalNearYouViewHolder, position: Int) {
-    val item: UIAnimal = getItem(position)
-
-    holder.bind(item)
-  }
-
-  class AnimalNearYouViewHolder(
-      private val binding: RecyclerViewAnimalNearYouItemBinding
-  ) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(item: UIAnimal) {
-      binding.name.text = item.name
-      binding.photo.setImage(item.photo)
-    }
-  }
-}
-
-private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<UIAnimal>() {
-  override fun areItemsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
-    return oldItem.id == newItem.id
-  }
-
-  override fun areContentsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
-    return oldItem.name == newItem.name && oldItem.photo == newItem.photo
-  }
+  val canLoadMore: Boolean
+    get() = totalPages == UNKNOWN_TOTAL || currentPage < totalPages
 }

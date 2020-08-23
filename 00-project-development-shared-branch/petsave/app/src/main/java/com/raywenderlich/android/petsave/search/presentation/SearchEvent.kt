@@ -32,15 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou
+package com.raywenderlich.android.petsave.search.presentation
 
-import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
-import com.raywenderlich.android.petsave.core.presentation.Event
-import java.lang.Exception
-
-data class AnimalsNearYouViewState(
-    val loading: Boolean = true,
-    val animals: List<UIAnimal> = emptyList(),
-    val noMoreAnimalsNearby: Boolean = false,
-    val failure: Event<Throwable>? = null
-)
+sealed class SearchEvent {
+  object PrepareForSearch : SearchEvent()
+  data class QueryInput(val input: String): SearchEvent()
+  data class AgeValueSelected(val age: String): SearchEvent()
+  data class TypeValueSelected(val type: String): SearchEvent()
+}
