@@ -67,7 +67,6 @@ class SearchAnimals @Inject constructor(
         .switchMap {
             animalRepository.searchCachedAnimalsBy(SearchParameters(it.first, it.second, it.third))
         }
-        .distinctUntilChanged()
   }
 
   private val combiningFunction: Function3<String, String, String, Triple<String, String, String>>

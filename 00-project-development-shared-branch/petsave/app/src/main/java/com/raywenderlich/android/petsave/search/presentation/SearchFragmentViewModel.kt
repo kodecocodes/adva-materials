@@ -38,7 +38,6 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.raywenderlich.android.logging.Logger
-import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouViewState
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
@@ -54,7 +53,6 @@ import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimalsRem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
@@ -140,9 +138,11 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
     querySubject.onNext(input)
 
-    onAnimalList(emptyList())
-    setSearchingState()
-    setInitialStateIf(input.isEmpty())
+    if (input.isEmpty()) {
+      setNoSearchQueryStateIf()
+    } else {
+      setSearchingState()
+    }
   }
 
 
@@ -155,9 +155,11 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     _state.value = state.value!!.copy(noResultsState = false)
   }
 
-  private fun setInitialStateIf(inputIsEmpty: Boolean) {
+  private fun setNoSearchQueryStateIf() {
     _state.value = state.value!!.copy(
-        inInitialState = inputIsEmpty
+        noSearchQueryState = true,
+        searchResults = emptyList(),
+        noResultsState = false
     )
   }
 
@@ -181,7 +183,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private fun onAnimalList(animals: List<Animal>) {
     _state.value = state.value!!.copy(
-        inInitialState = false,
+        noSearchQueryState = false,
         searchResults = animals.map { uiAnimalMapper.mapToView(it) },
         searchingRemotely = false,
         noResultsState = false
@@ -190,7 +192,10 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private fun onEmptyCacheResults(searchParameters: SearchParameters) {
     searchRemotely(searchParameters)
-    _state.value = state.value!!.copy(searchingRemotely = true)
+    _state.value = state.value!!.copy(
+        searchingRemotely = true,
+        searchResults = emptyList()
+    )
   }
 
   private fun searchRemotely(searchParameters: SearchParameters) {
