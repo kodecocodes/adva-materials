@@ -55,6 +55,8 @@ interface PetFinderApi {
       @Query(ApiParameters.AGE) age: String,
       @Query(ApiParameters.TYPE) type: String,
       @Query(ApiParameters.PAGE) pageToLoad: Int,
-      @Query(ApiParameters.LIMIT) pageSize: Int
+      @Query(ApiParameters.LIMIT) pageSize: Int,
+      @Query(ApiParameters.LOCATION) postcode: String,
+      @Query(ApiParameters.DISTANCE) maxDistance: Int
   ): ApiPaginatedAnimals
 }

@@ -70,7 +70,9 @@ abstract class AnimalsDao {
   @Transaction
   @Query("""
       SELECT * FROM animals 
-        WHERE upper(name) LIKE '%' || :name || '%' AND AGE LIKE :age AND type LIKE :type
+        WHERE upper(name) LIKE '%' || :name || '%' AND 
+        AGE LIKE '%' || :age || '%' 
+        AND type LIKE '%' || :type || '%'
   """)
   abstract fun searchAnimalsBy(
       name: String,

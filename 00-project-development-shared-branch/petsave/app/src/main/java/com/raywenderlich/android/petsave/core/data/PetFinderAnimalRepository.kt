@@ -65,6 +65,10 @@ class PetFinderAnimalRepository @Inject constructor(
   private val parentJob = SupervisorJob()
   private val repositoryScope = CoroutineScope(parentJob + dispatchersProvider.io())
 
+  // fetch these from shared preferences, after storing them in onboarding screen
+  private val postcode = "07097"
+  private val maxDistanceMiles = 100
+
   override fun getAnimals(): Flowable<List<Animal>> {
     return cache.getNearbyAnimals()
         .distinctUntilChanged()
@@ -77,10 +81,6 @@ class PetFinderAnimalRepository @Inject constructor(
       pageToLoad: Int,
       numberOfItems: Int
   ): PaginatedAnimals {
-    // fetch these from shared preferences, after storing them in onboarding screen
-    val postcode = "07097"
-    val maxDistanceMiles = 100
-
       val (apiAnimals, apiPagination) = api.getNearbyAnimals(
           pageToLoad,
           numberOfItems,
@@ -127,7 +127,7 @@ class PetFinderAnimalRepository @Inject constructor(
   override suspend fun searchAnimalsRemotely(
       pageToLoad: Int,
       searchParameters: SearchParameters,
-      pageSize: Int
+      numberOfItems: Int
   ): PaginatedAnimals {
 
     val (apiAnimals, apiPagination) = api.searchAnimalsBy(
@@ -135,7 +135,9 @@ class PetFinderAnimalRepository @Inject constructor(
         searchParameters.age,
         searchParameters.type,
         pageToLoad,
-        pageSize
+        numberOfItems,
+        postcode,
+        maxDistanceMiles
     )
 
     return PaginatedAnimals(

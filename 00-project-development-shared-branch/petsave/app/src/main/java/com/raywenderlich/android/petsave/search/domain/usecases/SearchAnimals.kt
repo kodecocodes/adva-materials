@@ -41,6 +41,7 @@ import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.functions.Function3
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.subjects.BehaviorSubject
 import java.util.*
@@ -61,10 +62,14 @@ class SearchAnimals @Inject constructor(
         .filter { it.length >= 2 }
         .distinctUntilChanged()
 
-    return Observables.zip(query, ageSubject, typeSubject)
-        .toFlowable(BackpressureStrategy.LATEST)
+    return Observable.combineLatest(query, ageSubject, typeSubject, combiningFunction)
+        .toFlowable(BackpressureStrategy.BUFFER)
         .switchMap {
             animalRepository.searchCachedAnimalsBy(SearchParameters(it.first, it.second, it.third))
         }
+        .distinctUntilChanged()
   }
+
+  private val combiningFunction: Function3<String, String, String, Triple<String, String, String>>
+    get() = Function3 {query, age, type -> Triple(query, age, type) }
 }

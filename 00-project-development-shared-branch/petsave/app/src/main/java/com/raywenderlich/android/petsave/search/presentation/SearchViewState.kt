@@ -43,5 +43,6 @@ data class SearchViewState(
     val ageMenuValues: Event<List<String>> = Event(emptyList()),
     val typeMenuValues: Event<List<String>> = Event(emptyList()),
     val searchingRemotely: Boolean = false,
+    val noResultsState: Boolean = false,
     val failure: Event<Throwable>? = null
 )

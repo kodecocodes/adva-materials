@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/filtered_search_widget_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -22,6 +23,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/small_margin"
+      app:layout_constraintEnd_toStartOf="@+id/age_dropdown_input_layout"
+      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/search">
 
@@ -40,9 +43,12 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/small_margin"
+      android:layout_marginBottom="4dp"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/type_dropdown_input_layout">
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/type_dropdown_input_layout"
+      app:layout_constraintTop_toBottomOf="@+id/search">
 
     <AutoCompleteTextView
         android:id="@+id/age_dropdown"

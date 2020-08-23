@@ -54,6 +54,6 @@ interface AnimalRepository {
   suspend fun searchAnimalsRemotely(
       pageToLoad: Int,
       searchParameters: SearchParameters,
-      pageSize: Int
+      numberOfItems: Int
   ): PaginatedAnimals
 }

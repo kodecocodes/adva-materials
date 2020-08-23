@@ -114,15 +114,22 @@ class SearchFragment: Fragment() {
         ageMenuValues,
         typeMenuValues,
         searchingRemotely,
+        noResultsState,
         failure
     ) = newState
 
-    binding.initialSearchImageView.isVisible = inInitialState
-    binding.initialSearchText.isVisible = inInitialState
+    updateInitialStateViews(inInitialState)
     searchAdapter.submitList(searchResults)
     setupMenuValues(ageMenuValues.getContentIfNotHandled(), R.id.age_dropdown)
     setupMenuValues(typeMenuValues.getContentIfNotHandled(), R.id.type_dropdown)
+    updateRemoteSearchViews(searchingRemotely)
+    updateNoResultsViews(noResultsState)
     handleFailures(failure)
+  }
+
+  private fun updateInitialStateViews(inInitialState: Boolean) {
+    binding.initialSearchImageView.isVisible = inInitialState
+    binding.initialSearchText.isVisible = inInitialState
   }
 
   private fun setupMenuValues(menuValues: List<String>?, @IdRes dropdownId: Int) {
@@ -194,6 +201,16 @@ class SearchFragment: Fragment() {
         block(it.adapter.getItem(position) as String)
       }
     }
+  }
+
+  private fun updateRemoteSearchViews(searchingRemotely: Boolean) {
+    binding.searchRemotelyProgressBar.isVisible = searchingRemotely
+    binding.searchRemotelyText.isVisible = searchingRemotely
+  }
+
+  private fun updateNoResultsViews(noResultsState: Boolean) {
+    binding.noSearchResultsImageView.isVisible = noResultsState
+    binding.noSearchResultsText.isVisible = noResultsState
   }
 
   private fun handleFailures(failure: Event<Throwable>?) {

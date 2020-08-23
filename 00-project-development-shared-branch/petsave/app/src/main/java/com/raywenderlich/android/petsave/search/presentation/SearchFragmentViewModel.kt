@@ -34,13 +34,12 @@
 
 package com.raywenderlich.android.petsave.search.presentation
 
+import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.raywenderlich.android.logging.Logger
 import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouViewState
+import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.core.presentation.Event
@@ -63,6 +62,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SearchFragmentViewModel @ViewModelInject constructor(
+    @Assisted private val savedStateHandle: SavedStateHandle,
     private val getSearchFilters: GetSearchFilters,
     private val searchAnimals: SearchAnimals,
     private val searchAnimalsRemotely: SearchAnimalsRemotely,
@@ -74,15 +74,15 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   val state: LiveData<SearchViewState>
     get() = _state
 
-  var isLastPage = false
 
   private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
   private val querySubject = BehaviorSubject.create<String>()
-  private val ageSubject = BehaviorSubject.create<String>()
-  private val typeSubject = BehaviorSubject.create<String>()
-  private var currentPage = 0
+  private val ageSubject = BehaviorSubject.createDefault<String>("")
+  private val typeSubject = BehaviorSubject.createDefault<String>("")
 
   private var runningJobs = mutableListOf<Job>()
+  private var isLastPage = false
+  private var currentPage = 0
 
   init {
     _state.value = SearchViewState()
@@ -126,7 +126,6 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private fun setupSearchSubscription() {
     searchAnimals(querySubject, ageSubject, typeSubject)
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnNext { runningJobs.map { it.cancel() } }
         .subscribe(
@@ -137,11 +136,28 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   }
 
   private fun updateQuery(input: String) {
-    currentPage = 0
+    resetPagination()
+
     querySubject.onNext(input)
 
+    onAnimalList(emptyList())
+    setSearchingState()
+    setInitialStateIf(input.isEmpty())
+  }
+
+
+  private fun resetPagination() {
+    currentPage = 0
+    isLastPage = false
+  }
+
+  private fun setSearchingState() {
+    _state.value = state.value!!.copy(noResultsState = false)
+  }
+
+  private fun setInitialStateIf(inputIsEmpty: Boolean) {
     _state.value = state.value!!.copy(
-        inInitialState = input.isEmpty()
+        inInitialState = inputIsEmpty
     )
   }
 
@@ -159,13 +175,25 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     if (animals.isEmpty()) {
       onEmptyCacheResults(searchParameters)
     } else {
-      _state.value = state.value!!.copy(
-          searchResults = animals.map { uiAnimalMapper.mapToView(it) }
-      )
+      onAnimalList(animals)
     }
   }
 
+  private fun onAnimalList(animals: List<Animal>) {
+    _state.value = state.value!!.copy(
+        inInitialState = false,
+        searchResults = animals.map { uiAnimalMapper.mapToView(it) },
+        searchingRemotely = false,
+        noResultsState = false
+    )
+  }
+
   private fun onEmptyCacheResults(searchParameters: SearchParameters) {
+    searchRemotely(searchParameters)
+    _state.value = state.value!!.copy(searchingRemotely = true)
+  }
+
+  private fun searchRemotely(searchParameters: SearchParameters) {
     val exceptionHandler = createExceptionHandler(message = "Failed to search remotely.")
 
     val job = viewModelScope.launch(exceptionHandler) {
@@ -192,7 +220,12 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   }
 
   private fun onFailure(throwable: Throwable) {
-    _state.value = state.value!!.copy(failure = Event(throwable))
+    _state.value = if (throwable is NoMoreAnimalsException) {
+      state.value!!.copy(searchingRemotely = false, noResultsState = true)
+    } else {
+      state.value!!.copy(failure = Event(throwable))
+    }
+
   }
 
   override fun onCleared() {

@@ -54,7 +54,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
     private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
     private val getAnimals: GetAnimals,
     private val uiAnimalMapper: UiAnimalMapper,
