@@ -39,19 +39,34 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.logging.Logger
+import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouViewState
+import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.core.presentation.Event
+import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.core.utils.createExceptionHandler
+import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import com.raywenderlich.android.petsave.search.domain.usecases.GetSearchFilters
+import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimals
+import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimalsRemotely
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 
 class SearchFragmentViewModel @ViewModelInject constructor(
     private val getSearchFilters: GetSearchFilters,
+    private val searchAnimals: SearchAnimals,
+    private val searchAnimalsRemotely: SearchAnimalsRemotely,
+    private val uiAnimalMapper: UiAnimalMapper,
     private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
@@ -59,11 +74,15 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   val state: LiveData<SearchViewState>
     get() = _state
 
-  private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
+  var isLastPage = false
 
+  private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
   private val querySubject = BehaviorSubject.create<String>()
   private val ageSubject = BehaviorSubject.create<String>()
   private val typeSubject = BehaviorSubject.create<String>()
+  private var currentPage = 0
+
+  private var runningJobs = mutableListOf<Job>()
 
   init {
     _state.value = SearchViewState()
@@ -72,7 +91,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   fun handleEvents(event: SearchEvent) {
     when(event) {
       is SearchEvent.PrepareForSearch -> prepareForSearch()
-      is SearchEvent.QueryInput -> searchAnimals(event.input)
+      is SearchEvent.QueryInput -> updateQuery(event.input)
       is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
       is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
     }
@@ -80,14 +99,11 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private fun prepareForSearch() {
     loadMenuValues()
-    setupQuerySubscription()
+    setupSearchSubscription()
   }
 
   private fun loadMenuValues() {
-    val errorMessage = "Failed to get menu values!"
-    val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) {
-      handleFailure(it)
-    }
+    val exceptionHandler = createExceptionHandler(message = "Failed to get menu values!")
 
     viewModelScope.launch(exceptionHandler) {
       val (ages, types) = withContext(dispatchersProvider.io()) { getSearchFilters() }
@@ -95,19 +111,38 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     }
   }
 
+  private fun createExceptionHandler(message: String): CoroutineExceptionHandler {
+    return viewModelScope.createExceptionHandler(message) {
+      onFailure(it)
+    }
+  }
+
   private fun updateStateWithMenuValues(ages: List<String>, types: List<String>) {
     _state.value = state.value!!.copy(
-        ageMenuValues = ages,
-        typeMenuValues = types
+        ageMenuValues = Event(ages),
+        typeMenuValues = Event(types)
     )
   }
 
-  private fun setupQuerySubscription() {
-
+  private fun setupSearchSubscription() {
+    searchAnimals(querySubject, ageSubject, typeSubject)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnNext { runningJobs.map { it.cancel() } }
+        .subscribe(
+            { onSearchResults(it) },
+            { onFailure(it) }
+        )
+        .addTo(compositeDisposable)
   }
 
-  private fun searchAnimals(input: String) {
+  private fun updateQuery(input: String) {
+    currentPage = 0
     querySubject.onNext(input)
+
+    _state.value = state.value!!.copy(
+        inInitialState = input.isEmpty()
+    )
   }
 
   private fun updateAgeValue(age: String) {
@@ -118,8 +153,46 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     typeSubject.onNext(type)
   }
 
-  private fun handleFailure(throwable: Throwable) {
-    _state.value = state.value?.copy(failure = Event(throwable))
+  private fun onSearchResults(searchResults: SearchResults) {
+    val (animals, searchParameters) = searchResults
+
+    if (animals.isEmpty()) {
+      onEmptyCacheResults(searchParameters)
+    } else {
+      _state.value = state.value!!.copy(
+          searchResults = animals.map { uiAnimalMapper.mapToView(it) }
+      )
+    }
+  }
+
+  private fun onEmptyCacheResults(searchParameters: SearchParameters) {
+    val exceptionHandler = createExceptionHandler(message = "Failed to search remotely.")
+
+    val job = viewModelScope.launch(exceptionHandler) {
+      val pagination = withContext(dispatchersProvider.io()) {
+        Logger.d("Searching remotely...")
+
+        searchAnimalsRemotely(++currentPage, searchParameters)
+      }
+
+      onPaginationInfoObtained(pagination)
+    }
+
+    runningJobs.add(job)
+
+    job.invokeOnCompletion {
+      it?.printStackTrace()
+      runningJobs.remove(job)
+    }
+  }
+
+  private fun onPaginationInfoObtained(pagination: Pagination) {
+    currentPage = pagination.currentPage
+    isLastPage = !pagination.canLoadMore
+  }
+
+  private fun onFailure(throwable: Throwable) {
+    _state.value = state.value!!.copy(failure = Event(throwable))
   }
 
   override fun onCleared() {

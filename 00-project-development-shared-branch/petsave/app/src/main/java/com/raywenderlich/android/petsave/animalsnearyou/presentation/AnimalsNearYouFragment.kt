@@ -47,8 +47,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.core.presentation.AnimalsAdapter
 import com.raywenderlich.android.petsave.core.presentation.Event
-import com.raywenderlich.android.petsave.core.presentation.InfiniteScrollListener
 import dagger.hilt.android.AndroidEntryPoint
 import okio.IOException
 import retrofit2.HttpException
@@ -86,11 +86,11 @@ class AnimalsNearYouFragment : Fragment() {
     observeViewStateUpdates(adapter)
   }
 
-  private fun createAdapter(): AnimalsNearYouAdapter {
-    return AnimalsNearYouAdapter()
+  private fun createAdapter(): AnimalsAdapter {
+    return AnimalsAdapter()
   }
 
-  private fun setupRecyclerView(animalsNearYouAdapter: AnimalsNearYouAdapter) {
+  private fun setupRecyclerView(animalsNearYouAdapter: AnimalsAdapter) {
     binding.animalsRecyclerView.apply {
       adapter = animalsNearYouAdapter
       layoutManager = GridLayoutManager(requireContext(), ITEMS_PER_ROW)
@@ -103,14 +103,14 @@ class AnimalsNearYouFragment : Fragment() {
   private fun createInfiniteScrollListener(
       layoutManager: GridLayoutManager
   ): RecyclerView.OnScrollListener {
-    return object : InfiniteScrollListener(layoutManager, AnimalsNearYouFragmentViewModel.PAGE_SIZE) {
+    return object : InfiniteScrollListener(layoutManager, AnimalsNearYouFragmentViewModel.UI_PAGE_SIZE) {
       override fun loadMoreItems() { requestAnimals() }
       override fun isLoading(): Boolean = viewModel.isLoadingMoreAnimals
       override fun isLastPage(): Boolean = viewModel.isLastPage
     }
   }
 
-  private fun observeViewStateUpdates(adapter: AnimalsNearYouAdapter) {
+  private fun observeViewStateUpdates(adapter: AnimalsAdapter) {
     viewModel.state.observe(viewLifecycleOwner) {
       updateScreenState(it, adapter)
     }
@@ -120,7 +120,7 @@ class AnimalsNearYouFragment : Fragment() {
     viewModel.handleEvent(AnimalsNearYouEvent.LoadAnimals)
   }
 
-  private fun updateScreenState(state: AnimalsNearYouViewState, adapter: AnimalsNearYouAdapter) {
+  private fun updateScreenState(state: AnimalsNearYouViewState, adapter: AnimalsAdapter) {
     binding.progressBar.isVisible = state.loading
     adapter.submitList(state.animals)
     handleNoMoreAnimalsNearby(state.noMoreAnimalsNearby)

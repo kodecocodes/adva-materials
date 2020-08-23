@@ -32,21 +32,16 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.domain.model.pagination
+package com.raywenderlich.android.petsave.search.domain.model
 
-data class Pagination(
-    val currentPage: Int,
-    val totalPages: Int
+import java.util.*
+
+data class SearchParameters(
+    val name: String,
+    val age: String,
+    val type: String
 ) {
-
-  companion object {
-    // For the cases when we store the current page locally, but haven't yet requested a new page
-    // from the remote source. Total pages should change with time, so we'll handle the value as
-    // unknown before updating.
-    const val UNKNOWN_TOTAL = -1
-    const val DEFAULT_PAGE_SIZE = 20
-  }
-
-  val canLoadMore: Boolean
-    get() = totalPages == UNKNOWN_TOTAL || currentPage < totalPages
+  val uppercaseName get() = name.toUpperCase(Locale.ROOT)
+  val uppercaseAge get() = age.toUpperCase(Locale.ROOT)
+  val uppercaseType get() = type.toUpperCase(Locale.ROOT)
 }

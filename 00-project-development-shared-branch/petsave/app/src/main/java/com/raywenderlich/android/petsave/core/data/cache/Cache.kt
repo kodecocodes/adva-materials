@@ -36,6 +36,7 @@ package com.raywenderlich.android.petsave.core.data.cache
 
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedanimal.CachedAnimalAggregate
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedorganization.CachedOrganization
+import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import io.reactivex.Flowable
 
 interface Cache {
@@ -43,4 +44,10 @@ interface Cache {
   fun storeOrganizations(organizations: List<CachedOrganization>)
   fun storeNearbyAnimals(animals: List<CachedAnimalAggregate>)
   suspend fun getAllTypes(): List<String>
+
+  fun searchAnimalsBy(
+      nameOrBreed: String,
+      age: String,
+      type: String
+  ): Flowable<List<CachedAnimalAggregate>>
 }

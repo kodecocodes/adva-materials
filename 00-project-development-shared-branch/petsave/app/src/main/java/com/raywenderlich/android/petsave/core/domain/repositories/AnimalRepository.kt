@@ -37,7 +37,10 @@ package com.raywenderlich.android.petsave.core.domain.repositories
 import com.raywenderlich.android.petsave.core.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import io.reactivex.Flowable
+import io.reactivex.Observable
 
 interface AnimalRepository {
 
@@ -46,4 +49,11 @@ interface AnimalRepository {
   suspend fun storeAnimals(animals: List<AnimalWithDetails>)
   suspend fun getAnimalTypes(): List<String>
   fun getAnimalAges(): List<AnimalWithDetails.Details.Age>
+  fun searchCachedAnimalsBy(searchParameters: SearchParameters): Flowable<SearchResults>
+
+  suspend fun searchAnimalsRemotely(
+      pageToLoad: Int,
+      searchParameters: SearchParameters,
+      pageSize: Int
+  ): PaginatedAnimals
 }

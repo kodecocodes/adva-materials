@@ -41,13 +41,21 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.annotation.IdRes
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.get
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.R
+import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouFragment
+import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.core.presentation.AnimalsAdapter
+import com.raywenderlich.android.petsave.core.presentation.Event
 import com.raywenderlich.android.petsave.databinding.FragmentSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
+import okio.IOException
+import retrofit2.HttpException
 
 @AndroidEntryPoint
 class SearchFragment: Fragment() {
@@ -55,6 +63,9 @@ class SearchFragment: Fragment() {
   private val binding get() = _binding!!
   private var _binding: FragmentSearchBinding? = null
 
+  companion object {
+    private const val ITEMS_PER_ROW = 2
+  }
 
   private val viewModel: SearchFragmentViewModel by viewModels()
 
@@ -68,23 +79,54 @@ class SearchFragment: Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    observeViewStateUpdates()
+    setupUI()
     prepareForSearch()
   }
 
-  private fun observeViewStateUpdates() {
-    viewModel.state.observe(viewLifecycleOwner) {
-      updateScreenState(it)
+  private fun setupUI() {
+    val adapter = createAdapter()
+    setupRecyclerView(adapter)
+    observeViewStateUpdates(adapter)
+  }
+
+  private fun createAdapter(): AnimalsAdapter {
+    return AnimalsAdapter()
+  }
+
+  private fun setupRecyclerView(searchAdapter: AnimalsAdapter) {
+    binding.searchRecyclerView.apply {
+      adapter = searchAdapter
+      layoutManager = GridLayoutManager(requireContext(), ITEMS_PER_ROW)
+      setHasFixedSize(true)
     }
   }
 
-  private fun updateScreenState(newState: SearchViewState) {
-    setupMenuValues(newState.ageMenuValues, R.id.age_dropdown)
-    setupMenuValues(newState.typeMenuValues, R.id.type_dropdown)
+  private fun observeViewStateUpdates(searchAdapter: AnimalsAdapter) {
+    viewModel.state.observe(viewLifecycleOwner) {
+      updateScreenState(it, searchAdapter)
+    }
   }
 
-  private fun setupMenuValues(menuValues: List<String>, @IdRes dropdownId: Int) {
-    if (menuValues.isEmpty()) return
+  private fun updateScreenState(newState: SearchViewState, searchAdapter: AnimalsAdapter) {
+    val (
+        inInitialState,
+        searchResults,
+        ageMenuValues,
+        typeMenuValues,
+        searchingRemotely,
+        failure
+    ) = newState
+
+    binding.initialSearchImageView.isVisible = inInitialState
+    binding.initialSearchText.isVisible = inInitialState
+    searchAdapter.submitList(searchResults)
+    setupMenuValues(ageMenuValues.getContentIfNotHandled(), R.id.age_dropdown)
+    setupMenuValues(typeMenuValues.getContentIfNotHandled(), R.id.type_dropdown)
+    handleFailures(failure)
+  }
+
+  private fun setupMenuValues(menuValues: List<String>?, @IdRes dropdownId: Int) {
+    if (menuValues == null || menuValues.isEmpty()) return
 
     val dropdown: AutoCompleteTextView =
         binding.collapsibleSearchParamsContainer.findViewById(dropdownId)
@@ -117,6 +159,7 @@ class SearchFragment: Fragment() {
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
       override fun onQueryTextSubmit(query: String?): Boolean {
         viewModel.handleEvents(SearchEvent.QueryInput(query.orEmpty()))
+        searchView.clearFocus()
 
         return true
       }
@@ -150,6 +193,25 @@ class SearchFragment: Fragment() {
       parent?.let {
         block(it.adapter.getItem(position) as String)
       }
+    }
+  }
+
+  private fun handleFailures(failure: Event<Throwable>?) {
+    val unhandledFailure = failure?.getContentIfNotHandled() ?: return
+
+    handleThrowable(unhandledFailure)
+  }
+
+  private fun handleThrowable(exception: Throwable) {
+    val fallbackMessage = "An error occurred. Please try again later."
+    val snackbarMessage = when (exception) {
+      is NoMoreAnimalsException -> exception.message ?: fallbackMessage
+      is IOException, is HttpException -> fallbackMessage
+      else -> ""
+    }
+
+    if (snackbarMessage.isNotEmpty()) {
+      Snackbar.make(requireView(), snackbarMessage, Snackbar.LENGTH_SHORT).show()
     }
   }
 

@@ -18,7 +18,7 @@
       app:layout_constraintStart_toStartOf="parent"
       android:descendantFocusability="blocksDescendants"
       tools:layoutManager="GridLayoutManager"
-      tools:listitem="@layout/recycler_view_animal_near_you_item"
+      tools:listitem="@layout/recycler_view_animal_item"
       tools:spanCount="2"
       app:layout_constraintTop_toTopOf="parent" />
 

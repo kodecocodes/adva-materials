@@ -40,9 +40,8 @@ import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
 data class SearchViewState(
     val inInitialState: Boolean = true,
     val searchResults: List<UIAnimal> = emptyList(),
-    val ageMenuValues: List<String> = emptyList(),
-    val ageSelectedValue: String = "",
-    val typeMenuValues: List<String> = emptyList(),
-    val typeSelectedValue: String = "",
+    val ageMenuValues: Event<List<String>> = Event(emptyList()),
+    val typeMenuValues: Event<List<String>> = Event(emptyList()),
+    val searchingRemotely: Boolean = false,
     val failure: Event<Throwable>? = null
 )

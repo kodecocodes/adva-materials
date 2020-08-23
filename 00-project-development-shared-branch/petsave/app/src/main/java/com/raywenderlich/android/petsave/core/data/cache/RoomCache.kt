@@ -34,10 +34,13 @@
 
 package com.raywenderlich.android.petsave.core.data.cache
 
+import com.raywenderlich.android.petsave.core.data.api.model.ApiAnimal
 import com.raywenderlich.android.petsave.core.data.cache.daos.AnimalsDao
 import com.raywenderlich.android.petsave.core.data.cache.daos.OrganizationsDao
+import com.raywenderlich.android.petsave.core.data.cache.model.cachedanimal.CachedAnimal
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedanimal.CachedAnimalAggregate
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedorganization.CachedOrganization
+import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import io.reactivex.Flowable
 import javax.inject.Inject
 
@@ -60,5 +63,13 @@ class RoomCache @Inject constructor(
 
   override suspend fun getAllTypes(): List<String> {
     return animalsDao.getAllTypes()
+  }
+
+  override fun searchAnimalsBy(
+      nameOrBreed: String,
+      age: String,
+      type: String
+  ): Flowable<List<CachedAnimalAggregate>> {
+    return animalsDao.searchAnimalsBy(nameOrBreed, age, type)
   }
 }

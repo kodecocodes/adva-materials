@@ -32,37 +32,39 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.presentation
+package com.raywenderlich.android.petsave.search.domain.usecases
 
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.Observables
+import io.reactivex.subjects.BehaviorSubject
+import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-abstract class InfiniteScrollListener(
-    private val layoutManager: GridLayoutManager,
-    private val pageSize: Int
-) :
-    RecyclerView.OnScrollListener() {
+class SearchAnimals @Inject constructor(
+    private val animalRepository: AnimalRepository
+) {
 
-  override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-    super.onScrolled(recyclerView, dx, dy)
+  operator fun invoke(
+      querySubject: BehaviorSubject<String>,
+      ageSubject: BehaviorSubject<String>,
+      typeSubject: BehaviorSubject<String>
+  ): Flowable<SearchResults> {
+    val query = querySubject
+        .debounce(500L, TimeUnit.MILLISECONDS)
+        .filter { it.length >= 2 }
+        .distinctUntilChanged()
 
-    val visibleItemCount = layoutManager.childCount
-    val totalItemCount = layoutManager.itemCount
-    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-    if (!isLoading() && !isLastPage()) {
-      if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
-          && firstVisibleItemPosition >= 0
-          && totalItemCount >= pageSize
-      ) {
-        loadMoreItems()
-      }
-    }
+    return Observables.zip(query, ageSubject, typeSubject)
+        .toFlowable(BackpressureStrategy.LATEST)
+        .switchMap {
+            animalRepository.searchCachedAnimalsBy(SearchParameters(it.first, it.second, it.third))
+        }
   }
-
-  abstract fun loadMoreItems()
-
-  abstract fun isLastPage(): Boolean
-
-  abstract fun isLoading(): Boolean
 }

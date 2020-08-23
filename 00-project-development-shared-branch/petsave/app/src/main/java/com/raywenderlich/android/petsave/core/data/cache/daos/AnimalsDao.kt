@@ -42,7 +42,7 @@ import io.reactivex.Flowable
 abstract class AnimalsDao {
 
   @Transaction
-  @Query("select * from animals order by animalId DESC")
+  @Query("SELECT * FROM animals ORDER BY animalId DESC")
   abstract fun getAllAnimals(): Flowable<List<CachedAnimalAggregate>>
 
   @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -64,6 +64,17 @@ abstract class AnimalsDao {
     }
   }
 
-  @Query("select distinct type from animals")
+  @Query("SELECT DISTINCT type FROM animals")
   abstract suspend fun getAllTypes(): List<String>
+
+  @Transaction
+  @Query("""
+      SELECT * FROM animals 
+        WHERE upper(name) LIKE '%' || :name || '%' AND AGE LIKE :age AND type LIKE :type
+  """)
+  abstract fun searchAnimalsBy(
+      name: String,
+      age: String,
+      type: String
+  ): Flowable<List<CachedAnimalAggregate>>
 }

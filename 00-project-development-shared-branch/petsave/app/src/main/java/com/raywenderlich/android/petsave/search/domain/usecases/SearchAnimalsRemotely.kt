@@ -32,21 +32,40 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.domain.model.pagination
+package com.raywenderlich.android.petsave.search.domain.usecases
 
-data class Pagination(
-    val currentPage: Int,
-    val totalPages: Int
+import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
+import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination.Companion.DEFAULT_PAGE_SIZE
+import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.isActive
+import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
+
+class SearchAnimalsRemotely @Inject constructor(
+    private val animalRepository: AnimalRepository
 ) {
 
-  companion object {
-    // For the cases when we store the current page locally, but haven't yet requested a new page
-    // from the remote source. Total pages should change with time, so we'll handle the value as
-    // unknown before updating.
-    const val UNKNOWN_TOTAL = -1
-    const val DEFAULT_PAGE_SIZE = 20
-  }
+  suspend operator fun invoke(
+      pageToLoad: Int,
+      searchParameters: SearchParameters,
+      pageSize: Int = DEFAULT_PAGE_SIZE
+  ): Pagination {
+    val (animals, pagination) =
+        animalRepository.searchAnimalsRemotely(pageToLoad, searchParameters, pageSize)
 
-  val canLoadMore: Boolean
-    get() = totalPages == UNKNOWN_TOTAL || currentPage < totalPages
+    if (!coroutineContext.isActive) {
+      throw CancellationException("Cancelled because new data was requested")
+    }
+
+    if (animals.isEmpty()) {
+      throw NoMoreAnimalsException("Couldn't find more animals that match the search parameters.")
+    }
+
+    animalRepository.storeAnimals(animals)
+
+    return pagination
+  }
 }

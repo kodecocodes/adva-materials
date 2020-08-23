@@ -63,7 +63,7 @@ class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
 ): ViewModel() {
 
   companion object {
-    const val PAGE_SIZE = 10
+    const val UI_PAGE_SIZE = Pagination.DEFAULT_PAGE_SIZE
   }
 
   val state: LiveData<AnimalsNearYouViewState> get() = _state

@@ -32,50 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.animalsnearyou.presentation
+package com.raywenderlich.android.petsave.search.domain.model
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.raywenderlich.android.petsave.databinding.RecyclerViewAnimalNearYouItemBinding
-import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
-import com.raywenderlich.android.petsave.core.utils.setImage
+import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 
-class AnimalsNearYouAdapter: ListAdapter<UIAnimal, AnimalsNearYouAdapter.AnimalNearYouViewHolder>(
-    ITEM_COMPARATOR) {
-
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalNearYouViewHolder {
-    val binding = RecyclerViewAnimalNearYouItemBinding
-        .inflate(LayoutInflater.from(parent.context), parent, false)
-
-    return AnimalNearYouViewHolder(binding)
-  }
-
-  override fun onBindViewHolder(holder: AnimalNearYouViewHolder, position: Int) {
-    val item: UIAnimal = getItem(position)
-
-    holder.bind(item)
-  }
-
-  class AnimalNearYouViewHolder(
-      private val binding: RecyclerViewAnimalNearYouItemBinding
-  ) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(item: UIAnimal) {
-      binding.name.text = item.name
-      binding.photo.setImage(item.photo)
-    }
-  }
-}
-
-private val ITEM_COMPARATOR = object : DiffUtil.ItemCallback<UIAnimal>() {
-  override fun areItemsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
-    return oldItem.id == newItem.id
-  }
-
-  override fun areContentsTheSame(oldItem: UIAnimal, newItem: UIAnimal): Boolean {
-    return oldItem.name == newItem.name && oldItem.photo == newItem.photo
-  }
-}
+data class SearchResults(
+    val animals: List<Animal>,
+    val searchParameters: SearchParameters
+)

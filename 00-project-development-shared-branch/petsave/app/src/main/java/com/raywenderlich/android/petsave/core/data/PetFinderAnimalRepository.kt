@@ -45,6 +45,8 @@ import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
+import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import io.reactivex.Flowable
 import kotlinx.coroutines.CoroutineScope
@@ -108,5 +110,37 @@ class PetFinderAnimalRepository @Inject constructor(
 
   override fun getAnimalAges(): List<AnimalWithDetails.Details.Age> {
     return AnimalWithDetails.Details.Age.values().toList()
+  }
+
+  override fun searchCachedAnimalsBy(searchParameters: SearchParameters): Flowable<SearchResults> {
+    return cache.searchAnimalsBy(
+        searchParameters.uppercaseName,
+        searchParameters.uppercaseAge,
+        searchParameters.uppercaseType
+    )
+        .map { animalList ->
+          animalList.map { it.animal.toAnimalDomain(it.photos, it.videos, it.tags) }
+        }
+        .map { SearchResults(it, searchParameters) }
+  }
+
+  override suspend fun searchAnimalsRemotely(
+      pageToLoad: Int,
+      searchParameters: SearchParameters,
+      pageSize: Int
+  ): PaginatedAnimals {
+
+    val (apiAnimals, apiPagination) = api.searchAnimalsBy(
+        searchParameters.name,
+        searchParameters.age,
+        searchParameters.type,
+        pageToLoad,
+        pageSize
+    )
+
+    return PaginatedAnimals(
+        apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty(),
+        apiPaginationMapper.mapToDomain(apiPagination)
+    )
   }
 }
