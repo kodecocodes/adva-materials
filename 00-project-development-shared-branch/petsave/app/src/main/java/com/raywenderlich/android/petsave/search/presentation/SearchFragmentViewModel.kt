@@ -125,7 +125,6 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   private fun setupSearchSubscription() {
     searchAnimals(querySubject, ageSubject, typeSubject)
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnNext { runningJobs.map { it.cancel() } }
         .subscribe(
             { onSearchResults(it) },
             { onFailure(it) }
@@ -137,9 +136,10 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     resetPagination()
 
     querySubject.onNext(input)
+    runningJobs.map { it.cancel() }
 
     if (input.isEmpty()) {
-      setNoSearchQueryStateIf()
+      setNoSearchQueryState()
     } else {
       setSearchingState()
     }
@@ -155,7 +155,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     _state.value = state.value!!.copy(noResultsState = false)
   }
 
-  private fun setNoSearchQueryStateIf() {
+  private fun setNoSearchQueryState() {
     _state.value = state.value!!.copy(
         noSearchQueryState = true,
         searchResults = emptyList(),
@@ -165,10 +165,12 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private fun updateAgeValue(age: String) {
     ageSubject.onNext(age)
+    runningJobs.map { it.cancel() }
   }
 
   private fun updateTypeValue(type: String) {
     typeSubject.onNext(type)
+    runningJobs.map { it.cancel() }
   }
 
   private fun onSearchResults(searchResults: SearchResults) {
