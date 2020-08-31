@@ -40,6 +40,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.android.petsave.common.presentation.model.UIAnimal
+import com.raywenderlich.android.petsave.common.utils.setImage
 import com.raywenderlich.android.petsave.databinding.RecyclerViewAnimalItemBinding
 
 class AnimalsAdapter: ListAdapter<UIAnimal, AnimalsAdapter.AnimalsViewHolder>(

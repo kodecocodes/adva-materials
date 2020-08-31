@@ -61,7 +61,7 @@ class SearchAnimals @Inject constructor(
     val query = querySubject
         .debounce(500L, TimeUnit.MILLISECONDS)
         .map { it.trim() }
-        .filter { it.length >= 2 }
+        .filter { it.length >= 2 || it.isEmpty() }
         .distinctUntilChanged()
 
     val age = ageSubject.replaceUIEmptyValue()
@@ -69,6 +69,7 @@ class SearchAnimals @Inject constructor(
 
     return Observable.combineLatest(query, age, type, combiningFunction)
         .toFlowable(BackpressureStrategy.LATEST)
+        .filter { it.name.isNotEmpty() }
         .switchMap { parameters: SearchParameters ->
           animalRepository.searchCachedAnimalsBy(parameters)
         }

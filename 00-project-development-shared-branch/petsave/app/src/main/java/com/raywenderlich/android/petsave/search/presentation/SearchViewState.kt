@@ -38,12 +38,12 @@ import com.raywenderlich.android.petsave.common.presentation.Event
 import com.raywenderlich.android.petsave.common.presentation.model.UIAnimal
 
 data class SearchViewState(
-    val noSearchQueryState: Boolean = true,
+    val noSearchQuery: Boolean = true,
     val searchResults: List<UIAnimal> = emptyList(),
     val ageMenuValues: Event<List<String>> = Event(emptyList()),
     val typeMenuValues: Event<List<String>> = Event(emptyList()),
     val searchingRemotely: Boolean = false,
-    val noResultsState: Boolean = false,
+    val noRemoteResults: Boolean = false,
     val failure: Event<Throwable>? = null
 ) {
   fun updateToReadyForSearch(ages: List<String>, types: List<String>): SearchViewState {
@@ -55,14 +55,17 @@ data class SearchViewState(
 
   fun updateToNoSearchQuery(): SearchViewState {
     return copy(
-        noSearchQueryState = true,
+        noSearchQuery = true,
         searchResults = emptyList(),
-        noResultsState = false
+        noRemoteResults = false
     )
   }
 
   fun updateToSearching(): SearchViewState {
-    return copy(noResultsState = false)
+    return copy(
+        noSearchQuery = false,
+        noRemoteResults = false
+    )
   }
 
   fun updateToSearchingRemotely(): SearchViewState {
@@ -74,15 +77,15 @@ data class SearchViewState(
 
   fun updateToHasSearchResults(animals: List<UIAnimal>): SearchViewState {
     return copy(
-        noSearchQueryState = false,
+        noSearchQuery = false,
         searchResults = animals,
         searchingRemotely = false,
-        noResultsState = false
+        noRemoteResults = false
     )
   }
 
   fun updateToNoResultsAvailable(): SearchViewState {
-    return copy(searchingRemotely = false, noResultsState = true)
+    return copy(searchingRemotely = false, noRemoteResults = true)
   }
 
   fun updateToHasFailure(throwable: Throwable): SearchViewState {
@@ -90,6 +93,6 @@ data class SearchViewState(
   }
 
   fun isInNoSearchResultsState(): Boolean {
-    return noResultsState
+    return noRemoteResults
   }
 }
