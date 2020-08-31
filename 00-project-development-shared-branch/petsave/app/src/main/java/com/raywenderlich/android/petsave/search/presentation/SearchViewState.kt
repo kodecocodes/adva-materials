@@ -34,8 +34,8 @@
 
 package com.raywenderlich.android.petsave.search.presentation
 
-import com.raywenderlich.android.petsave.core.presentation.Event
-import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
+import com.raywenderlich.android.petsave.common.presentation.Event
+import com.raywenderlich.android.petsave.common.presentation.model.UIAnimal
 
 data class SearchViewState(
     val noSearchQueryState: Boolean = true,
@@ -45,4 +45,51 @@ data class SearchViewState(
     val searchingRemotely: Boolean = false,
     val noResultsState: Boolean = false,
     val failure: Event<Throwable>? = null
-)
+) {
+  fun updateToReadyForSearch(ages: List<String>, types: List<String>): SearchViewState {
+    return copy(
+        ageMenuValues = Event(ages),
+        typeMenuValues = Event(types)
+    )
+  }
+
+  fun updateToNoSearchQuery(): SearchViewState {
+    return copy(
+        noSearchQueryState = true,
+        searchResults = emptyList(),
+        noResultsState = false
+    )
+  }
+
+  fun updateToSearching(): SearchViewState {
+    return copy(noResultsState = false)
+  }
+
+  fun updateToSearchingRemotely(): SearchViewState {
+    return copy(
+        searchingRemotely = true,
+        searchResults = emptyList()
+    )
+  }
+
+  fun updateToHasSearchResults(animals: List<UIAnimal>): SearchViewState {
+    return copy(
+        noSearchQueryState = false,
+        searchResults = animals,
+        searchingRemotely = false,
+        noResultsState = false
+    )
+  }
+
+  fun updateToNoResultsAvailable(): SearchViewState {
+    return copy(searchingRemotely = false, noResultsState = true)
+  }
+
+  fun updateToHasFailure(throwable: Throwable): SearchViewState {
+    return copy(failure = Event(throwable))
+  }
+
+  fun isInNoSearchResultsState(): Boolean {
+    return noResultsState
+  }
+}

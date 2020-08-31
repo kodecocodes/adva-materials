@@ -34,10 +34,10 @@
 
 package com.raywenderlich.android.petsave.search.domain.usecases
 
-import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
-import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination.Companion.DEFAULT_PAGE_SIZE
-import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.common.domain.model.pagination.Pagination
+import com.raywenderlich.android.petsave.common.domain.model.pagination.Pagination.Companion.DEFAULT_PAGE_SIZE
+import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.isActive

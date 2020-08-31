@@ -34,9 +34,8 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import com.raywenderlich.android.petsave.core.presentation.model.UIAnimal
-import com.raywenderlich.android.petsave.core.presentation.Event
-import java.lang.Exception
+import com.raywenderlich.android.petsave.common.presentation.model.UIAnimal
+import com.raywenderlich.android.petsave.common.presentation.Event
 
 data class AnimalsNearYouViewState(
     val loading: Boolean = true,

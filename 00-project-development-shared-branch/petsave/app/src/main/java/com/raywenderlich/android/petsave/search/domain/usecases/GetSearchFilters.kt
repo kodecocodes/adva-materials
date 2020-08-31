@@ -34,9 +34,9 @@
 
 package com.raywenderlich.android.petsave.search.domain.usecases
 
-import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.search.domain.model.SearchFilters
-import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
+import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.search.domain.model.MenuValueException
 import java.util.*
 import javax.inject.Inject

@@ -38,13 +38,12 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.raywenderlich.android.logging.Logger
-import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
-import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
-import com.raywenderlich.android.petsave.core.presentation.Event
-import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalMapper
-import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
-import com.raywenderlich.android.petsave.core.utils.createExceptionHandler
+import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.common.domain.model.pagination.Pagination
+import com.raywenderlich.android.petsave.common.presentation.model.mappers.UiAnimalMapper
+import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
+import com.raywenderlich.android.petsave.common.utils.createExceptionHandler
 import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
 import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import com.raywenderlich.android.petsave.search.domain.usecases.GetSearchFilters
@@ -89,9 +88,25 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   fun handleEvents(event: SearchEvent) {
     when(event) {
       is SearchEvent.PrepareForSearch -> prepareForSearch()
+      else -> onSearchParametersUpdate(event)
+    }
+  }
+
+  private fun onSearchParametersUpdate(event: SearchEvent) {
+    runningJobs.map { it.cancel() }
+
+    resetStateIfNoRemoteResults()
+
+    when (event) {
       is SearchEvent.QueryInput -> updateQuery(event.input)
       is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
       is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
+    }
+  }
+
+  private fun resetStateIfNoRemoteResults() {
+    if (state.value!!.isInNoSearchResultsState()) {
+      _state.value = state.value!!.updateToSearching()
     }
   }
 
@@ -116,10 +131,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   }
 
   private fun updateStateWithMenuValues(ages: List<String>, types: List<String>) {
-    _state.value = state.value!!.copy(
-        ageMenuValues = Event(ages),
-        typeMenuValues = Event(types)
-    )
+    _state.value = state.value!!.updateToReadyForSearch(ages, types)
   }
 
   private fun setupSearchSubscription() {
@@ -136,7 +148,6 @@ class SearchFragmentViewModel @ViewModelInject constructor(
     resetPagination()
 
     querySubject.onNext(input)
-    runningJobs.map { it.cancel() }
 
     if (input.isEmpty()) {
       setNoSearchQueryState()
@@ -152,25 +163,19 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   }
 
   private fun setSearchingState() {
-    _state.value = state.value!!.copy(noResultsState = false)
+    _state.value = state.value!!.updateToSearching()
   }
 
   private fun setNoSearchQueryState() {
-    _state.value = state.value!!.copy(
-        noSearchQueryState = true,
-        searchResults = emptyList(),
-        noResultsState = false
-    )
+    _state.value = state.value!!.updateToNoSearchQuery()
   }
 
   private fun updateAgeValue(age: String) {
     ageSubject.onNext(age)
-    runningJobs.map { it.cancel() }
   }
 
   private fun updateTypeValue(type: String) {
     typeSubject.onNext(type)
-    runningJobs.map { it.cancel() }
   }
 
   private fun onSearchResults(searchResults: SearchResults) {
@@ -184,20 +189,13 @@ class SearchFragmentViewModel @ViewModelInject constructor(
   }
 
   private fun onAnimalList(animals: List<Animal>) {
-    _state.value = state.value!!.copy(
-        noSearchQueryState = false,
-        searchResults = animals.map { uiAnimalMapper.mapToView(it) },
-        searchingRemotely = false,
-        noResultsState = false
-    )
+    _state.value =
+        state.value!!.updateToHasSearchResults(animals.map { uiAnimalMapper.mapToView(it) })
   }
 
   private fun onEmptyCacheResults(searchParameters: SearchParameters) {
+    _state.value = state.value!!.updateToSearchingRemotely()
     searchRemotely(searchParameters)
-    _state.value = state.value!!.copy(
-        searchingRemotely = true,
-        searchResults = emptyList()
-    )
   }
 
   private fun searchRemotely(searchParameters: SearchParameters) {
@@ -228,9 +226,9 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private fun onFailure(throwable: Throwable) {
     _state.value = if (throwable is NoMoreAnimalsException) {
-      state.value!!.copy(searchingRemotely = false, noResultsState = true)
+      state.value!!.updateToNoResultsAvailable()
     } else {
-      state.value!!.copy(failure = Event(throwable))
+      state.value!!.updateToHasFailure(throwable)
     }
 
   }
