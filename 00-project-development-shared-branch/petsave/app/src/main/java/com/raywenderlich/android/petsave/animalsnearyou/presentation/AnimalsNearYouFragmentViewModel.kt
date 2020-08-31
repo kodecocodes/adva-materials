@@ -34,15 +34,14 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.raywenderlich.android.logging.Logger
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
-import com.raywenderlich.android.petsave.core.domain.usecases.GetAnimals
-import com.raywenderlich.android.petsave.core.domain.usecases.RequestNextPageOfAnimals
+import com.raywenderlich.android.petsave.animalsnearyou.domain.usecases.GetAnimals
+import com.raywenderlich.android.petsave.animalsnearyou.domain.usecases.RequestNextPageOfAnimals
 import com.raywenderlich.android.petsave.core.presentation.Event
 import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider

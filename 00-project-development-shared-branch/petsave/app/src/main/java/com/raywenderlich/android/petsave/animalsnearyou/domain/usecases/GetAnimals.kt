@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.core.domain.usecases
+package com.raywenderlich.android.petsave.animalsnearyou.domain.usecases
 
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
 import javax.inject.Inject
