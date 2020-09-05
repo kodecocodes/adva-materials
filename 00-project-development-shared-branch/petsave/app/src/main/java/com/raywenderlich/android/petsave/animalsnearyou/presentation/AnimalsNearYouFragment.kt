@@ -42,11 +42,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.common.presentation.AnimalClickListener
 import com.raywenderlich.android.petsave.common.presentation.AnimalsAdapter
 import com.raywenderlich.android.petsave.common.presentation.Event
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,7 +89,14 @@ class AnimalsNearYouFragment : Fragment() {
   }
 
   private fun createAdapter(): AnimalsAdapter {
-    return AnimalsAdapter()
+    return AnimalsAdapter().apply {
+      setOnAnimalClickListener(object: AnimalClickListener {
+        override fun onClick(animalId: Long) {
+          val action = AnimalsNearYouFragmentDirections.actionAnimalsNearYouToDetails(animalId)
+          findNavController().navigate(action)
+        }
+      })
+    }
   }
 
   private fun setupRecyclerView(animalsNearYouAdapter: AnimalsAdapter) {

@@ -32,22 +32,24 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data.cache.daos
+package com.raywenderlich.android.petsave.common.presentation.model.mappers
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
-import androidx.room.Query
-import io.reactivex.Flowable
-import io.reactivex.Single
+import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.presentation.model.UIAnimalDetailed
+import javax.inject.Inject
 
-@Dao
-interface OrganizationsDao {
+class UiAnimalDetailsMapper @Inject constructor(): UiMapper<AnimalWithDetails, UIAnimalDetailed> {
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(organizations: List<CachedOrganization>)
-
-  @Query("SELECT * from organizations where organizationId is :id")
-  fun getOrganization(id: String): Single<CachedOrganization>
+  override fun mapToView(input: AnimalWithDetails): UIAnimalDetailed {
+    return UIAnimalDetailed(
+        id = input.id,
+        name = input.name,
+        photo = input.media.getFirstSmallestAvailablePhoto(),
+        description = input.details.description,
+        sprayNeutered = input.details.healthDetails.isSpayedOrNeutered,
+        specialNeeds = input.details.healthDetails.hasSpecialNeeds,
+        tags = input.tags,
+        phone = input.details.organization.contact.phone
+    )
+  }
 }

@@ -34,8 +34,10 @@
 
 package com.raywenderlich.android.petsave.common.data.api
 
+import com.raywenderlich.android.petsave.common.data.api.model.ApiAnimal
 import com.raywenderlich.android.petsave.common.data.api.model.ApiPaginatedAnimals
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PetFinderApi {
@@ -58,4 +60,9 @@ interface PetFinderApi {
       @Query(ApiParameters.LOCATION) postcode: String,
       @Query(ApiParameters.DISTANCE) maxDistance: Int
   ): ApiPaginatedAnimals
+
+  @GET(ApiConstants.ANIMAL_ENDPOINT + "/" + ApiParameters.ID)
+  suspend fun getAnimalDetails(
+      @Path(ApiParameters.ID) ID: Int
+  ): ApiAnimal
 }

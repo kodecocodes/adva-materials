@@ -32,22 +32,16 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data.cache.daos
+package com.raywenderlich.android.petsave.details.presentation
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
-import androidx.room.Query
-import io.reactivex.Flowable
-import io.reactivex.Single
+import com.raywenderlich.android.petsave.common.presentation.model.UIAnimalDetailed
 
-@Dao
-interface OrganizationsDao {
+sealed class AnimalDetailsViewState {
+  object Loading : AnimalDetailsViewState()
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(organizations: List<CachedOrganization>)
+  data class AnimalDetails(
+      val animal: UIAnimalDetailed
+  ) : AnimalDetailsViewState()
 
-  @Query("SELECT * from organizations where organizationId is :id")
-  fun getOrganization(id: String): Single<CachedOrganization>
+  object Failure : AnimalDetailsViewState()
 }

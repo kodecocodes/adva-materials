@@ -32,22 +32,21 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data.cache.daos
+package com.raywenderlich.android.petsave.details.domain.usecases
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
-import androidx.room.Query
-import io.reactivex.Flowable
+import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
 import io.reactivex.Single
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-@Dao
-interface OrganizationsDao {
+class AnimalDetails @Inject constructor(
+    private val animalRepository: AnimalRepository
+) {
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insert(organizations: List<CachedOrganization>)
-
-  @Query("SELECT * from organizations where organizationId is :id")
-  fun getOrganization(id: String): Single<CachedOrganization>
+  operator fun invoke(
+      animalId: Long
+  ): Single<AnimalWithDetails> {
+    return animalRepository.getAnimal(animalId).delay(2, TimeUnit.SECONDS)
+  }
 }

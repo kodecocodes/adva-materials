@@ -49,6 +49,7 @@ import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
 import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import io.reactivex.Flowable
+import io.reactivex.Single
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Inject
@@ -60,7 +61,7 @@ class PetFinderAnimalRepository @Inject constructor(
     private val apiAnimalMapper: ApiAnimalMapper,
     private val apiPaginationMapper: ApiPaginationMapper,
     dispatchersProvider: DispatchersProvider
-): AnimalRepository {
+) : AnimalRepository {
 
   private val parentJob = SupervisorJob()
   private val repositoryScope = CoroutineScope(parentJob + dispatchersProvider.io())
@@ -77,21 +78,31 @@ class PetFinderAnimalRepository @Inject constructor(
         }
   }
 
+  override fun getAnimal(animalId: Long): Single<AnimalWithDetails> {
+    return cache.getAnimal(animalId)
+        .flatMap { animal ->
+          cache.getOrganization(animal.animal.organizationId)
+              .map {
+                animal.animal.toDomain(animal.photos, animal.videos, animal.tags, it)
+              }
+        }
+  }
+
   override suspend fun requestMoreAnimals(
       pageToLoad: Int,
       numberOfItems: Int
   ): PaginatedAnimals {
-      val (apiAnimals, apiPagination) = api.getNearbyAnimals(
-          pageToLoad,
-          numberOfItems,
-          postcode,
-          maxDistanceMiles
-      )
+    val (apiAnimals, apiPagination) = api.getNearbyAnimals(
+        pageToLoad,
+        numberOfItems,
+        postcode,
+        maxDistanceMiles
+    )
 
-      return PaginatedAnimals(
-          apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty(),
-          apiPaginationMapper.mapToDomain(apiPagination)
-      )
+    return PaginatedAnimals(
+        apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty(),
+        apiPaginationMapper.mapToDomain(apiPagination)
+    )
   }
 
   override suspend fun storeAnimals(animals: List<AnimalWithDetails>) {

@@ -39,6 +39,7 @@ import com.raywenderlich.android.petsave.common.data.cache.daos.OrganizationsDao
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedanimal.CachedAnimalAggregate
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
 import io.reactivex.Flowable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class RoomCache @Inject constructor(
@@ -50,8 +51,16 @@ class RoomCache @Inject constructor(
     return animalsDao.getAllAnimals()
   }
 
+  override fun getAnimal(animalId: Long): Single<CachedAnimalAggregate> {
+    return animalsDao.getAnimal(animalId)
+  }
+
   override fun storeOrganizations(organizations: List<CachedOrganization>) {
     organizationsDao.insert(organizations)
+  }
+
+  override fun getOrganization(organizationId: String): Single<CachedOrganization> {
+    return organizationsDao.getOrganization(organizationId)
   }
 
   override fun storeNearbyAnimals(animals: List<CachedAnimalAggregate>) {

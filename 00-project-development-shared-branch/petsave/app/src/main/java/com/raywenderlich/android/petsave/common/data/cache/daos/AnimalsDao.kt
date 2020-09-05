@@ -37,6 +37,7 @@ package com.raywenderlich.android.petsave.common.data.cache.daos
 import androidx.room.*
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedanimal.*
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 abstract class AnimalsDao {
@@ -44,6 +45,12 @@ abstract class AnimalsDao {
   @Transaction
   @Query("SELECT * FROM animals ORDER BY animalId DESC")
   abstract fun getAllAnimals(): Flowable<List<CachedAnimalAggregate>>
+
+  @Transaction
+  @Query("SELECT * FROM animals WHERE animalId IS :animalId")
+  abstract fun getAnimal(
+      animalId: Long
+  ): Single<CachedAnimalAggregate>
 
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   abstract fun insertAnimalAggregate(
