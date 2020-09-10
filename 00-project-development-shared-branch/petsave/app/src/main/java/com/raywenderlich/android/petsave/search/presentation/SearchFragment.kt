@@ -228,7 +228,7 @@ class SearchFragment: Fragment() {
   }
 
   private fun handleThrowable(exception: Throwable) {
-    val fallbackMessage = "An error occurred. Please try again later."
+    val fallbackMessage = getString(R.string.an_error_occurred)
     val snackbarMessage = when (exception) {
       is NoMoreAnimalsException -> exception.message ?: fallbackMessage
       is IOException, is HttpException -> fallbackMessage

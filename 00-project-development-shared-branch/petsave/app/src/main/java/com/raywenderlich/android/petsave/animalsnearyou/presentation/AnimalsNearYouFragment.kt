@@ -46,6 +46,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.common.presentation.AnimalClickListener
@@ -148,7 +149,7 @@ class AnimalsNearYouFragment : Fragment() {
   }
 
   private fun handleThrowable(exception: Throwable) {
-    val fallbackMessage = "An error occurred. Please try again later."
+    val fallbackMessage = getString(R.string.an_error_occurred)
     val snackbarMessage = when (exception) {
       is NoMoreAnimalsException -> exception.message ?: fallbackMessage
       is IOException, is HttpException -> fallbackMessage
