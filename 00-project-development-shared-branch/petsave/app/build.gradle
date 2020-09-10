@@ -59,13 +59,13 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
   // Support Libraries
-  implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-rc1'
+  implementation "androidx.appcompat:appcompat:$appcompat_version"
+  implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
   // Testing Dependencies
-  testImplementation 'junit:junit:4.13'
-  androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+  testImplementation "junit:junit:$junit_version"
+  androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
   // TUTORIAL DEPENDENCIES HERE
 
@@ -73,8 +73,8 @@ dependencies {
   implementation project(":logging")
 
   // Network
-  implementation "com.squareup.retrofit2:retrofit:2.9.0"
-  implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
   implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
   implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
   implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
@@ -90,9 +90,9 @@ dependencies {
   testImplementation "androidx.room:room-testing:$room_version"
 
   // Concurrency
-  implementation "io.reactivex.rxjava2:rxjava:2.2.19"
-  implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
-  implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+  implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+  implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+  implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
   // DI
   implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -105,7 +105,7 @@ dependencies {
   implementation "com.github.bumptech.glide:glide:$glide_version"
   kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-  implementation "com.google.android.material:material:1.2.0"
+  implementation "com.google.android.material:material:$material_version"
 
   // Navigation
   implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -114,12 +114,12 @@ dependencies {
   androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
   // Utils
-  implementation "com.jakewharton.threetenabp:threetenabp:1.2.4"
+  implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 
   // Physics - based animations
   implementation "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
 
   implementation "com.airbnb.android:lottie:$lottie_version"
-
-  debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }
