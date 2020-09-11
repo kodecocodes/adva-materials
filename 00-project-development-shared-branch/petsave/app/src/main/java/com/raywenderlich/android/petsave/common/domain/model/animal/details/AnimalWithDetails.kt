@@ -35,7 +35,6 @@
 package com.raywenderlich.android.petsave.common.domain.model.animal.details
 
 import com.raywenderlich.android.petsave.common.domain.model.animal.AdoptionStatus
-import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.common.domain.model.animal.Media
 import org.threeten.bp.LocalDateTime
 
