@@ -48,9 +48,4 @@ data class AnimalWithDetails(
     val tags: List<String>,
     val adoptionStatus: AdoptionStatus,
     val publishedAt: LocalDateTime
-) {
-
-  fun withNoDetails(): Animal {
-    return Animal(id, name, type, media, tags, adoptionStatus, publishedAt)
-  }
-}
+)
