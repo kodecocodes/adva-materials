@@ -51,8 +51,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-  private val binding get() = _binding!!
-  private var _binding: ActivityMainBinding? = null
+  private lateinit var binding: ActivityMainBinding
 
   private val navController by lazy { findNavController(R.id.nav_host_fragment) }
   private val appBarConfiguration by lazy {
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     setTheme(R.style.AppTheme)
 
     super.onCreate(savedInstanceState)
-    _binding = ActivityMainBinding.inflate(layoutInflater)
+    binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
     setupActionBar()
@@ -82,10 +81,5 @@ class MainActivity : AppCompatActivity() {
 
   private fun setupBottomNav() {
     binding.bottomNavigation.setupWithNavController(navController)
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    _binding = null
   }
 }
