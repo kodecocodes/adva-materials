@@ -32,21 +32,10 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.details.domain.usecases
+package com.raywenderlich.android.petsave.common.domain.model.animal.details
 
-import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
-import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
-import io.reactivex.Single
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-
-class AnimalDetails @Inject constructor(
-    private val animalRepository: AnimalRepository
-) {
-
-  operator fun invoke(
-      animalId: Long
-  ): Single<AnimalWithDetails> {
-    return animalRepository.getAnimal(animalId).delay(2, TimeUnit.SECONDS)
-  }
+enum class Gender {
+  UNKNOWN,
+  FEMALE,
+  MALE
 }

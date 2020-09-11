@@ -34,7 +34,7 @@
 
 package com.raywenderlich.android.petsave.common.presentation.model.mappers
 
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.raywenderlich.android.petsave.common.presentation.model.UIAnimalDetailed
 import javax.inject.Inject
 

@@ -35,9 +35,9 @@
 package com.raywenderlich.android.petsave.common.data.api.model.mappers
 
 import com.raywenderlich.android.petsave.common.data.api.model.ApiAnimal
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.common.domain.model.animal.AdoptionStatus
 import com.raywenderlich.android.petsave.common.domain.model.animal.Media
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.*
 import com.raywenderlich.android.petsave.common.domain.model.organization.Organization
 import com.raywenderlich.android.petsave.common.utils.DateTimeUtils
 import java.util.*
@@ -66,8 +66,8 @@ class ApiAnimalMapper @Inject constructor(
     )
   }
 
-  private fun parseAnimalDetails(apiAnimal: ApiAnimal): AnimalWithDetails.Details {
-    return AnimalWithDetails.Details(
+  private fun parseAnimalDetails(apiAnimal: ApiAnimal): Details {
+    return Details(
         description = apiAnimal.description.orEmpty(),
         age = parseAge(apiAnimal.age),
         species = apiAnimal.species.orEmpty(),
@@ -82,31 +82,31 @@ class ApiAnimalMapper @Inject constructor(
     )
   }
 
-  private fun parseAge(age: String?): AnimalWithDetails.Details.Age {
-    if (age.isNullOrEmpty()) return AnimalWithDetails.Details.Age.UNKNOWN
+  private fun parseAge(age: String?): Age {
+    if (age.isNullOrEmpty()) return Age.UNKNOWN
 
     // will throw IllegalStateException if the string does not match any enum value
-    return AnimalWithDetails.Details.Age.valueOf(age.toUpperCase(Locale.ROOT))
+    return Age.valueOf(age.toUpperCase(Locale.ROOT))
   }
 
-  private fun parserGender(gender: String?): AnimalWithDetails.Details.Gender {
-    if (gender.isNullOrEmpty()) return AnimalWithDetails.Details.Gender.UNKNOWN
+  private fun parserGender(gender: String?): Gender {
+    if (gender.isNullOrEmpty()) return Gender.UNKNOWN
 
-    return AnimalWithDetails.Details.Gender.valueOf(gender.toUpperCase(Locale.ROOT))
+    return Gender.valueOf(gender.toUpperCase(Locale.ROOT))
   }
 
-  private fun parseSize(size: String?): AnimalWithDetails.Details.Size {
-    if (size.isNullOrEmpty()) return AnimalWithDetails.Details.Size.UNKNOWN
+  private fun parseSize(size: String?): Size {
+    if (size.isNullOrEmpty()) return Size.UNKNOWN
 
-    return AnimalWithDetails.Details.Size.valueOf(
+    return Size.valueOf(
         size.replace(' ', '_').toUpperCase(Locale.ROOT)
     )
   }
 
-  private fun parseCoat(coat: String?): AnimalWithDetails.Details.Coat {
-    if (coat.isNullOrEmpty()) return AnimalWithDetails.Details.Coat.UNKNOWN
+  private fun parseCoat(coat: String?): Coat {
+    if (coat.isNullOrEmpty()) return Coat.UNKNOWN
 
-    return AnimalWithDetails.Details.Coat.valueOf(coat.toUpperCase(Locale.ROOT))
+    return Coat.valueOf(coat.toUpperCase(Locale.ROOT))
   }
 
   private fun mapMedia(apiAnimal: ApiAnimal): Media {

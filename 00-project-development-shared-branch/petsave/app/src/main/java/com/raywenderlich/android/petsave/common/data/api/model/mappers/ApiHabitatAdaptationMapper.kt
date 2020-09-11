@@ -35,14 +35,14 @@
 package com.raywenderlich.android.petsave.common.data.api.model.mappers
 
 import com.raywenderlich.android.petsave.common.data.api.model.ApiEnvironment
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.HabitatAdaptation
 import javax.inject.Inject
 
 class ApiHabitatAdaptationMapper @Inject constructor():
-    ApiMapper<ApiEnvironment?, AnimalWithDetails.Details.HabitatAdaptation> {
+    ApiMapper<ApiEnvironment?, HabitatAdaptation> {
 
-  override fun mapToDomain(apiEntity: ApiEnvironment?): AnimalWithDetails.Details.HabitatAdaptation {
-    return AnimalWithDetails.Details.HabitatAdaptation(
+  override fun mapToDomain(apiEntity: ApiEnvironment?): HabitatAdaptation {
+    return HabitatAdaptation(
         goodWithChildren = apiEntity?.children ?: true,
         goodWithDogs = apiEntity?.dogs ?: true,
         goodWithCats = apiEntity?.cats ?: true

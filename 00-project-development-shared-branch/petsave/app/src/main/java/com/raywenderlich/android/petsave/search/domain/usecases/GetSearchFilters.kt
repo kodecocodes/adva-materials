@@ -34,7 +34,7 @@
 
 package com.raywenderlich.android.petsave.search.domain.usecases
 
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.Age
 import com.raywenderlich.android.petsave.search.domain.model.SearchFilters
 import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.search.domain.model.MenuValueException
@@ -63,7 +63,7 @@ class GetSearchFilters @Inject constructor(
 
     val ages = animalRepository.getAnimalAges()
         .map { it.name }
-        .replace(AnimalWithDetails.Details.Age.UNKNOWN.name, DEFAULT_VALUE)
+        .replace(Age.UNKNOWN.name, DEFAULT_VALUE)
         .map { it.toLowerCase(Locale.ROOT).capitalize() }
 
     return SearchFilters(ages, filteringTypes)

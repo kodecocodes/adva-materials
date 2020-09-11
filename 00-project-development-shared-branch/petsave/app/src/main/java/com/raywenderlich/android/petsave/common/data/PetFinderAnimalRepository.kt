@@ -42,7 +42,8 @@ import com.raywenderlich.android.petsave.common.data.cache.model.cachedanimal.Ca
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
 import com.raywenderlich.android.petsave.common.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.Age
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
@@ -119,8 +120,8 @@ class PetFinderAnimalRepository @Inject constructor(
     return cache.getAllTypes()
   }
 
-  override fun getAnimalAges(): List<AnimalWithDetails.Details.Age> {
-    return AnimalWithDetails.Details.Age.values().toList()
+  override fun getAnimalAges(): List<Age> {
+    return Age.values().toList()
   }
 
   override fun searchCachedAnimalsBy(searchParameters: SearchParameters): Flowable<SearchResults> {

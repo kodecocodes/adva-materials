@@ -35,14 +35,14 @@
 package com.raywenderlich.android.petsave.common.data.api.model.mappers
 
 import com.raywenderlich.android.petsave.common.data.api.model.ApiAttributes
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.HealthDetails
 import javax.inject.Inject
 
 class ApiHealthDetailsMapper @Inject constructor():
-    ApiMapper<ApiAttributes?, AnimalWithDetails.Details.HealthDetails> {
+    ApiMapper<ApiAttributes?, HealthDetails> {
 
-  override fun mapToDomain(apiEntity: ApiAttributes?): AnimalWithDetails.Details.HealthDetails {
-    return AnimalWithDetails.Details.HealthDetails(
+  override fun mapToDomain(apiEntity: ApiAttributes?): HealthDetails {
+    return HealthDetails(
         isSpayedOrNeutered = apiEntity?.spayedNeutered ?: false,
         isDeclawed = apiEntity?.declawed ?: false,
         hasSpecialNeeds = apiEntity?.specialNeeds ?: false,

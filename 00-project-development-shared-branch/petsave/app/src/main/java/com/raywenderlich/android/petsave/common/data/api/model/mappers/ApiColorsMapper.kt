@@ -35,13 +35,13 @@
 package com.raywenderlich.android.petsave.common.data.api.model.mappers
 
 import com.raywenderlich.android.petsave.common.data.api.model.ApiColors
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.Colors
 import javax.inject.Inject
 
-class ApiColorsMapper @Inject constructor(): ApiMapper<ApiColors?, AnimalWithDetails.Details.Colors> {
+class ApiColorsMapper @Inject constructor(): ApiMapper<ApiColors?, Colors> {
 
-  override fun mapToDomain(apiEntity: ApiColors?): AnimalWithDetails.Details.Colors {
-    return AnimalWithDetails.Details.Colors(
+  override fun mapToDomain(apiEntity: ApiColors?): Colors {
+    return Colors(
         primary = apiEntity?.primary.orEmpty(),
         secondary = apiEntity?.secondary.orEmpty(),
         tertiary = apiEntity?.tertiary.orEmpty()

@@ -38,7 +38,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.raywenderlich.android.petsave.common.presentation.model.mappers.UiAnimalDetailsMapper
 import com.raywenderlich.android.petsave.details.domain.usecases.AnimalDetails
 import io.reactivex.android.schedulers.AndroidSchedulers

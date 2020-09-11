@@ -32,21 +32,25 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.details.domain.usecases
+package com.raywenderlich.android.petsave.common.domain.model.animal.details
 
-import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
-import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
-import io.reactivex.Single
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
+import com.raywenderlich.android.petsave.common.domain.model.animal.AdoptionStatus
+import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.common.domain.model.animal.Media
+import org.threeten.bp.LocalDateTime
 
-class AnimalDetails @Inject constructor(
-    private val animalRepository: AnimalRepository
+data class AnimalWithDetails(
+    val id: Long,
+    val name: String,
+    val type: String,
+    val details: Details,
+    val media: Media,
+    val tags: List<String>,
+    val adoptionStatus: AdoptionStatus,
+    val publishedAt: LocalDateTime
 ) {
 
-  operator fun invoke(
-      animalId: Long
-  ): Single<AnimalWithDetails> {
-    return animalRepository.getAnimal(animalId).delay(2, TimeUnit.SECONDS)
+  fun withNoDetails(): Animal {
+    return Animal(id, name, type, media, tags, adoptionStatus, publishedAt)
   }
 }

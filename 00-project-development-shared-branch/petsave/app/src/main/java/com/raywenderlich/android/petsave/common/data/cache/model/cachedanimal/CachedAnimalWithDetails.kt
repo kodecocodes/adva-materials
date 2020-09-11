@@ -42,9 +42,8 @@ import androidx.room.PrimaryKey
 import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
 import com.raywenderlich.android.petsave.common.domain.model.animal.AdoptionStatus
 import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails
-import com.raywenderlich.android.petsave.common.domain.model.animal.AnimalWithDetails.Details.*
 import com.raywenderlich.android.petsave.common.domain.model.animal.Media
+import com.raywenderlich.android.petsave.common.domain.model.animal.details.*
 import com.raywenderlich.android.petsave.common.utils.DateTimeUtils
 
 @Entity(
@@ -160,8 +159,8 @@ data class CachedAnimalWithDetails(
     )
   }
 
-  private fun mapDetails(organization: CachedOrganization): AnimalWithDetails.Details {
-    return AnimalWithDetails.Details(
+  private fun mapDetails(organization: CachedOrganization): Details {
+    return Details(
         description = description,
         age = Age.valueOf(age),
         species = species,
@@ -170,8 +169,10 @@ data class CachedAnimalWithDetails(
         gender = Gender.valueOf(gender),
         size = Size.valueOf(size),
         coat = Coat.valueOf(coat),
-        healthDetails = HealthDetails(isSpayedOrNeutered, isDeclawed, hasSpecialNeeds, shotsAreCurrent),
-        habitatAdaptation = HabitatAdaptation(goodWithChildren, goodWithDogs, goodWithCats),
+        healthDetails = HealthDetails(isSpayedOrNeutered, isDeclawed,
+            hasSpecialNeeds, shotsAreCurrent),
+        habitatAdaptation = HabitatAdaptation(goodWithChildren, goodWithDogs,
+            goodWithCats),
         organization = organization.toDomain()
     )
   }
