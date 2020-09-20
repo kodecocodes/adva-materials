@@ -34,8 +34,6 @@
 
 package com.raywenderlich.android.petsave.common.domain.model.animal
 
-import com.raywenderlich.android.petsave.common.domain.model.animal.Media.Photo.Companion.INVALID_PHOTO
-
 data class Media(
     val photos: List<Photo>,
     val videos: List<Video>
@@ -48,13 +46,7 @@ data class Media(
   fun getFirstSmallestAvailablePhoto(): String {
     if (photos.isEmpty()) return EMPTY_MEDIA
 
-    val smallestPhoto = photos.first().getSmallestAvailablePhoto()
-
-    return if (smallestPhoto != INVALID_PHOTO) {
-      smallestPhoto
-    } else {
-      EMPTY_MEDIA
-    }
+    return photos.first().getSmallestAvailablePhoto()
   }
 
   data class Photo(
@@ -63,14 +55,14 @@ data class Media(
   ) {
 
     companion object {
-      const val INVALID_PHOTO = ""
+      private const val EMPTY_PHOTO = ""
     }
 
     fun getSmallestAvailablePhoto(): String {
       return when {
         isValidPhoto(medium) -> medium
         isValidPhoto(full) -> full
-        else -> INVALID_PHOTO
+        else -> EMPTY_PHOTO
       }
     }
 
