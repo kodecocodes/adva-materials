@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/filtered_search_widget_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+  <androidx.appcompat.widget.SearchView
+      android:id="@+id/search"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:iconifiedByDefault="false"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:queryHint="@string/search_hint" />
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/type_dropdown_input_layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/small_margin"
+      app:layout_constraintEnd_toStartOf="@+id/age_dropdown_input_layout"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/search">
+
+    <AutoCompleteTextView
+        android:id="@+id/type_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/animal_type_dropdown_menu_hint"
+        android:inputType="none" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/age_dropdown_input_layout"
+      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/small_margin"
+      android:layout_marginBottom="4dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/type_dropdown_input_layout"
+      app:layout_constraintTop_toBottomOf="@+id/search">
+
+    <AutoCompleteTextView
+        android:id="@+id/age_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/age_dropdown_menu_hint"
+        android:inputType="none" />
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
