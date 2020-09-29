@@ -41,9 +41,9 @@
   <com.airbnb.lottie.LottieAnimationView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:id="@+id/lottie_view"
+      android:id="@+id/loader"
       app:lottie_loop="true"
-      android:padding="64dp"/>
+      />
 
   <ImageView
       android:id="@+id/image"

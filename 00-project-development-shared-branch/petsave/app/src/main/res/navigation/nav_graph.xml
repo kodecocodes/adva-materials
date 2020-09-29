@@ -44,5 +44,17 @@
     <argument
         android:name="id"
         app:argType="long" />
+
+    <action
+        android:id="@+id/action_details_to_secret"
+        app:destination="@id/secret" />
   </fragment>
+
+  <fragment
+      android:id="@+id/secret"
+      android:name="com.raywenderlich.android.petsave.easteregg.SecretFragment"
+      android:label="@string/secret_doggo"
+      tools:layout="@layout/fragment_secret">
+  </fragment>
+
 </navigation>

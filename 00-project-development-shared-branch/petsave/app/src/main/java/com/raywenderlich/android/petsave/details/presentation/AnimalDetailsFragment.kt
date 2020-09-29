@@ -35,11 +35,13 @@
 package com.raywenderlich.android.petsave.details.presentation
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
 import android.graphics.drawable.Animatable
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.annotation.RawRes
 import androidx.core.view.isVisible
 import androidx.dynamicanimation.animation.DynamicAnimation
@@ -51,6 +53,9 @@ import androidx.dynamicanimation.animation.SpringForce.STIFFNESS_VERY_LOW
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieProperty
+import com.airbnb.lottie.model.KeyPath
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.common.presentation.model.UIAnimalDetailed
@@ -65,6 +70,8 @@ class AnimalDetailsFragment : Fragment() {
   companion object {
     const val ANIMAL_ID = "id"
   }
+
+  private val FLING_SCALE = 1f
 
   private val binding get() = _binding!!
   private var _binding: FragmentDetailsBinding? = null
@@ -149,54 +156,53 @@ class AnimalDetailsFragment : Fragment() {
 
   @SuppressLint("ClickableViewAccessibility")
   private fun displayPetDetails(animalDetails: UIAnimalDetailed) {
-    stopAnimation()
     binding.group.isVisible = true
+    stopAnimation()
     binding.name.text = animalDetails.name
     binding.description.text = animalDetails.description
     binding.image.setImage(animalDetails.photo)
     binding.sprayedNeutered.text = animalDetails.sprayNeutered.toEnglish()
     binding.specialNeeds.text = animalDetails.specialNeeds.toEnglish()
 
-    binding.call.postDelayed({
-      val finalScale = 1f
-      callScaleXSpringAnimation.animateToFinalPosition(finalScale)
-      callScaleYSpringAnimation.animateToFinalPosition(finalScale)
-    }, 300L)
-
-    val gestureListener = object: GestureDetector.SimpleOnGestureListener() {
-      override fun onDoubleTap(e: MotionEvent?): Boolean {
+    val doubleTapGestureListener = object: GestureDetector.SimpleOnGestureListener() {
+      override fun onDoubleTap(e: MotionEvent): Boolean {
         (binding.heartImage.drawable as Animatable?)?.start()
         return true
       }
 
-      override fun onDown(e: MotionEvent?): Boolean {
-        return true
-      }
+      override fun onDown(e: MotionEvent) = true
+    }
+    val doubleTapGestureDetector = GestureDetector(requireContext(), doubleTapGestureListener)
 
+    binding.image.setOnTouchListener { v, event ->
+      doubleTapGestureDetector.onTouchEvent(event)
+    }
+
+    callScaleXSpringAnimation.animateToFinalPosition(FLING_SCALE)
+    callScaleYSpringAnimation.animateToFinalPosition(FLING_SCALE)
+
+    val flingGestureListener = object: GestureDetector.SimpleOnGestureListener() {
       override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float,
           velocityY: Float): Boolean {
         callFlingXAnimation.setStartVelocity(velocityX).start()
         callFlingYAnimation.setStartVelocity(velocityY).start()
         return true
       }
-    }
 
-    val gestureDetector = GestureDetector(requireContext(), gestureListener)
-
-    binding.image.setOnTouchListener { v, event ->
-      gestureDetector.onTouchEvent(event)
+      override fun onDown(e: MotionEvent) = true
     }
+    val flingGestureDetector = GestureDetector(requireContext(), flingGestureListener)
 
     binding.call.setOnTouchListener { v, event ->
-      gestureDetector.onTouchEvent(event)
+      flingGestureDetector.onTouchEvent(event)
     }
 
     callFlingYAnimation.addEndListener { _, _, _, _ ->
       if (areViewsOverlapping(binding.call, binding.image)) {
-        Toast.makeText(requireContext(), "WIN WIN WIN", Toast.LENGTH_SHORT).show()
+        val action = AnimalDetailsFragmentDirections.actionDetailsToSecret()
+        findNavController().navigate(action)
       }
     }
-
   }
 
   private fun displayError() {
@@ -211,15 +217,25 @@ class AnimalDetailsFragment : Fragment() {
   }
 
   private fun startAnimation(@RawRes animationRes: Int) {
-    binding.lottieView.apply {
+    binding.loader.apply {
       isVisible = true
+      setMinFrame(50)
+      setMaxFrame(112)
+      speed = 1.2f
       setAnimation(animationRes)
       playAnimation()
     }
+    binding.loader.addValueCallback(
+        KeyPath("icon_circle", "**"),
+        LottieProperty.COLOR_FILTER,
+        {
+          PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
+        }
+    )
   }
 
   private fun stopAnimation() {
-    binding.lottieView.apply {
+    binding.loader.apply {
       cancelAnimation()
       isVisible = false
     }
@@ -235,8 +251,8 @@ class AnimalDetailsFragment : Fragment() {
     return Rect.intersects(firstRect, secondRect)
   }
 
-  override fun onDestroy() {
-    super.onDestroy()
+  override fun onDestroyView() {
+    super.onDestroyView()
     _binding = null
   }
 }
