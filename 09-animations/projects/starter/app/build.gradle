@@ -60,7 +60,7 @@ dependencies {
 
   // Support Libraries
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-rc1'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
 
   // Testing Dependencies
   testImplementation 'junit:junit:4.13'
