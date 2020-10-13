@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="half_default_margin">8dp</dimen>
+  <dimen name="default_margin">16dp</dimen>
+  <dimen name="default_card_size">200dp</dimen>
+  <dimen name="animals_near_you_image_height">160dp</dimen>
+  <dimen name="small_margin">4dp</dimen>
+</resources>
