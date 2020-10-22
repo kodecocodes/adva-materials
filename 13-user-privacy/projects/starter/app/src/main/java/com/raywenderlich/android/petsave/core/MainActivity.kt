@@ -81,7 +81,8 @@ class MainActivity : AppCompatActivity() {
     setTheme(R.style.AppTheme)
 
     super.onCreate(savedInstanceState)
-
+    //TODO: Disable screenshots
+    
     _binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
