@@ -68,16 +68,14 @@
       app:layout_constraintTop_toBottomOf="@id/image"
       tools:text="Wallace" />
 
-  <androidx.constraintlayout.utils.widget.ImageFilterView
+  <ImageView
       android:id="@+id/image"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:contentDescription="@string/image_of_pet"
       android:scaleType="centerCrop"
       app:layout_constraintDimensionRatio="H,1:1"
-      app:layout_constraintTop_toTopOf="parent"
-      app:roundPercent="0"
-      tools:src="@drawable/cute_doggo" />
+      app:layout_constraintTop_toTopOf="parent"/>
 
   <androidx.core.widget.NestedScrollView
       android:id="@+id/scrollView"
