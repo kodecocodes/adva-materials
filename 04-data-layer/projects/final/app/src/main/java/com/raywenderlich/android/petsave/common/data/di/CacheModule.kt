@@ -48,6 +48,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -59,6 +60,7 @@ abstract class CacheModule {
   companion object {
 
     @Provides
+    @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
     ): PetSaveDatabase {

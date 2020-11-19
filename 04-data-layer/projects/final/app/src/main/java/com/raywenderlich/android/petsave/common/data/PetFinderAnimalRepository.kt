@@ -48,7 +48,6 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-@ActivityRetainedScoped
 class PetFinderAnimalRepository @Inject constructor(
     private val api: PetFinderApi,
     private val cache: Cache,
