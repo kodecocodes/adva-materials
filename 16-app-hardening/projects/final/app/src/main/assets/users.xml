@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <user>
+    <name>Anonymous User</name>
+    <extra>Normal user account</extra>
+    <id>0</id>
+    <password>0</password>
+  </user>
+  <user>
+    <name>Admin</name>
+    <extra>Admin account</extra>
+    <id>1</id>
+    <password>0</password>
+  </user>
+  <user>
+    <name>Test Account</name>
+    <extra>For QA</extra>
+    <id>2</id>
+    <password>0</password>
+  </user>
+  <user>
+    <name>Debug Account</name>
+    <extra>For devs</extra>
+    <id>3</id>
+    <password>0</password>
+  </user>
+</users>
