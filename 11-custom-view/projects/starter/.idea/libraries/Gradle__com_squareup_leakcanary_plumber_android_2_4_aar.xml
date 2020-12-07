@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.squareup.leakcanary:plumber-android:2.4@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/069d6bc8ad0e815516087d4a3c9cf8e1/jetified-plumber-android-2.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/069d6bc8ad0e815516087d4a3c9cf8e1/jetified-plumber-android-2.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/069d6bc8ad0e815516087d4a3c9cf8e1/jetified-plumber-android-2.4/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/plumber-android/2.4/7f3487c44d831259e662dc654e44f6abe0785083/plumber-android-2.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/plumber-android/2.4/bdec2b60e673f3f92dcd9317152a5a243eddbef7/plumber-android-2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

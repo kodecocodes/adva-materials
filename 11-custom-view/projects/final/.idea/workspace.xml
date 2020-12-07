@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d35da517-6a80-47cc-b2a3-6091443a9df7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_collection_collection_ktx_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_core_core_1_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_databinding_viewbinding_4_0_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_dynamicanimation_dynamicanimation_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_hilt_hilt_common_1_0_0_alpha02_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_hilt_hilt_lifecycle_viewmodel_1_0_0_alpha02_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_testing_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_room_room_common_2_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_room_room_ktx_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_room_room_migration_2_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_room_room_runtime_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_room_room_rxjava2_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_room_room_testing_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_test_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_test_monitor_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_test_runner_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_airbnb_android_lottie_3_4_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_11_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_11_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_google_android_material_material_1_2_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_google_dagger_dagger_2_28_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_google_dagger_dagger_lint_aar_2_28_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_google_dagger_hilt_android_2_28_3_alpha_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_jakewharton_threetenabp_threetenabp_1_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_jakewharton_timber_timber_4_7_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_android_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_android_core_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_androidx_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_support_fragments_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_plumber_android_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_shark_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_shark_android_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_shark_graph_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_shark_hprof_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_leakcanary_shark_log_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_moshi_moshi_1_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_moshi_moshi_kotlin_1_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_okhttp3_logging_interceptor_4_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_4_8_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_okio_okio_2_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_retrofit2_converter_moshi_2_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__io_reactivex_rxjava2_rxandroid_2_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__io_reactivex_rxjava2_rxjava_2_2_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__io_reactivex_rxjava2_rxkotlin_2_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__javax_annotation_jsr250_api_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__junit_junit_4_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_annotations_16_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_4_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_reflect_1_4_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_4_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_1_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/libraries/Gradle__org_threeten_threetenbp_1_4_4_no_tzdb.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/final/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_collection_collection_ktx_1_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_core_core_1_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_core_core_ktx_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_databinding_viewbinding_4_0_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_dynamicanimation_dynamicanimation_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_fragment_fragment_ktx_1_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_hilt_hilt_common_1_0_0_alpha02_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_hilt_hilt_lifecycle_viewmodel_1_0_0_alpha02_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_ktx_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_common_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_testing_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_navigation_navigation_ui_ktx_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_room_room_common_2_2_5_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_room_room_ktx_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_room_room_migration_2_2_5_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_room_room_runtime_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_room_room_rxjava2_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_room_room_testing_2_2_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_test_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_test_monitor_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_test_runner_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_airbnb_android_lottie_3_4_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_11_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_11_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_11_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_11_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_google_android_material_material_1_2_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_google_dagger_dagger_2_28_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_google_dagger_dagger_lint_aar_2_28_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_google_dagger_hilt_android_2_28_3_alpha_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_jakewharton_threetenabp_threetenabp_1_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_jakewharton_timber_timber_4_7_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_android_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_android_core_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_2_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_androidx_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_leakcanary_object_watcher_android_support_fragments_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_plumber_android_2_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_shark_2_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_shark_android_2_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_shark_graph_2_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_shark_hprof_2_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_leakcanary_shark_log_2_4_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_moshi_moshi_1_10_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_moshi_moshi_kotlin_1_10_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_okhttp3_logging_interceptor_4_8_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_4_8_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_okio_okio_2_7_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_retrofit2_converter_moshi_2_9_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__io_reactivex_rxjava2_rxandroid_2_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__io_reactivex_rxjava2_rxjava_2_2_19_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__io_reactivex_rxjava2_rxkotlin_2_4_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__javax_annotation_jsr250_api_1_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__junit_junit_4_13_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_annotations_16_0_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_android_extensions_runtime_1_4_10_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_reflect_1_4_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_4_10_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_3_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_1_3_0_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/libraries/Gradle__org_threeten_threetenbp_1_4_4_no_tzdb_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../10-motionlayout-and-motionlayout-editor/projects/starter/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/schemas/com.raywenderlich.android.petsave.common.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/schemas/com.raywenderlich.android.petsave.core.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/schemas/com.raywenderlich.android.realworldandroidbytutorials.core.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/schemas/com.raywenderlich.android.realworldandroidbytutorials.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/androidTest/java/com/raywenderlich/android/petsave/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/ic_launcher-web.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/PetSaveApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/domain/usecases/GetAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/domain/usecases/RequestNextPageOfAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouFragmentViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouViewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/InfiniteScrollListener.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/PetFinderAnimalRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/ApiConstants.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/PetFinderApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/interceptors/AuthenticationInterceptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/interceptors/LoggingInterceptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/ApiAnimal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/ApiPaginatedAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/ApiToken.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiAddressMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiAnimalMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiBreedsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiColorsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiContactMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiHabitatAdaptationMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiHealthDetailsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiPaginationMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiPhotoMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiVideoMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/MappingException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/Cache.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/PetSaveDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/RoomCache.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/daos/AnimalsDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/daos/OrganizationsDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimalAggregate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimalTagCrossRef.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimalWithDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedPhoto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedTag.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedVideo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedorganization/CachedOrganization.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedorganization/CachedOrganizationWithAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/di/ApiModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/di/CacheModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/di/PreferencesModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/preferences/PetSavePreferences.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/preferences/Preferences.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/data/preferences/PreferencesConstants.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/di/ApplicationModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/di/ViewModelsModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/Exceptions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/AdoptionStatus.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/Animal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/Media.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Age.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/AnimalWithDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Breed.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Coat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Colors.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Details.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Gender.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/HabitatAdaptation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/HealthDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Size.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/organization/Organization.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/pagination/PaginatedAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/pagination/Pagination.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/domain/repositories/AnimalRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/AnimalsAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/Event.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/ProgressButton.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/UIAnimal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/UIAnimalDetailed.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/mappers/UiAnimalDetailsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/mappers/UiAnimalMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/mappers/UiMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/utils/CoroutineDispatchersProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/utils/DateTimeUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/utils/DispatchersProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/common/utils/Extensions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/details/domain/usecases/AnimalDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsViewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/easteregg/SecretFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/Exceptions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/SearchFilters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/SearchParameters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/SearchResults.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/usecases/GetSearchFilters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/usecases/SearchAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/domain/usecases/SearchAnimalsRemotely.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchFragmentViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchViewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/animator/animator_alpha.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/animator/animator_heart_fillup.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/card_view_border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/cat_derp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/cute_doggo.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/dog_placeholder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/heart_fill_animation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/ic_animals_near_you_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/ic_call_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/ic_close_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/ic_heart_unfilled.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/ic_search_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/no_results_pug.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/drawable/splash_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/font/roboto_family.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/font/roboto_regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/dropdown_menu_popup_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/exposed_dropdown_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/filtered_search_widget.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/fragment_animals_near_you.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/fragment_details.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/fragment_secret.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/layout_pet_stat.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/layout/recycler_view_animal_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/menu/menu_bottom_nav.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/menu/menu_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/raw/happy_dog.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/raw/lazy_cat.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/values/attrs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/main/res/xml/fragment_details_scene.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/app/src/test/java/com/raywenderlich/android/petsave/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/configs/rwcodestyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/img/accept_change.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/img/modified_default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/img/restore_default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/img/unmodified_default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/img/using_named_code_style.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/img/working_gif.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/logging/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/logging/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/logging/src/debug/java/com/raywenderlich/android/logging/TimberLogging.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/logging/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/logging/src/main/java/com/raywenderlich/android/logging/Logger.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/logging/src/release/java/com/raywenderlich/android/logging/TimberLogging.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../final/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/com.raywenderlich.android.petsave.common.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/com.raywenderlich.android.petsave.core.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/com.raywenderlich.android.realworldandroidbytutorials.core.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/com.raywenderlich.android.realworldandroidbytutorials.data.cache.PetSaveDatabase/1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/raywenderlich/android/petsave/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-web.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/PetSaveApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/domain/usecases/GetAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/domain/usecases/RequestNextPageOfAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouFragmentViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/AnimalsNearYouViewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/animalsnearyou/presentation/InfiniteScrollListener.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/PetFinderAnimalRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/ApiConstants.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/PetFinderApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/interceptors/AuthenticationInterceptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/interceptors/LoggingInterceptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/ApiAnimal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/ApiPaginatedAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/ApiToken.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiAddressMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiAnimalMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiBreedsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiColorsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiContactMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiHabitatAdaptationMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiHealthDetailsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiPaginationMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiPhotoMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/ApiVideoMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/api/model/mappers/MappingException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/Cache.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/PetSaveDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/RoomCache.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/daos/AnimalsDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/daos/OrganizationsDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimalAggregate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimalTagCrossRef.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedAnimalWithDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedPhoto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedTag.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedanimal/CachedVideo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedorganization/CachedOrganization.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/cache/model/cachedorganization/CachedOrganizationWithAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/di/ApiModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/di/CacheModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/di/PreferencesModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/preferences/PetSavePreferences.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/preferences/Preferences.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/data/preferences/PreferencesConstants.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/di/ApplicationModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/di/ViewModelsModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/Exceptions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/AdoptionStatus.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/Animal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/Media.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Age.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/AnimalWithDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Breed.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Coat.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Colors.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Details.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Gender.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/HabitatAdaptation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/HealthDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/animal/details/Size.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/organization/Organization.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/pagination/PaginatedAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/model/pagination/Pagination.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/domain/repositories/AnimalRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/AnimalsAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/Event.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/UIAnimal.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/UIAnimalDetailed.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/mappers/UiAnimalDetailsMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/mappers/UiAnimalMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/model/mappers/UiMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/utils/CoroutineDispatchersProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/utils/DateTimeUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/utils/DispatchersProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/common/utils/Extensions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/details/domain/usecases/AnimalDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/details/presentation/AnimalDetailsViewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/easteregg/SecretFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/Exceptions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/SearchFilters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/SearchParameters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/model/SearchResults.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/usecases/GetSearchFilters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/usecases/SearchAnimals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/domain/usecases/SearchAnimalsRemotely.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchFragmentViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/petsave/search/presentation/SearchViewState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/animator/animator_alpha.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/animator/animator_heart_fillup.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/card_view_border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cat_derp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cute_doggo.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/dog_placeholder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/heart_fill_animation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_animals_near_you_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_call_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_close_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_heart_unfilled.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_search_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/no_results_pug.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/splash_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dropdown_menu_popup_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/exposed_dropdown_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/filtered_search_widget.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_animals_near_you.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_details.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_secret.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/recycler_view_animal_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_bottom_nav.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/happy_dog.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/raw/lazy_cat.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/fragment_details_scene.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/raywenderlich/android/petsave/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configs/rwcodestyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/accept_change.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/modified_default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/restore_default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/unmodified_default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/using_named_code_style.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/working_gif.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logging/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logging/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logging/src/debug/java/com/raywenderlich/android/logging/TimberLogging.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logging/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logging/src/main/java/com/raywenderlich/android/logging/Logger.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logging/src/release/java/com/raywenderlich/android/logging/TimberLogging.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../final/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ADVAKolinChapter14.zip" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3a_XL_API_29]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="valueResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1ilIz2ytYiRADrXUqhpu0P7o6tx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_XL_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-19T18:37:48.110Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android-custom-view/Users/subhrajyoti/raywenderlich/adva-materials/11-custom-view/projects/starter/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/ProgressButton.kt_SELECTED" value="ProgressButton" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="multi-representation-preview/Users/subhrajyoti/raywenderlich/adva-materials/11-custom-view/projects/starter/app/src/main/java/com/raywenderlich/android/petsave/common/presentation/ProgressButton.kt_selected" value="" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="PetSave.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="634" y="325" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604271833309">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="634" y="325" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-2560.-144.2560.1417/0.23.1792.1097@0.23.1792.1097" timestamp="1604271833309" />
+    <state x="484" y="333" key="AndroidCreateResourceFileDialog" timestamp="1604270371501">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="484" y="333" key="AndroidCreateResourceFileDialog/-2560.-144.2560.1417/0.23.1792.1097@0.23.1792.1097" timestamp="1604270371501" />
+    <state x="-1615" y="164" width="670" height="676" key="search.everywhere.popup" timestamp="1603133444521">
+      <screen x="-2560" y="-167" width="2560" height="1440" />
+    </state>
+    <state x="-1615" y="164" width="670" height="676" key="search.everywhere.popup/-2560.-167.2560.1440/0.0.1792.1120@-2560.-167.2560.1440" timestamp="1603133444521" />
+  </component>
+</project>
