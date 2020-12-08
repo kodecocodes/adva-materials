@@ -127,12 +127,11 @@ class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
     val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) { onFailure(it) }
 
     viewModelScope.launch(exceptionHandler) {
-      val pagination =   requestNextPageOfAnimals(++currentPage)
-//      val pagination = withContext(dispatchersProvider.io()) {
-//        Logger.d("Requesting more animals.")
-//
-//        requestNextPageOfAnimals(++currentPage)
-//      }
+      val pagination = withContext(dispatchersProvider.io()) {
+        Logger.d("Requesting more animals.")
+
+        requestNextPageOfAnimals(++currentPage)
+      }
 
       onPaginationInfoObtained(pagination)
       isLoadingMoreAnimals = false
