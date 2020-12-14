@@ -1,0 +1,12 @@
+<resources>
+  <string name="search">Search</string>
+  <string name="search_screen_label">Find your future pet</string>
+  <string name="search_hint">Search for names</string>
+  <string name="a_derpy_cat">A derpy cat</string>
+  <string name="initial_search_text_label">Use the above search field to find your new pet! Don\'t forget to use the filters to narrow down the search.</string>
+  <string name="age_dropdown_menu_hint">Age</string>
+  <string name="animal_type_dropdown_menu_hint">Type</string>
+  <string name="search_remotely_text_label">Going \"here kitty kitty!\" at the remote server…</string>
+  <string name="a_sad_pug">a sad pug</string>
+  <string name="no_search_results_text_label">Sorry, couldn\'t find anything :(</string>
+</resources>

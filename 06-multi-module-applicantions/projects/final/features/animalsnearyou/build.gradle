@@ -1,0 +1,8 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+dependencies {
+  implementation project(":common")
+
+  // Navigation
+  implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+}
