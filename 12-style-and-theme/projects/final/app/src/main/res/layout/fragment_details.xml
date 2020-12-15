@@ -107,8 +107,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:text="@string/special_needs"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/PetLabelTextAppearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider" />
 
@@ -129,8 +128,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/half_default_margin"
         android:text="@string/sprayed_or_neutered"
-        android:textSize="@dimen/large_text"
-        android:textStyle="bold"
+        android:textAppearance="@style/PetLabelTextAppearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/special_needs_label" />
 
@@ -151,8 +149,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/half_default_margin"
         android:text="@string/declawed"
-        android:textSize="@dimen/large_text"
-        android:textStyle="bold"
+        android:textAppearance="@style/PetLabelTextAppearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sprayed_neutered_label" />
 
@@ -173,8 +170,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/half_default_margin"
         android:text="@string/shots_current"
-        android:textSize="@dimen/large_text"
-        android:textStyle="bold"
+        android:textAppearance="@style/PetLabelTextAppearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/declawed_label" />
 
@@ -195,8 +191,7 @@
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginTop="@dimen/half_default_margin"
         android:text="@string/good_boi_girl"
-        android:textSize="@dimen/large_text"
-        android:textStyle="bold"
+        android:textAppearance="@style/PetLabelTextAppearance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/shots_current_label" />
 
@@ -258,6 +253,19 @@
         app:layout_constraintTop_toBottomOf="@id/good_boi_label"
         app:progressButton_text="@string/adopt" />
 
+      <com.google.android.material.button.MaterialButton
+        android:id="@+id/red_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.PetSave.RedButton"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="Red Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/adopt_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
 
@@ -275,12 +283,11 @@
     android:contentDescription="@string/contact"
     android:src="@drawable/ic_call_24dp"
     android:visibility="gone"
-    app:backgroundTint="@color/colorPrimary"
+    app:backgroundTint="?attr/colorPrimary"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:tint="@android:color/white"
+    app:tint="?attr/colorOnPrimary"
     tools:visibility="visible" />
-
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
 
