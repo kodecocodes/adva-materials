@@ -1,0 +1,28 @@
+<resources>
+  <string name="app_name">Pet Save</string>
+  <string name="photo_description">A picture of a dog near you</string>
+  <string name="animals_near_you">Near you</string>
+  <string name="search">Search</string>
+  <string name="animals_near_you_screen_label">Animals near you</string>
+  <string name="search_screen_label">Find your future pet</string>
+  <string name="search_hint">Search for names or breeds</string>
+  <string name="a_derpy_cat">A derpy cat</string>
+  <string name="initial_search_text_label">Use the above search field to find your new pet! Don\'t forget to use the filters to narrow down the search.</string>
+  <string name="age_dropdown_menu_hint">Age</string>
+  <string name="animal_type_dropdown_menu_hint">Type</string>
+  <string name="search_remotely_text_label">Going \"here kitty kitty!\" at the remote server...</string>
+  <string name="a_sad_pug">a sad pug</string>
+  <string name="no_search_results_text_label">Sorry, couldn\'t find anything :(</string>
+  <string name="animal_details">Animal Details</string>
+  <string name="secret_doggo">Secret Doggo</string>
+  <string name="image_of_pet">Image of pet</string>
+  <string name="special_needs">Special Needs</string>
+  <string name="sprayed_or_neutered">Sprayed/Neutered</string>
+  <string name="contact">Contact</string>
+  <string name="an_error_occurred">An error occurred. Please try again later.</string>
+  <string name="declawed">Declawed</string>
+  <string name="shots_current">Shots current</string>
+  <string name="good_boi_girl">Good boi/girl</string>
+  <string name="hundred_emoji">💯</string>
+  <string name="adopt">Adopt</string>
+</resources>
