@@ -17,7 +17,7 @@ android {
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "com.raywenderlich.android.petsave.HiltTestRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     javaCompileOptions {
       annotationProcessorOptions {
@@ -53,12 +53,6 @@ android {
   testOptions {
     unitTests {
       includeAndroidResources = true
-    }
-  }
-
-  sourceSets {
-    androidTest {
-      assets.srcDirs = ["src/debug/assets"]
     }
   }
 }

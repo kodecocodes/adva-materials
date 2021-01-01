@@ -35,23 +35,10 @@
 package com.raywenderlich.android.petsave.common.data.cache.model.cachedanimal
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.raywenderlich.android.petsave.common.domain.model.animal.Media
 
-@Entity(
-    tableName = "photos",
-    foreignKeys = [
-      ForeignKey(
-          entity = CachedAnimalWithDetails::class,
-          parentColumns = ["animalId"],
-          childColumns = ["animalId"],
-          onDelete = ForeignKey.CASCADE
-      )
-    ],
-    indices = [Index("animalId")]
-)
+@Entity(tableName = "photos")
 data class CachedPhoto(
     @PrimaryKey(autoGenerate = true)
     val photoId: Long = 0,
