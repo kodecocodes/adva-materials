@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@+id/nav_graph"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  app:startDestination="@id/nav_onboarding">
+
+  <include app:graph="@navigation/nav_onboarding" />
+  <include app:graph="@navigation/nav_animalsnearyou" />
+  <include app:graph="@navigation/nav_search" />
+  <include app:graph="@navigation/nav_sharing" />
+</navigation>

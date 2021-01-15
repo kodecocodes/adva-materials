@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="sharing_module_name">Share animal</string>
+  <string name="message_to_share">Message to share</string>
+  <string name="image_of_animal_to_share">Image of animal to share</string>
+  <string name="share_headline_label">Where do you want to share?</string>
+  <string name="share_button_label">Share</string>
+  <string name="share_on_facebook_checkbox_label">Share on Facebook</string>
+  <string name="share_on_twitter_checkbox_label">Share on Twitter</string>
+  <string name="share_on_myspace_checkbox_label">Share on Myspace</string>
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/fragment_search_container"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/collapsible_search_params_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/search_card_view"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:background="@drawable/card_view_border"
+      app:cardCornerRadius="@dimen/default_card_corner_radius"
+      app:layout_scrollFlags="snap|scroll|enterAlways">
+
+      <include
+        android:id="@+id/search_widget"
+        layout="@layout/filtered_search_widget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_default_margin" />
+
+    </com.google.android.material.card.MaterialCardView>
+  </com.google.android.material.appbar.AppBarLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/search_results_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/searchRecyclerView"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_margin="@dimen/default_margin"
+      android:layout_marginTop="@dimen/half_default_margin"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+      android:id="@+id/initial_search_image_view"
+      android:layout_width="@dimen/default_card_size"
+      android:layout_height="@dimen/default_card_size"
+      android:contentDescription="@string/a_derpy_cat"
+      android:src="@drawable/cat_derp"
+      app:layout_constraintBottom_toTopOf="@id/initial_search_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/initial_search_text"
+      style="@style/TextAppearance.MaterialComponents.Caption"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:text="@string/initial_search_text_label"
+      android:textAlignment="center"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/initial_search_image_view" />
+
+    <ProgressBar
+      android:id="@+id/search_remotely_progress_bar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      app:layout_constraintBottom_toTopOf="@id/search_remotely_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+      android:id="@+id/search_remotely_text"
+      style="@style/TextAppearance.MaterialComponents.Caption"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/small_margin"
+      android:text="@string/search_remotely_text_label"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/search_remotely_progress_bar" />
+
+    <ImageView
+      android:id="@+id/no_search_results_image_view"
+      android:layout_width="@dimen/default_card_size"
+      android:layout_height="@dimen/default_card_size"
+      android:contentDescription="@string/a_sad_pug"
+      android:src="@drawable/no_results_pug"
+      android:visibility="gone"
+      app:layout_constraintBottom_toTopOf="@id/no_search_results_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/no_search_results_text"
+      style="@style/TextAppearance.MaterialComponents.Caption"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:text="@string/no_search_results_text_label"
+      android:textAlignment="center"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/no_search_results_image_view" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

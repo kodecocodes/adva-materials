@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/onboarding_welcome_text_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+    android:textAlignment="center"
+    android:text="@string/onboarding_welcome_text" />
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/postcode_text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    android:hint="@string/postcode"
+    app:errorEnabled="true"
+    app:errorTextColor="@android:color/holo_orange_dark"
+    app:boxStrokeErrorColor="@android:color/holo_orange_dark"
+    app:errorIconTint="@android:color/holo_orange_dark"
+    app:helperTextEnabled="true"
+    app:helperText="@string/postcode_helper_text">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/postcode_input_text"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:inputType="number"/>
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:id="@+id/max_distance_text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    android:hint="@string/max_distance_miles"
+    app:errorEnabled="true"
+    app:helperTextEnabled="true"
+    app:helperText="@string/distance_helper_text">
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/max_distance_input_text"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:inputType="number"/>
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <Button
+    android:id="@+id/onboarding_submit_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    android:text="@string/submit_button"/>
+</LinearLayout>
