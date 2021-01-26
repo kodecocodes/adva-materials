@@ -1,0 +1,4 @@
+include ':remoteconfig'
+include ':logging'
+rootProject.name='PetSave'
+include ':app'
