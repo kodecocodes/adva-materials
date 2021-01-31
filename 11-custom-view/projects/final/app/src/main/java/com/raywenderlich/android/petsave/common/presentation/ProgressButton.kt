@@ -4,9 +4,11 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -55,7 +57,7 @@ class ProgressButton @JvmOverloads constructor(
   private var startAngle = 0f
 
   private var rotationAnimator: ValueAnimator? = null
-  private var drawTick = false
+  private var drawChecked = false
 
   init {
     val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressButton)
@@ -91,7 +93,7 @@ class ProgressButton @JvmOverloads constructor(
       canvas.drawArc(progressRect, startAngle, 140f, false, progressPaint)
     }
 
-    if (drawTick) {
+    if (drawChecked) {
       canvas.save()
       canvas.rotate(45f, measuredWidth / 2f, measuredHeight / 2f)
       val x1 = measuredWidth / 2f - buttonRect.width() / 8
@@ -139,7 +141,7 @@ class ProgressButton @JvmOverloads constructor(
         override fun onAnimationEnd(animation: Animator?) {
           super.onAnimationEnd(animation)
           loading = false
-          drawTick = true
+          drawChecked = true
           invalidate()
         }
       })
@@ -149,7 +151,7 @@ class ProgressButton @JvmOverloads constructor(
 
   fun done() {
     loading = false
-    drawTick = true
+    drawChecked = true
     rotationAnimator?.cancel()
     invalidate()
   }
