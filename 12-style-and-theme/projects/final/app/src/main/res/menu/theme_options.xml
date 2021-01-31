@@ -5,7 +5,7 @@
   >
   <item
     android:id="@+id/light_theme"
-    android:title="Light theme"
+    android:title="Light Theme"
     app:showAsAction="never"
     />
   <item
