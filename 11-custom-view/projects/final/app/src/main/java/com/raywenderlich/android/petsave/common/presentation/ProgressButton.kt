@@ -57,7 +57,7 @@ class ProgressButton @JvmOverloads constructor(
   private var startAngle = 0f
 
   private var rotationAnimator: ValueAnimator? = null
-  private var drawChecked = false
+  private var drawCheck = false
 
   init {
     val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ProgressButton)
@@ -93,7 +93,7 @@ class ProgressButton @JvmOverloads constructor(
       canvas.drawArc(progressRect, startAngle, 140f, false, progressPaint)
     }
 
-    if (drawChecked) {
+    if (drawCheck) {
       canvas.save()
       canvas.rotate(45f, measuredWidth / 2f, measuredHeight / 2f)
       val x1 = measuredWidth / 2f - buttonRect.width() / 8
@@ -141,7 +141,7 @@ class ProgressButton @JvmOverloads constructor(
         override fun onAnimationEnd(animation: Animator?) {
           super.onAnimationEnd(animation)
           loading = false
-          drawChecked = true
+          drawCheck = true
           invalidate()
         }
       })
@@ -151,7 +151,7 @@ class ProgressButton @JvmOverloads constructor(
 
   fun done() {
     loading = false
-    drawChecked = true
+    drawCheck = true
     rotationAnimator?.cancel()
     invalidate()
   }
