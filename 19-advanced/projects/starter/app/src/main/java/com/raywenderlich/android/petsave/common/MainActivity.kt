@@ -64,9 +64,7 @@ class MainActivity : AppCompatActivity() {
   private val appBarConfiguration by lazy {
     AppBarConfiguration(topLevelDestinationIds = setOf(R.id.animalsNearYou, R.id.search))
   }
-
-  lateinit var currentFragment: Fragment
-
+  
   override fun onCreate(savedInstanceState: Bundle?) {
     // Switch to AppTheme for displaying the activity
     setTheme(R.style.AppTheme)
