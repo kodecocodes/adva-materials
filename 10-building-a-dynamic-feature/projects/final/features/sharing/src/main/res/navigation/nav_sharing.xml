@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  app:startDestination="@id/sharingFragment">
+
+  <fragment
+    android:id="@+id/sharingFragment"
+    android:name="com.raywenderlich.android.petsave.sharing.presentation.SharingFragment"
+    android:label="@string/sharing_module_name"
+    tools:layout="@layout/fragment_sharing">
+
+    <argument
+      android:name="id"
+      app:argType="long" />
+  </fragment>
+
+
+</navigation>

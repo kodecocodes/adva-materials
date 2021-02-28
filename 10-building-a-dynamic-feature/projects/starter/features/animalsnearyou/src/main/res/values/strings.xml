@@ -1,0 +1,9 @@
+<resources>
+  <string name="animals_near_you">Near you</string>
+  <string name="animals_near_you_screen_label">Animals near you</string>
+  <string name="animal_details_screen_label">Animal details</string>
+  <string name="image_of_pet">Image of pet</string>
+  <string name="special_needs">Special Needs</string>
+  <string name="sprayed_or_neutered">Sprayed/Neutered</string>
+  <string name="contact">Contact</string>
+</resources>

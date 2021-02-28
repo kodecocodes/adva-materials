@@ -1,0 +1,35 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+
+android {
+  defaultConfig {
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments += [
+            "room.schemaLocation":"$projectDir/schemas".toString(),
+            "room.incremental":"true",
+            "room.expandProjection":"true"
+        ]
+      }
+    }
+  }
+}
+
+dependencies {
+  // Network
+  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
+  implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
+  implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
+  implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+  kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+  testImplementation("com.squareup.okhttp3:mockwebserver:$mockwebserver_version")
+  androidTestImplementation("com.squareup.okhttp3:mockwebserver:$mockwebserver_version")
+
+  // Cache
+  implementation "androidx.room:room-runtime:$room_version"
+  implementation "androidx.room:room-ktx:$room_version"
+  implementation "androidx.room:room-rxjava2:$room_version"
+
+  kapt "androidx.room:room-compiler:$room_version"
+}

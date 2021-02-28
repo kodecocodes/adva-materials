@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="onboarding_screen_label">Onboarding</string>
+  <string name="onboarding_welcome_text">Welcome to PetSave!\nWe hope you can find your new family member here. Please provide us with the postcode where you want us to search for animals, and the maximum distance you\'re willing to travel and get your new friend!</string>
+  <string name="postcode">Postcode</string>
+  <string name="max_distance_miles">Max distance (miles)</string>
+  <string name="submit_button">Submit</string>
+  <string name="postcode_helper_text">5 digits. If yours has less (e.g. 397), fill with 0s (e.g. 00397).</string>
+  <string name="postcode_error">Needs 5 digits!</string>
+  <string name="distance_helper_text">Max: 500 miles</string>
+  <string name="distance_error">It\'s over 500!!!</string>
+  <string name="distance_error_cannot_be_zero">Has to be higher than zero :)</string>
+  <string name="no_error" />
+</resources>

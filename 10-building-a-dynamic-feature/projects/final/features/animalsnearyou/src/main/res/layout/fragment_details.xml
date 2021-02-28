@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Razeware LLC
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+  ~ distribute, sublicense, create a derivative work, and/or sell copies of the
+  ~ Software in any work that is designed, intended, or marketed for pedagogical or
+  ~ instructional purposes related to programming, coding, application development,
+  ~ or information technology.  Permission for such use, copying, modification,
+  ~ merger, publication, distribution, sublicensing, creation of derivative works,
+  ~ or sale is expressly withheld.
+  ~
+  ~ This project and source code may use libraries or frameworks that are
+  ~ released under various Open-Source licenses. Use of those libraries and
+  ~ frameworks are governed by their own individual licenses.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <ImageView
+      android:id="@+id/image"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:contentDescription="@string/image_of_pet"
+      app:layout_constraintDimensionRatio="H,10:8"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/default_margin"
+      android:textSize="@dimen/extra_large_text"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/image"
+      tools:text="Wallace" />
+
+  <TextView
+      android:id="@+id/description"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:textSize="@dimen/small_text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/name"
+      tools:text="Hi! My name's Wallace. I'm a one year old boy searching for my furever home! Some of my favorite things include: taking long naps, eating big bowls of food, and giving you all of my love and attention!" />
+
+  <TextView
+      android:id="@+id/special_needs_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/default_margin"
+      android:layout_marginTop="@dimen/default_margin"
+      android:text="@string/special_needs"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/divider" />
+
+  <TextView
+      android:id="@+id/special_needs"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/default_margin"
+      app:layout_constraintBottom_toBottomOf="@id/special_needs_label"
+      app:layout_constraintStart_toEndOf="@id/special_needs_label"
+      app:layout_constraintTop_toTopOf="@id/special_needs_label"
+      tools:text="Yes" />
+
+  <TextView
+      android:id="@+id/sprayed_neutered_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/default_margin"
+      android:layout_marginTop="@dimen/half_default_margin"
+      android:text="@string/sprayed_or_neutered"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/special_needs_label" />
+
+  <TextView
+      android:id="@+id/sprayed_neutered"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/default_margin"
+      app:layout_constraintBottom_toBottomOf="@id/sprayed_neutered_label"
+      app:layout_constraintStart_toEndOf="@id/sprayed_neutered_label"
+      app:layout_constraintTop_toTopOf="@id/sprayed_neutered_label"
+      tools:text="Yes" />
+
+  <View
+      android:id="@+id/divider"
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_marginTop="@dimen/half_default_margin"
+      android:background="?android:attr/listDivider"
+      app:layout_constraintTop_toBottomOf="@+id/tags" />
+
+  <com.google.android.material.chip.ChipGroup
+      android:id="@+id/tags"
+      style="@style/Widget.MaterialComponents.Chip.Entry"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/description">
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_default_margin"
+        android:text="Young" />
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_default_margin"
+        android:text="Cute" />
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_default_margin"
+        android:text="Playful" />
+
+  </com.google.android.material.chip.ChipGroup>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/call"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_margin"
+      android:scaleX="0.6"
+      android:scaleY="0.6"
+      android:contentDescription="@string/contact"
+      android:src="@drawable/ic_call_24dp"
+      app:backgroundTint="@color/colorPrimary"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:tint="@android:color/white" />
+
+  <androidx.constraintlayout.widget.Group
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/group"
+      app:constraint_referenced_ids="name, description, image, special_needs, special_needs_label, sprayed_neutered, sprayed_neutered_label, divider, tags, call"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
