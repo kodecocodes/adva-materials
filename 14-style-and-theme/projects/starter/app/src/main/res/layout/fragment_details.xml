@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Razeware LLC
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+  ~ distribute, sublicense, create a derivative work, and/or sell copies of the
+  ~ Software in any work that is designed, intended, or marketed for pedagogical or
+  ~ instructional purposes related to programming, coding, application development,
+  ~ or information technology.  Permission for such use, copying, modification,
+  ~ merger, publication, distribution, sublicensing, creation of derivative works,
+  ~ or sale is expressly withheld.
+  ~
+  ~ This project and source code may use libraries or frameworks that are
+  ~ released under various Open-Source licenses. Use of those libraries and
+  ~ frameworks are governed by their own individual licenses.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/motion_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layoutDescription="@xml/fragment_details_scene">
+
+  <ImageView
+    android:id="@+id/heart_image"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:contentDescription="@string/image_of_pet"
+    android:elevation="1dp"
+    app:layout_constraintBottom_toBottomOf="@id/image"
+    app:layout_constraintDimensionRatio="H,10:8"
+    app:layout_constraintEnd_toEndOf="@id/image"
+    app:layout_constraintStart_toStartOf="@id/image"
+    app:layout_constraintTop_toTopOf="@id/image"
+    app:srcCompat="@drawable/heart_fill_animation"
+    tools:visibility="invisible" />
+
+  <TextView
+    android:id="@+id/name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/default_margin"
+    android:textSize="@dimen/extra_large_text"
+    android:textStyle="bold"
+    android:transformPivotX="0sp"
+    android:transformPivotY="12sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/image"
+    tools:text="Wallace" />
+
+  <androidx.constraintlayout.utils.widget.ImageFilterView
+    android:id="@+id/image"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:contentDescription="@string/image_of_pet"
+    android:scaleType="centerCrop"
+    app:layout_constraintDimensionRatio="H,1:1"
+    app:layout_constraintTop_toTopOf="parent"
+    app:roundPercent="0"
+    tools:src="@drawable/cute_doggo" />
+
+  <androidx.core.widget.NestedScrollView
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/name">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Hi! My name's Wallace. I'm a one year old boy searching for my furever home! Some of my favorite things include: taking long naps, eating big bowls of food, and giving you all of my love and attention!" />
+
+      <TextView
+        android:id="@+id/special_needs_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/special_needs"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+      <TextView
+        android:id="@+id/special_needs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@id/special_needs_label"
+        app:layout_constraintStart_toEndOf="@id/special_needs_label"
+        app:layout_constraintTop_toTopOf="@id/special_needs_label"
+        tools:text="Yes" />
+
+      <TextView
+        android:id="@+id/sprayed_neutered_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/half_default_margin"
+        android:text="@string/sprayed_or_neutered"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/special_needs_label" />
+
+      <TextView
+        android:id="@+id/sprayed_neutered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@id/sprayed_neutered_label"
+        app:layout_constraintStart_toEndOf="@id/sprayed_neutered_label"
+        app:layout_constraintTop_toTopOf="@id/sprayed_neutered_label"
+        tools:text="Yes" />
+
+      <TextView
+        android:id="@+id/declawed_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/half_default_margin"
+        android:text="@string/declawed"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sprayed_neutered_label" />
+
+      <TextView
+        android:id="@+id/declawed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@id/declawed_label"
+        app:layout_constraintStart_toEndOf="@id/declawed_label"
+        app:layout_constraintTop_toTopOf="@id/declawed_label"
+        tools:text="Yes" />
+
+      <TextView
+        android:id="@+id/shots_current_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/half_default_margin"
+        android:text="@string/shots_current"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/declawed_label" />
+
+      <TextView
+        android:id="@+id/shots_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="@id/shots_current_label"
+        app:layout_constraintStart_toEndOf="@id/shots_current_label"
+        app:layout_constraintTop_toTopOf="@id/shots_current_label"
+        tools:text="Yes" />
+
+      <TextView
+        android:id="@+id/good_boi_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/half_default_margin"
+        android:text="@string/good_boi_girl"
+        android:textSize="@dimen/large_text"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shots_current_label" />
+
+      <TextView
+        android:id="@+id/good_boi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:text="@string/hundred_emoji"
+        app:layout_constraintBottom_toBottomOf="@id/good_boi_label"
+        app:layout_constraintStart_toEndOf="@id/good_boi_label"
+        app:layout_constraintTop_toTopOf="@id/good_boi_label" />
+
+      <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/half_default_margin"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@+id/tags" />
+
+      <com.google.android.material.chip.ChipGroup
+        android:id="@+id/tags"
+        style="@style/Widget.MaterialComponents.Chip.Entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description">
+
+        <com.google.android.material.chip.Chip
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/half_default_margin"
+          android:text="Young" />
+
+        <com.google.android.material.chip.Chip
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/half_default_margin"
+          android:text="Cute" />
+
+        <com.google.android.material.chip.Chip
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="@dimen/half_default_margin"
+          android:text="Playful" />
+
+      </com.google.android.material.chip.ChipGroup>
+
+      <com.raywenderlich.android.petsave.common.presentation.ProgressButton
+        android:id="@+id/adopt_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/good_boi_label"
+        app:progressButton_text="@string/adopt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.core.widget.NestedScrollView>
+
+  <com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/loader"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:lottie_loop="true" />
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/call"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_margin"
+    android:contentDescription="@string/contact"
+    android:src="@drawable/ic_call_24dp"
+    android:visibility="gone"
+    app:backgroundTint="@color/colorPrimary"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:tint="@android:color/white"
+    tools:visibility="visible" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
+
