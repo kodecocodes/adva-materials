@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PetSave.iml" filepath="$PROJECT_DIR$/.idea/modules/PetSave.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PetSave.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PetSave.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logging/PetSave.logging.iml" filepath="$PROJECT_DIR$/.idea/modules/logging/PetSave.logging.iml" />
+    </modules>
+  </component>
+</project>
