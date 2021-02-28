@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.raywenderlich.android.petsave.common">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+  <application android:usesCleartextTraffic="true">
+    <activity
+      android:name=".HiltTestActivity"
+      android:theme="@style/AppTheme"
+      android:exported="false" />
+  </application>
+</manifest>

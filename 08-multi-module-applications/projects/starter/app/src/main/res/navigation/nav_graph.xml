@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@+id/nav_graph"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  app:startDestination="@id/onboardingFragment">
+
+  <include app:graph="@navigation/nav_animalsnearyou" />
+  <include app:graph="@navigation/nav_search" />
+
+  <fragment
+    android:id="@+id/onboardingFragment"
+    android:name="com.raywenderlich.android.petsave.onboarding.presentation.OnboardingFragment"
+    android:label="@string/onboarding_screen_label"
+    tools:layout="@layout/fragment_onboarding" >
+    <action
+      android:id="@+id/action_onboardingFragment_to_animalsNearYou"
+      app:destination="@id/nav_animalsnearyou"
+      app:popUpTo="@id/onboardingFragment"
+      app:popUpToInclusive="true"
+      app:enterAnim="@anim/fragment_close_enter"
+      app:exitAnim="@anim/fragment_open_exit" />
+  </fragment>
+</navigation>

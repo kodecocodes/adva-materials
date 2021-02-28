@@ -1,0 +1,108 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    testInstrumentationRunner "com.raywenderlich.android.petsave.common.HiltTestRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
+
+  sourceSets {
+    androidTest {
+      assets.srcDirs = ["src/debug/assets"]
+    }
+  }
+
+  packagingOptions {
+    exclude 'META-INF/AL2.0'
+    exclude 'META-INF/LGPL2.1'
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  implementation project(":logging")
+
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+  // Constraint Layout
+  implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+  // DI
+  implementation "com.google.dagger:hilt-android:$hilt_version"
+  kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+  implementation "androidx.hilt:hilt-lifecycle-viewmodel:$androidx_hilt_version"
+  kapt "androidx.hilt:hilt-compiler:$androidx_hilt_version"
+
+  androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+  kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+  kaptAndroidTest "androidx.hilt:hilt-compiler:$androidx_hilt_version"
+
+  // UI
+  implementation "com.github.bumptech.glide:glide:$glide_version"
+  kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+  implementation "com.google.android.material:material:$material_version"
+
+  // RxJava
+  implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+  implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+  implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+  // Support Libraries and material
+  implementation "androidx.appcompat:appcompat:$appcompat_version"
+  implementation "com.google.android.material:material:$material_version"
+
+  // Utils
+  implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+
+  // Testing Dependencies
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "org.mockito:mockito-core:$mockito_version"
+  testImplementation "org.robolectric:robolectric:$robolectric_version"
+  testImplementation("org.threeten:threetenbp:${threetenbp_version}") {
+    exclude group: "com.jakewharton.threetenabp", module: "threetenabp"
+  }
+
+  // Instrumented tests dependencies
+  androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+  // Dependencies for both test and AndroidTest
+  debugImplementation "com.google.truth:truth:$google_truth_version"
+  debugImplementation "androidx.arch.core:core-testing:$androidx_core_testing_version"
+  debugImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+  debugImplementation ("androidx.fragment:fragment-testing:$fragment_testing_version") {
+    exclude group: 'androidx.test', module: 'monitor'
+  }
+}
