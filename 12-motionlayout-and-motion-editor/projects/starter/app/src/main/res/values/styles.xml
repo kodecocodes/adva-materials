@@ -1,0 +1,18 @@
+<resources>
+
+  <!-- Base application Theme -->
+  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <!-- Splash Screen Theme -->
+  <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_background</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+  </style>
+
+</resources>
