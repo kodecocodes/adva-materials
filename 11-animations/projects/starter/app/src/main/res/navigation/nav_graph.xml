@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<navigation android:id="@+id/nav_graph"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/animalsNearYou">
+
+  <fragment
+      android:id="@+id/animalsNearYou"
+      android:name="com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouFragment"
+      android:label="@string/animals_near_you_screen_label"
+      tools:layout="@layout/fragment_animals_near_you">
+    <action
+        android:id="@+id/action_animalsNearYou_to_details"
+        app:destination="@id/details">
+      <argument
+          android:name="id"
+          app:argType="long" />
+    </action>
+  </fragment>
+
+  <fragment
+      android:id="@+id/search"
+      android:name="com.raywenderlich.android.petsave.search.presentation.SearchFragment"
+      android:label="@string/search_screen_label"
+      tools:layout="@layout/fragment_search">
+    <action
+        android:id="@+id/action_search_to_details"
+        app:destination="@id/details">
+      <argument
+          android:name="id"
+          app:argType="long" />
+    </action>
+  </fragment>
+
+  <fragment
+      android:id="@+id/details"
+      android:name="com.raywenderlich.android.petsave.details.presentation.AnimalDetailsFragment"
+      android:label="@string/animal_details"
+      tools:layout="@layout/fragment_details">
+
+    <argument
+        android:name="id"
+        app:argType="long" />
+        
+    <action
+        android:id="@+id/action_details_to_secret"
+        app:destination="@id/secret" />
+  </fragment>
+  
+  <fragment
+      android:id="@+id/secret"
+      android:name="com.raywenderlich.android.petsave.easteregg.SecretFragment"
+      android:label="@string/secret_doggo"
+      tools:layout="@layout/fragment_secret">
+  </fragment>
+</navigation>
