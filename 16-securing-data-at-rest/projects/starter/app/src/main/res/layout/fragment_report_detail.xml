@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2020 Razeware LLC
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+  ~ distribute, sublicense, create a derivative work, and/or sell copies of the
+  ~ Software in any work that is designed, intended, or marketed for pedagogical or
+  ~ instructional purposes related to programming, coding, application development,
+  ~ or information technology.  Permission for such use, copying, modification,
+  ~ merger, publication, distribution, sublicensing, creation of derivative works,
+  ~ or sale is expressly withheld.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <Button
+    android:id="@+id/upload_photo_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="@string/upload_photo" />
+
+  <Button
+    android:id="@+id/send_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginStart="3dp"
+    android:layout_toEndOf="@+id/upload_photo_button"
+    android:text="@string/send_report" />
+
+  <EditText
+    android:id="@+id/details_edtxtview"
+    android:layout_width="match_parent"
+    android:layout_height="435dp"
+    android:layout_alignEnd="@+id/category_edtxtview"
+    android:layout_alignParentStart="true"
+    android:layout_below="@+id/category_edtxtview"
+    android:layout_marginEnd="-6dp"
+    android:autofillHints="@string/report_details"
+    android:ems="10"
+    android:gravity="top"
+    android:hint="@string/report_details"
+    android:inputType="textNoSuggestions|textVisiblePassword|textFilter|textMultiLine"
+    android:maxLength="512"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:singleLine="false"
+    android:textColor="#7B869B"
+    android:textColorHint="#cccccc"
+    tools:targetApi="o" />
+
+  <EditText
+    android:id="@+id/category_edtxtview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:autofillHints="@string/category"
+    android:hint="@string/category"
+    android:inputType="textNoSuggestions|textVisiblePassword|textFilter"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:textSize="18sp" />
+
+  <TextView
+    android:id="@+id/upload_status_textview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/upload_photo_button"
+    android:layout_alignEnd="@id/details_edtxtview"
+    android:layout_marginBottom="6dp"
+    android:layout_marginTop="6dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:text="" />
+
+</RelativeLayout>
