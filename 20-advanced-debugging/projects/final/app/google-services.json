@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "909506943163",
+    "project_id": "petsave-24c4f",
+    "storage_bucket": "petsave-24c4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909506943163:android:46f75ae239a6e5309b719e",
+        "android_client_info": {
+          "package_name": "com.raywenderlich.android.petsave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909506943163-od57kg1gku8mckfr78agdan56iivdi1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUhTnAqMskUJB_3s0TPBnAL5oarVj8IyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909506943163-od57kg1gku8mckfr78agdan56iivdi1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
