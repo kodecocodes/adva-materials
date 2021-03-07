@@ -39,8 +39,8 @@ object ApiConstants {
   const val AUTH_ENDPOINT = "oauth2/token/"
   const val ANIMALS_ENDPOINT = "animals"
 
-  const val KEY = "FQuzd5lGR4guPOnjMvJbxvogIIllwZPGmniegB7Zj5MTCuodWx"
-  const val SECRET = "g3kD7XO3eAWCb6ySL1LaQeZZkETOAJK6t5lkhXDs"
+  const val KEY = "INSERT_YOUR_KEY_HERE"
+  const val SECRET = "INSERT_YOUR_SECRET_HERE"
   fun aK(): String { //API KEY
     return SECRET.substring(35).reversed() + GO.f1 + "5687" + GO.f2 + "3657"+
         GO.f2 + SECRET.substring(7,10) + GO.f1 + " 4fj6" + GO.f3 +
