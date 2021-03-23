@@ -65,10 +65,7 @@ dependencies {
 
   // DI
   implementation "com.google.dagger:hilt-android:$hilt_version"
-  implementation "androidx.hilt:hilt-lifecycle-viewmodel:$androidx_hilt_version"
-
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-  kapt "androidx.hilt:hilt-compiler:$androidx_hilt_version"
 
   // Needed for DI to work properly
   implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

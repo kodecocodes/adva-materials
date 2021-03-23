@@ -34,7 +34,6 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou.presentation.animaldetails
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,10 +42,13 @@ import com.raywenderlich.android.petsave.common.domain.model.animal.details.Anim
 import com.raywenderlich.android.petsave.animalsnearyou.presentation.animaldetails.model.mappers.UiAnimalDetailsMapper
 import com.raywenderlich.android.petsave.common.domain.usecases.GetAnimalDetails
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AnimalDetailsFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AnimalDetailsFragmentViewModel @Inject constructor(
     private val uiAnimalDetailsMapper: UiAnimalDetailsMapper,
     private val getAnimalDetails: GetAnimalDetails,
     private val dispatchersProvider: DispatchersProvider
