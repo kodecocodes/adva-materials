@@ -34,7 +34,6 @@
 
 package com.raywenderlich.android.petsave.search.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -45,12 +44,15 @@ import com.raywenderlich.android.petsave.common.domain.model.pagination.Paginati
 import com.raywenderlich.android.petsave.common.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.common.utils.createExceptionHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.CoroutineExceptionHandler
+import javax.inject.Inject
 
-class SearchFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class SearchFragmentViewModel @Inject constructor(
     private val uiAnimalMapper: UiAnimalMapper,
     private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
