@@ -34,7 +34,6 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -51,13 +50,16 @@ import com.raywenderlich.android.petsave.common.presentation.Event
 import com.raywenderlich.android.petsave.common.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.common.utils.createExceptionHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AnimalsNearYouFragmentViewModel @Inject constructor(
     private val getAnimals: GetAnimals,
     private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
     private val uiAnimalMapper: UiAnimalMapper,

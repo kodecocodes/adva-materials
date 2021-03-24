@@ -135,8 +135,8 @@ class OnboardingFragment: Fragment() {
 
     val navOptions = NavOptions.Builder()
         .setPopUpTo(R.id.nav_onboarding, true)
-        .setEnterAnim(R.anim.fragment_close_enter)
-        .setExitAnim(R.anim.fragment_open_exit)
+        .setEnterAnim(R.anim.nav_default_enter_anim)
+        .setExitAnim(R.anim.nav_default_exit_anim)
         .build()
 
     findNavController().navigate(deepLink, navOptions)

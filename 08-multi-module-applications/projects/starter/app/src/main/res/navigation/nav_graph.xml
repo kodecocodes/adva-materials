@@ -18,7 +18,7 @@
       app:destination="@id/nav_animalsnearyou"
       app:popUpTo="@id/onboardingFragment"
       app:popUpToInclusive="true"
-      app:enterAnim="@anim/fragment_close_enter"
-      app:exitAnim="@anim/fragment_open_exit" />
+      app:enterAnim="@anim/nav_default_enter_anim"
+      app:exitAnim="@anim/nav_default_exit_anim" />
   </fragment>
 </navigation>
