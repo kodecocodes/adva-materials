@@ -1,17 +1,19 @@
 package com.raywenderlich.android.petsave.sharing.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.petsave.common.domain.usecases.GetAnimalDetails
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.sharing.presentation.model.mappers.UiAnimalToShareMapper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class SharingFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class SharingFragmentViewModel @Inject constructor(
     private val getAnimalDetails: GetAnimalDetails,
     private val uiAnimalToShareMapper: UiAnimalToShareMapper,
     private val dispatchersProvider: DispatchersProvider

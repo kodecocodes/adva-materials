@@ -76,7 +76,7 @@ class AnimalDetailsFragment : Fragment() {
       savedInstanceState: Bundle?
   ): View {
     _binding = FragmentDetailsBinding.inflate(inflater, container, false)
-
+    
     setHasOptionsMenu(true)
     return binding.root
   }

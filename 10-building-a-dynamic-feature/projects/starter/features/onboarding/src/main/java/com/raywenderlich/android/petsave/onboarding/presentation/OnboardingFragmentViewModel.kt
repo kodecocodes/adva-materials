@@ -34,21 +34,23 @@
 
 package com.raywenderlich.android.petsave.onboarding.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.petsave.onboarding.R
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.common.utils.createExceptionHandler
 import com.raywenderlich.android.petsave.onboarding.domain.usecases.StoreOnboardingData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class OnboardingFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class OnboardingFragmentViewModel @Inject constructor(
     private val storeOnboardingData: StoreOnboardingData,
     private val dispatchersProvider: DispatchersProvider
 ) : ViewModel() {
