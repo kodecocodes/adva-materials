@@ -6,7 +6,7 @@ buildscript {
     kotlin_version = '1.6.21'
     compileSdkVersion = 31
     targetSdkVersion = compileSdkVersion
-    minSdkVersion = 21
+    minSdkVersion = 23
 
     // Tutorial dependency versions
     appcompat_version = "1.4.1"
