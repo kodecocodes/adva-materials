@@ -34,6 +34,13 @@ android {
     }
   }
 
+  compileOptions {
+    coreLibraryDesugaringEnabled true
+
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
   buildFeatures {
     viewBinding true
   }
@@ -98,7 +105,7 @@ dependencies {
   androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
   // Utils
-  implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+  coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugar_jdk_libs_version"
 
   debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 }
