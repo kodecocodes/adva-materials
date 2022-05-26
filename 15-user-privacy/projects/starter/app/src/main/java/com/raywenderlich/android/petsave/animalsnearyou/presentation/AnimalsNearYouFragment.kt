@@ -40,17 +40,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.presentation.AnimalsAdapter
 import com.raywenderlich.android.petsave.core.presentation.Event
+import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import dagger.hilt.android.AndroidEntryPoint
 import okio.IOException
 import retrofit2.HttpException
@@ -62,7 +61,7 @@ class AnimalsNearYouFragment : Fragment() {
     private const val ITEMS_PER_ROW = 2
   }
 
-  private val viewModel: AnimalsNearYouFragmentViewModel by activityViewModels()
+  private val viewModel: AnimalsNearYouFragmentViewModel by viewModels()
   private val binding get() = _binding!!
 
   private var _binding: FragmentAnimalsNearYouBinding? = null
