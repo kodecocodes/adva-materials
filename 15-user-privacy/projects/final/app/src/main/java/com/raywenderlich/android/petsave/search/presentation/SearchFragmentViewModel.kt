@@ -50,17 +50,20 @@ import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import com.raywenderlich.android.petsave.search.domain.usecases.GetSearchFilters
 import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimals
 import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimalsRemotely
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SearchFragmentViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
+@HiltViewModel
+class SearchFragmentViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val getSearchFilters: GetSearchFilters,
     private val searchAnimals: SearchAnimals,
     private val searchAnimalsRemotely: SearchAnimalsRemotely,

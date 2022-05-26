@@ -62,7 +62,7 @@ class AnimalsNearYouFragment : Fragment() {
     private const val ITEMS_PER_ROW = 2
   }
 
-  private val viewModel: AnimalsNearYouFragmentViewModel by activityViewModels()
+  private val viewModel: AnimalsNearYouFragmentViewModel by viewModels()
   private val binding get() = _binding!!
 
   private var _binding: FragmentAnimalsNearYouBinding? = null

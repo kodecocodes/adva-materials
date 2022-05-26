@@ -35,7 +35,9 @@
 package com.raywenderlich.android.petsave.search.presentation
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -48,7 +50,6 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.R
-import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouFragment
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.core.presentation.AnimalsAdapter
 import com.raywenderlich.android.petsave.core.presentation.Event
