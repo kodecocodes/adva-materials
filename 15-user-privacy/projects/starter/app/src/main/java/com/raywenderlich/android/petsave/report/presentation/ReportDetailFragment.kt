@@ -34,11 +34,9 @@
 
 package com.raywenderlich.android.petsave.report.presentation
 
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -49,11 +47,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.raywenderlich.android.petsave.databinding.FragmentReportDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_report_detail.*
 import java.io.File
 import java.net.URL
 import java.util.*
@@ -103,8 +99,8 @@ class ReportDetailFragment : Fragment() {
   }
 
   private fun setupUI() {
-    details_edtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
-    details_edtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
+    binding.detailsEdtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
+    binding.detailsEdtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
   }
 
   private fun sendReportPressed() {
@@ -112,9 +108,9 @@ class ReportDetailFragment : Fragment() {
       isSendingReport = true
 
       //1. Save report
-      var reportString = category_edtxtview.text.toString()
+      var reportString = binding.categoryEdtxtview.text.toString()
       reportString += " : "
-      reportString += details_edtxtview.text.toString()
+      reportString += binding.detailsEdtxtview.text.toString()
       val reportID = UUID.randomUUID().toString()
 
       context?.let { theContext ->
@@ -188,6 +184,6 @@ class ReportDetailFragment : Fragment() {
     nameCursor?.close()
 
     //update UI with filename
-    upload_status_textview?.text = filename
+    binding.uploadStatusTextview?.text = filename
   }
 }
