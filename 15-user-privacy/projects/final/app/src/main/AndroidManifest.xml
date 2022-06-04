@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
   <permission
-    android:name="com.raywenderlich.android.petsave.permission.REPORT_DETAIL_ACTIVITY"
+    android:name="com.realworld.android.petsave.permission.REPORT_DETAIL_ACTIVITY"
     android:label="@string/permissionsLabel"
     android:description="@string/permissionDetail"
     android:protectionLevel="signature" />
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-      android:name="com.raywenderlich.android.petsave.PetSaveApplication"
+      android:name="com.realworld.android.petsave.PetSaveApplication"
       android:allowBackup="false"
       android:installLocation="internalOnly"
       android:icon="@mipmap/ic_launcher"
@@ -22,7 +22,7 @@
 
     <!-- Main Activity -->
     <activity
-        android:name="com.raywenderlich.android.petsave.core.MainActivity"
+        android:name="com.realworld.android.petsave.core.MainActivity"
         android:theme="@style/SplashTheme"
         android:exported="true">
       <intent-filter>
