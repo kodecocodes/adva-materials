@@ -55,14 +55,14 @@ data class Media(
   ) {
 
     companion object {
-      const val EMPTY_PHOTO = ""
+      const val NO_SIZE_AVAILABLE = ""
     }
 
     fun getSmallestAvailablePhoto(): String {
       return when {
         isValidPhoto(medium) -> medium
         isValidPhoto(full) -> full
-        else -> EMPTY_PHOTO
+        else -> NO_SIZE_AVAILABLE
       }
     }
 
