@@ -40,11 +40,11 @@ data class Media(
 ) {
 
   companion object {
-    const val EMPTY_MEDIA = ""
+    const val NO_MEDIA = ""
   }
 
   fun getFirstSmallestAvailablePhoto(): String {
-    if (photos.isEmpty()) return EMPTY_MEDIA
+    if (photos.isEmpty()) return NO_MEDIA
 
     return photos.first().getSmallestAvailablePhoto()
   }
