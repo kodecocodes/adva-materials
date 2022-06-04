@@ -86,27 +86,27 @@ class ApiAnimalMapper @Inject constructor(
     if (age.isNullOrEmpty()) return AnimalWithDetails.Details.Age.UNKNOWN
 
     // will throw IllegalStateException if the string does not match any enum value
-    return AnimalWithDetails.Details.Age.valueOf(age.toUpperCase(Locale.ROOT))
+    return AnimalWithDetails.Details.Age.valueOf(age.uppercase(Locale.ROOT))
   }
 
   private fun parserGender(gender: String?): AnimalWithDetails.Details.Gender {
     if (gender.isNullOrEmpty()) return AnimalWithDetails.Details.Gender.UNKNOWN
 
-    return AnimalWithDetails.Details.Gender.valueOf(gender.toUpperCase(Locale.ROOT))
+    return AnimalWithDetails.Details.Gender.valueOf(gender.uppercase(Locale.ROOT))
   }
 
   private fun parseSize(size: String?): AnimalWithDetails.Details.Size {
     if (size.isNullOrEmpty()) return AnimalWithDetails.Details.Size.UNKNOWN
 
     return AnimalWithDetails.Details.Size.valueOf(
-        size.replace(' ', '_').toUpperCase(Locale.ROOT)
+        size.replace(' ', '_').uppercase(Locale.ROOT)
     )
   }
 
   private fun parseCoat(coat: String?): AnimalWithDetails.Details.Coat {
     if (coat.isNullOrEmpty()) return AnimalWithDetails.Details.Coat.UNKNOWN
 
-    return AnimalWithDetails.Details.Coat.valueOf(coat.toUpperCase(Locale.ROOT))
+    return AnimalWithDetails.Details.Coat.valueOf(coat.uppercase(Locale.ROOT))
   }
 
   private fun mapMedia(apiAnimal: ApiAnimal): Media {
@@ -119,7 +119,7 @@ class ApiAnimalMapper @Inject constructor(
   private fun parseAdoptionStatus(status: String?): AdoptionStatus {
     if (status.isNullOrEmpty()) return AdoptionStatus.UNKNOWN
 
-    return AdoptionStatus.valueOf(status.toUpperCase(Locale.ROOT))
+    return AdoptionStatus.valueOf(status.uppercase(Locale.ROOT))
   }
 
   private fun mapOrganization(apiAnimal: ApiAnimal): Organization {
