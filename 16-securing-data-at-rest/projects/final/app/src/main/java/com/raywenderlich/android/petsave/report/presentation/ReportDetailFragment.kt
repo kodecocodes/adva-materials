@@ -56,7 +56,6 @@ import com.raywenderlich.android.petsave.core.utils.Encryption
 import com.raywenderlich.android.petsave.core.utils.Encryption.Companion.encryptFile
 import com.raywenderlich.android.petsave.databinding.FragmentReportDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_report_detail.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.ObjectOutputStream
@@ -88,7 +87,7 @@ class ReportDetailFragment : Fragment() {
   private var _binding: FragmentReportDetailBinding? = null
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
     _binding = FragmentReportDetailBinding.inflate(inflater, container, false)
 
     binding.sendButton.setOnClickListener {
@@ -109,8 +108,8 @@ class ReportDetailFragment : Fragment() {
   }
 
   private fun setupUI() {
-    details_edtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
-    details_edtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
+    binding.detailsEdtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
+    binding.detailsEdtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
   }
 
   private fun sendReportPressed() {
@@ -118,9 +117,9 @@ class ReportDetailFragment : Fragment() {
       isSendingReport = true
 
       //1. Save report
-      var reportString = category_edtxtview.text.toString()
+      var reportString = binding.categoryEdtxtview.text.toString()
       reportString += " : "
-      reportString += details_edtxtview.text.toString()
+      reportString += binding.detailsEdtxtview.text.toString()
       val reportID = UUID.randomUUID().toString()
 
       context?.let { theContext ->
@@ -246,7 +245,7 @@ class ReportDetailFragment : Fragment() {
       nameCursor?.close()
 
       //update UI with filename
-      upload_status_textview?.text = filename
+      binding.uploadStatusTextview.text = filename
     } else {
       val toast = Toast.makeText(context, "Please choose a JPEG image", Toast.LENGTH_LONG)
       toast.show()
