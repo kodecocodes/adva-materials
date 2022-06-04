@@ -17,7 +17,6 @@
       android:installLocation="auto"
       android:label="@string/app_name"
       android:protectionLevel="normal"
-      android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
       tools:ignore="GoogleAppIndexingWarning">
