@@ -5,7 +5,7 @@
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-      android:name="com.raywenderlich.android.petsave.PetSaveApplication"
+      android:name="com.realworld.android.petsave.PetSaveApplication"
       android:allowBackup="false"
       android:icon="@mipmap/ic_launcher"
       android:installLocation="internalOnly"
@@ -17,7 +17,7 @@
 
     <!-- Main Activity -->
     <activity
-        android:name="com.raywenderlich.android.petsave.core.MainActivity"
+        android:name="com.realworld.android.petsave.core.MainActivity"
         android:theme="@style/SplashTheme"
         android:exported="true">
       <intent-filter>
