@@ -106,7 +106,6 @@ dependencies {
   kapt "com.github.bumptech.glide:compiler:$glide_version"
 
   implementation "com.google.android.material:material:1.6.1"
-  implementation "org.jetbrains.anko:anko-common:0.10.0"
 
   // Navigation
   implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

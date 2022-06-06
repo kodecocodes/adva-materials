@@ -38,6 +38,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
@@ -61,7 +62,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 import java.util.concurrent.Executors
-import org.jetbrains.anko.toast
 
 /**
  * Main Screen
@@ -199,5 +199,9 @@ class MainActivity : AppCompatActivity() {
   override fun onDestroy() {
     super.onDestroy()
     _binding = null
+  }
+
+  private fun toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
   }
 }
