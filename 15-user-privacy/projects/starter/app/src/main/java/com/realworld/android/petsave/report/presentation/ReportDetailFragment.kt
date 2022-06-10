@@ -34,9 +34,11 @@
 
 package com.realworld.android.petsave.report.presentation
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -47,6 +49,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.realworld.android.petsave.databinding.FragmentReportDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +65,6 @@ class ReportDetailFragment : Fragment() {
 
   companion object {
     private const val API_URL = "https://example.com/?send_report"
-    private const val PIC_FROM_GALLERY = 2
     private const val REPORT_APP_ID = 46341L
     private const val REPORT_PROVIDER_ID = 46341L
     private const val REPORT_SESSION_KEY = "session_key_in_next_chapter"
@@ -69,6 +72,10 @@ class ReportDetailFragment : Fragment() {
 
   object ReportTracker {
     var reportNumber = AtomicInteger()
+  }
+
+  private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    showUploadedFile(uri)
   }
 
   @Volatile
@@ -147,28 +154,10 @@ class ReportDetailFragment : Fragment() {
   }
 
   private fun uploadPhotoPressed() {
-    val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-    startActivityForResult(galleryIntent, PIC_FROM_GALLERY)
+    selectImageFromGallery()
   }
 
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-
-    when (requestCode) {
-
-      PIC_FROM_GALLERY ->
-
-        if (resultCode == Activity.RESULT_OK) {
-
-          //image from gallery
-          val selectedImage = data?.data
-          selectedImage?.let {
-            showUploadedFile(selectedImage)
-          }
-        }
-      else -> println("Didn't select picture option")
-    }
-  }
+  private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
   private fun showUploadedFile(selectedImage: Uri) {
     //get filename
