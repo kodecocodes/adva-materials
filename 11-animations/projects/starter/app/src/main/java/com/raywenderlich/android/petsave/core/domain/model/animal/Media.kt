@@ -54,9 +54,7 @@ data class Media(
       val full: String
   ) {
     fun getSmallestAvailablePhoto(): String {
-      return if (medium.isNotEmpty()) {
-        medium
-      } else {
+      return medium.ifEmpty {
         full
       }
     }

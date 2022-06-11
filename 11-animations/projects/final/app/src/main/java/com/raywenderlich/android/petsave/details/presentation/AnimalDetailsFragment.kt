@@ -35,10 +35,17 @@
 package com.raywenderlich.android.petsave.details.presentation
 
 import android.annotation.SuppressLint
-import android.graphics.*
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.Rect
 import android.graphics.drawable.Animatable
 import android.os.Bundle
-import android.view.*
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RawRes
 import androidx.core.view.isVisible
 import androidx.dynamicanimation.animation.DynamicAnimation
@@ -53,8 +60,6 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
-import com.airbnb.lottie.value.LottieFrameInfo
-import com.airbnb.lottie.value.SimpleLottieValueCallback
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.core.presentation.model.UIAnimalDetailed
@@ -123,7 +128,7 @@ class AnimalDetailsFragment : Fragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                            savedInstanceState: Bundle?): View? {
+                            savedInstanceState: Bundle?): View {
     _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
     return binding.root

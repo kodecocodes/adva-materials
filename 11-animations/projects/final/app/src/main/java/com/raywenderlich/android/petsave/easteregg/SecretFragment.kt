@@ -39,7 +39,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.raywenderlich.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.raywenderlich.android.petsave.databinding.FragmentSecretBinding
 
 class SecretFragment : Fragment() {
@@ -49,7 +48,7 @@ class SecretFragment : Fragment() {
   private var _binding: FragmentSecretBinding? = null
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
 
     _binding = FragmentSecretBinding.inflate(inflater, container, false)
 

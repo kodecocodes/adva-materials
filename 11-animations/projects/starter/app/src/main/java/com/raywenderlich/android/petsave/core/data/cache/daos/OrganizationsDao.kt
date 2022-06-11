@@ -39,7 +39,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.raywenderlich.android.petsave.core.data.cache.model.cachedorganization.CachedOrganization
-import io.reactivex.Flowable
 import io.reactivex.Single
 
 @Dao

@@ -41,7 +41,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -68,7 +67,7 @@ class AnimalsNearYouFragment : Fragment() {
   private var _binding: FragmentAnimalsNearYouBinding? = null
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
 
     _binding = FragmentAnimalsNearYouBinding.inflate(inflater, container, false)
 

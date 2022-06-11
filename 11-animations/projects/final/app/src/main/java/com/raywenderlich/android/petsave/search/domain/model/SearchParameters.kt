@@ -41,7 +41,7 @@ data class SearchParameters(
     val age: String,
     val type: String
 ) {
-  val uppercaseName get() = name.toUpperCase(Locale.ROOT)
-  val uppercaseAge get() = age.toUpperCase(Locale.ROOT)
-  val uppercaseType get() = type.toUpperCase(Locale.ROOT)
+  val uppercaseName get() = name.uppercase(Locale.ROOT)
+  val uppercaseAge get() = age.uppercase(Locale.ROOT)
+  val uppercaseType get() = type.uppercase(Locale.ROOT)
 }

@@ -34,20 +34,21 @@
 
 package com.raywenderlich.android.petsave.details.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalDetailsMapper
 import com.raywenderlich.android.petsave.details.domain.usecases.AnimalDetails
-import io.reactivex.Scheduler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class AnimalDetailsViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AnimalDetailsViewModel @Inject constructor(
     private val uiAnimalDetailsMapper: UiAnimalDetailsMapper,
     private val animalDetails: AnimalDetails,
     private val compositeDisposable: CompositeDisposable

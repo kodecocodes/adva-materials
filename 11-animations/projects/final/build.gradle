@@ -3,29 +3,28 @@
 buildscript {
 
   ext {
-    kotlin_version = '1.4.10'
-    compileSdkVersion = 29
+    kotlin_version = '1.6.21'
+    compileSdkVersion = 31
     targetSdkVersion = compileSdkVersion
     minSdkVersion = 21
 
     // Tutorial dependency versions
-    room_version = "2.2.5"
-    hilt_version = "2.28-alpha"
-    androidx_hilt_version = "1.0.0-alpha02"
-    nav_version = "2.3.0"
-    okHttp_version = "4.8.1"
-    moshi_version = "1.9.3"
-    glide_version = "4.11.0"
+    room_version = '2.4.2'
+    hilt_version = '2.41'
+    nav_version = '2.4.2'
+    okHttp_version = "4.9.3"
+    moshi_version = "1.13.0"
+    glide_version = "4.13.2"
     dynamic_animation_version = "1.0.0"
   }
 
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:4.0.2'
+    classpath 'com.android.tools.build:gradle:7.2.1'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 
@@ -39,7 +38,7 @@ buildscript {
 allprojects {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
 }
 

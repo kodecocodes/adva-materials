@@ -34,13 +34,12 @@
 
 package com.raywenderlich.android.petsave.core.domain.repositories
 
-import com.raywenderlich.android.petsave.core.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
+import com.raywenderlich.android.petsave.core.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.search.domain.model.SearchParameters
 import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 
 interface AnimalRepository {

@@ -36,7 +36,6 @@ package com.raywenderlich.android.petsave.details.domain.usecases
 
 import com.raywenderlich.android.petsave.core.domain.model.animal.AnimalWithDetails
 import com.raywenderlich.android.petsave.core.domain.repositories.AnimalRepository
-import io.reactivex.Flowable
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

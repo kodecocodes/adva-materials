@@ -36,14 +36,15 @@ package com.raywenderlich.android.petsave.details.presentation
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
-import android.graphics.drawable.Animatable
 import android.os.Bundle
-import android.view.*
-import androidx.annotation.RawRes
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.core.presentation.model.UIAnimalDetailed
@@ -75,7 +76,7 @@ class AnimalDetailsFragment : Fragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
     _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
     return binding.root

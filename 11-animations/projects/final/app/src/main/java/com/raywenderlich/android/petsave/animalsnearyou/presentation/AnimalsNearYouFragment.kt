@@ -68,7 +68,7 @@ class AnimalsNearYouFragment : Fragment() {
   private var _binding: FragmentAnimalsNearYouBinding? = null
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
 
     _binding = FragmentAnimalsNearYouBinding.inflate(inflater, container, false)
 
