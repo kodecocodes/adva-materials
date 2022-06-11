@@ -35,9 +35,7 @@
 package com.realworld.android.petsave.report.presentation
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -49,6 +47,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.realworld.android.petsave.databinding.FragmentReportDetailBinding
@@ -65,7 +64,6 @@ class ReportDetailFragment : Fragment() {
 
   companion object {
     private const val API_URL = "https://example.com/?send_report"
-    private const val PIC_FROM_GALLERY = 2
     private const val REPORT_APP_ID = 46341L
     private const val REPORT_PROVIDER_ID = 46341L
     private const val REPORT_SESSION_KEY = "session_key_in_next_chapter"
@@ -73,6 +71,16 @@ class ReportDetailFragment : Fragment() {
 
   object ReportTracker {
     var reportNumber = AtomicInteger()
+  }
+
+  private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+    if (granted) {
+      selectImageFromGallery()
+    }
+  }
+
+  private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    getFilename(uri)
   }
 
   @Volatile
@@ -161,53 +169,15 @@ class ReportDetailFragment : Fragment() {
   private fun uploadPhotoPressed() {
     context?.let {
       if (ContextCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE)
-          != PackageManager.PERMISSION_GRANTED) {
-        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE), PIC_FROM_GALLERY)
+        != PackageManager.PERMISSION_GRANTED) {
+        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
       } else {
-        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(galleryIntent, PIC_FROM_GALLERY)
+        selectImageFromGallery()
       }
     }
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int,
-                                          permissions: Array<String>, grantResults: IntArray) {
-    when (requestCode) {
-      PIC_FROM_GALLERY -> {
-        // If request is cancelled, the result arrays are empty.
-        if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-          // Permission was granted
-          val galleryIntent = Intent(Intent.ACTION_PICK,
-              MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-          startActivityForResult(galleryIntent, PIC_FROM_GALLERY)
-        }
-        return
-      }
-      else -> {
-        // Ignore all other requests.
-      }
-    }
-  }
-
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-
-    when (requestCode) {
-
-      PIC_FROM_GALLERY ->
-
-        if (resultCode == Activity.RESULT_OK) {
-
-          //image from gallery
-          val selectedImage = data?.data
-          selectedImage?.let {
-            getFilename(selectedImage)
-          }
-        }
-      else -> println("Didn't select picture option")
-    }
-  }
+  private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
   private fun getFilename(selectedImage: Uri) {
     // Validate image
@@ -226,7 +196,7 @@ class ReportDetailFragment : Fragment() {
       nameCursor?.close()
 
       //update UI with filename
-      binding.uploadStatusTextview?.text = filename
+      binding.uploadStatusTextview.text = filename
     } else {
       val toast = Toast.makeText(context, "Please choose a JPEG image", Toast.LENGTH_LONG)
       toast.show()

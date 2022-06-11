@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity() {
       val fragment = fragmentManager.findFragmentById(R.id.nav_host_fragment)
       fragment?.let {
         fragmentManager.beginTransaction()
-          .hide(it)
+          .show(it)
           .commit()
       }
       fragmentManager.executePendingTransactions()
