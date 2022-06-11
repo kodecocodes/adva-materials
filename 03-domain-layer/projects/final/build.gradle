@@ -21,7 +21,7 @@ buildscript {
     hilt_version = '2.42'
     nav_version = '2.4.2'
     retrofit_version = '2.9.0'
-    okHttp_version = '5.0.0-alpha.7'
+    okHttp_version = '4.9.3'
     moshi_converter_version = '2.9.0'
     moshi_version = '1.13.0'
     glide_version = "4.13.2"
