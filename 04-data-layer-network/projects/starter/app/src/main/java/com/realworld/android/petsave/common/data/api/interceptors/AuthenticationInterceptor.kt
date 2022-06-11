@@ -104,7 +104,7 @@ class AuthenticationInterceptor @Inject constructor(
     val tokenAdapter = moshi.adapter(ApiToken::class.java)
     val responseBody = tokenRefreshResponse.body // if successful, this should be good :]
 
-    return tokenAdapter.fromJson(responseBody.string()) ?: ApiToken.INVALID
+    return tokenAdapter.fromJson(responseBody!!.string()) ?: ApiToken.INVALID
   }
 
   private fun storeNewToken(apiToken: ApiToken) {
