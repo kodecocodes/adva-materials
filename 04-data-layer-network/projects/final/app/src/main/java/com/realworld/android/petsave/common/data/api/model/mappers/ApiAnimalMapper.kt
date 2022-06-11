@@ -62,8 +62,7 @@ class ApiAnimalMapper @Inject constructor(
         media = mapMedia(apiEntity),
         tags = apiEntity.tags.orEmpty().map { it.orEmpty() },
         adoptionStatus = parseAdoptionStatus(apiEntity.status),
-        publishedAt =
-        DateTimeUtils.parse(apiEntity.publishedAt.orEmpty())
+        publishedAt = DateTimeUtils.parse(apiEntity.publishedAt.orEmpty()) // throws exception if empty
     )
   }
 

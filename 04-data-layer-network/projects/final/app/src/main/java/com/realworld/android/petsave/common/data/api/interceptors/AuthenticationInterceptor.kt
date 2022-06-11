@@ -61,11 +61,16 @@ class AuthenticationInterceptor @Inject constructor(
     val token = preferences.getToken()
     val tokenExpirationTime = Instant.ofEpochSecond(preferences.getTokenExpirationTime())
     val request = chain.request()
+
+    // For requests that don't need authentication
+    // if (chain.request().headers[NO_AUTH_HEADER] != null) return chain.proceed(request)
     val interceptedRequest: Request
 
     if (tokenExpirationTime.isAfter(Instant.now())) {
+      // token is still valid, so we can proceed with the request
       interceptedRequest = chain.createAuthenticatedRequest(token)
     } else {
+      // Token expired. Gotta refresh it before proceeding with the actual request
       val tokenRefreshResponse = chain.refreshToken()
 
       interceptedRequest = if (tokenRefreshResponse.isSuccessful) {
