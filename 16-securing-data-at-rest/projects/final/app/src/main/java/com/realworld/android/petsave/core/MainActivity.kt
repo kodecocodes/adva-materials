@@ -42,6 +42,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
+import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -132,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 
   fun loginPressed(view: View) {
     val biometricManager = BiometricManager.from(this)
-    when (biometricManager.canAuthenticate()) {
+    when (biometricManager.canAuthenticate(BIOMETRIC_STRONG)) {
       BiometricManager.BIOMETRIC_SUCCESS ->
         displayLogin(view, false)
       BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
@@ -176,7 +178,7 @@ class MainActivity : AppCompatActivity() {
             }
           }
 
-          override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {// 2
+          override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) { // 2
             super.onAuthenticationSucceeded(result)
 
             runOnUiThread {
@@ -196,7 +198,7 @@ class MainActivity : AppCompatActivity() {
           // Cannot call setNegativeButtonText() and
           // setDeviceCredentialAllowed() at the same time.
           // .setNegativeButtonText("Use account password")
-          .setDeviceCredentialAllowed(true) // 4
+          .setAllowedAuthenticators(DEVICE_CREDENTIAL) // 4
           .build()
     } else {
       promptInfo = BiometricPrompt.PromptInfo.Builder()

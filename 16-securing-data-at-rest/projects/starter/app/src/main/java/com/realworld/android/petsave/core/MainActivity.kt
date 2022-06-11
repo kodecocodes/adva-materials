@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     setTheme(R.style.AppTheme)
 
     super.onCreate(savedInstanceState)
-    window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+    //window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
 
     _binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)

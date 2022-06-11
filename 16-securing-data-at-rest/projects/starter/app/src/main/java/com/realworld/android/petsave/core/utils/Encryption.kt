@@ -53,7 +53,6 @@ class Encryption {
     private const val KEYSTORE_ALIAS = "PetSaveLoginKey"
     private const val PROVIDER = "AndroidKeyStore"
 
-    @TargetApi(23)
     fun generateSecretKey() {
 
     }
@@ -66,7 +65,6 @@ class Encryption {
       return ByteArray(0)
     }
 
-    @TargetApi(23)
     fun encryptFile(context: Context, file: File): EncryptedFile? {
       return null
     }
@@ -145,7 +143,6 @@ class Encryption {
       return decrypted
     }
 
-    @TargetApi(23)
     fun keystoreTest() {
 
       val keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore")

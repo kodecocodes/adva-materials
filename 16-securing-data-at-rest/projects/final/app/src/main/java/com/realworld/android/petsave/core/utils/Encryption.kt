@@ -40,6 +40,7 @@ import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Log
 import androidx.security.crypto.EncryptedFile
+import androidx.security.crypto.MasterKey
 import androidx.security.crypto.MasterKeys
 import java.io.File
 import java.security.KeyStore
@@ -68,14 +69,12 @@ class Encryption {
       return keyStore.getKey(KEYSTORE_ALIAS, null) as SecretKey
     }
 
-    @TargetApi(23)
     private fun getCipher(): Cipher {
       return Cipher.getInstance(KeyProperties.KEY_ALGORITHM_AES + "/"
           + KeyProperties.BLOCK_MODE_GCM + "/"
           + KeyProperties.ENCRYPTION_PADDING_NONE)
     }
 
-    @TargetApi(23)
     fun generateSecretKey() {
       val keyGenParameterSpec = KeyGenParameterSpec.Builder(
           KEYSTORE_ALIAS,
@@ -113,15 +112,13 @@ class Encryption {
       return cipher.doFinal(password) // 3
     }
 
-    @TargetApi(23)
     fun encryptFile(context: Context, file: File): EncryptedFile {
-      val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-      val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
+      val masterKey = MasterKey.Builder(context).build() // 1
       return EncryptedFile.Builder(
-          file,
           context,
-          masterKeyAlias,
-          EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
+          file,
+          masterKey,
+          EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB // 2
       ).build()
     }
 
