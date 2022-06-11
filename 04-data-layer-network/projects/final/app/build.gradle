@@ -65,8 +65,6 @@ dependencies {
   testImplementation "com.google.truth:truth:$google_truth_version"
   testImplementation "org.mockito:mockito-core:$mockito_version"
   testImplementation "org.robolectric:robolectric:$robolectric_version"
-  testImplementation 'junit:junit:4.12'
-  testImplementation 'junit:junit:4.12'
   androidTestImplementation "com.google.truth:truth:$google_truth_version"
   androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
   androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
