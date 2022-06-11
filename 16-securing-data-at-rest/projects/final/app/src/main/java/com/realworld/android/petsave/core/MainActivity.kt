@@ -251,9 +251,9 @@ class MainActivity : AppCompatActivity() {
       binding.loginButton.visibility = View.GONE
       val fragmentManager = supportFragmentManager
       val fragment = fragmentManager.findFragmentById(R.id.nav_host_fragment)
-      fragment?.let {
+      fragment?.let{
         fragmentManager.beginTransaction()
-          .hide(it)
+          .show(it)
           .commit()
       }
       fragmentManager.executePendingTransactions()
