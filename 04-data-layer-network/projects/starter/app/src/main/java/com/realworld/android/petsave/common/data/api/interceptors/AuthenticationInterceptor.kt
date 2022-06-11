@@ -102,9 +102,9 @@ class AuthenticationInterceptor @Inject constructor(
   private fun mapToken(tokenRefreshResponse: Response): ApiToken {
     val moshi = Moshi.Builder().build()
     val tokenAdapter = moshi.adapter(ApiToken::class.java)
-    val responseBody = tokenRefreshResponse.body // if successful, this should be good :]
+    val responseBody = tokenRefreshResponse.body!! // if successful, this should be good :]
 
-    return tokenAdapter.fromJson(responseBody!!.string()) ?: ApiToken.INVALID
+    return tokenAdapter.fromJson(responseBody.string()) ?: ApiToken.INVALID
   }
 
   private fun storeNewToken(apiToken: ApiToken) {
