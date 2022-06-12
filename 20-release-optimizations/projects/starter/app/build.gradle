@@ -13,7 +13,7 @@ android {
 
   defaultConfig {
 
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
@@ -53,7 +53,7 @@ android {
   buildFeatures {
     viewBinding true
   }
-  namespace 'com.raywenderlich.android.petsave'
+  namespace 'com.realworld.android.petsave'
 }
 
 dependencies {
