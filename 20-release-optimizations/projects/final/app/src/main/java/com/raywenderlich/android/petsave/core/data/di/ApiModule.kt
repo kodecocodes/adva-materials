@@ -34,7 +34,7 @@
 
 package com.raywenderlich.android.petsave.core.data.di
 
-import com.babylon.certificatetransparency.certificateTransparencyInterceptor
+import com.appmattus.certificatetransparency.certificateTransparencyInterceptor
 import com.raywenderlich.android.petsave.core.data.api.ApiConstants
 import com.raywenderlich.android.petsave.core.data.api.PetFinderApi
 import com.raywenderlich.android.petsave.core.data.api.interceptors.AuthenticationInterceptor
@@ -42,16 +42,16 @@ import com.raywenderlich.android.petsave.core.data.api.interceptors.LoggingInter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 class ApiModule {
 

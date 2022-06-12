@@ -38,6 +38,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
@@ -49,7 +50,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouFragmentViewModel
-import com.raywenderlich.android.petsave.core.data.api.ApiConstants
 import com.raywenderlich.android.petsave.core.data.api.Authenticator
 import com.raywenderlich.android.petsave.core.data.api.ReportManager
 import com.raywenderlich.android.petsave.core.data.api.SN
@@ -59,15 +59,19 @@ import com.raywenderlich.android.petsave.core.utils.DataValidator.Companion.isVa
 import com.raywenderlich.android.petsave.core.utils.Encryption.Companion.createLoginPassword
 import com.raywenderlich.android.petsave.core.utils.Encryption.Companion.decryptPassword
 import com.raywenderlich.android.petsave.core.utils.Encryption.Companion.generateSecretKey
-import com.raywenderlich.android.petsave.databinding.ActivityMainBinding
 import com.raywenderlich.android.petsave.core.utils.FileConstants
 import com.raywenderlich.android.petsave.core.utils.PreferencesHelper
 import com.raywenderlich.android.petsave.core.utils.Timing
+import com.raywenderlich.android.petsave.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
-import java.io.*
+import java.io.File
+import java.io.FileInputStream
+import java.io.ObjectInputStream
 import java.util.concurrent.Executors
-import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.activity_main.bottom_navigation
+import kotlinx.android.synthetic.main.activity_main.login_button
+import kotlinx.android.synthetic.main.activity_main.login_email
+import kotlinx.android.synthetic.main.activity_main.nav_host_fragment
 
 /**
  * Main Screen
@@ -297,5 +301,9 @@ class MainActivity : AppCompatActivity() {
   override fun onDestroy() {
     super.onDestroy()
     _binding = null
+  }
+
+  private fun toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
   }
 }

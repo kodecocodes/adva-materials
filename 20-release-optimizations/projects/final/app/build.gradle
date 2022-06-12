@@ -113,7 +113,6 @@ dependencies {
   kapt "com.github.bumptech.glide:compiler:$glide_version"
 
   implementation "com.google.android.material:material:1.6.1"
-  implementation "org.jetbrains.anko:anko-common:0.10.0"
 
   // Navigation
   implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -126,7 +125,7 @@ dependencies {
   implementation 'androidx.biometric:biometric:1.1.0'
   implementation 'com.google.crypto.tink:tink-android:1.5.0'
   implementation "androidx.security:security-crypto:$security_version"
-  implementation "com.babylon.certificatetransparency:certificatetransparency-android:$babylonhealth_version"
+  implementation("com.appmattus.certificatetransparency:certificatetransparency-android:1.1.0")
   implementation 'com.google.firebase:firebase-messaging:23.0.5'
 
   // Utils

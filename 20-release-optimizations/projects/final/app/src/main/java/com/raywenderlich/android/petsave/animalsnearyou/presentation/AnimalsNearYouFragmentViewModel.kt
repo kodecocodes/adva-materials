@@ -34,26 +34,30 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.logging.Logger
 import com.raywenderlich.android.petsave.core.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.core.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.core.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.core.domain.usecases.GetAnimals
 import com.raywenderlich.android.petsave.core.domain.usecases.RequestNextPageOfAnimals
 import com.raywenderlich.android.petsave.core.presentation.Event
 import com.raywenderlich.android.petsave.core.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.core.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.core.utils.createExceptionHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AnimalsNearYouFragmentViewModel @Inject constructor(
     private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
     private val getAnimals: GetAnimals,
     private val uiAnimalMapper: UiAnimalMapper,
