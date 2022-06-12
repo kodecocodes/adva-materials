@@ -68,10 +68,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.ObjectInputStream
 import java.util.concurrent.Executors
-import kotlinx.android.synthetic.main.activity_main.bottom_navigation
-import kotlinx.android.synthetic.main.activity_main.login_button
-import kotlinx.android.synthetic.main.activity_main.login_email
-import kotlinx.android.synthetic.main.activity_main.nav_host_fragment
 
 /**
  * Main Screen
@@ -120,9 +116,12 @@ class MainActivity : AppCompatActivity() {
 
   private fun setupFragment() {
     val fragmentManager = supportFragmentManager
-    fragmentManager.beginTransaction()
-        .hide(nav_host_fragment)
+    val fragment = fragmentManager.findFragmentById(R.id.nav_host_fragment)
+    fragment?.let {
+      fragmentManager.beginTransaction()
+        .hide(it)
         .commit()
+    }
   }
 
   private fun setupActionBar() {
@@ -131,7 +130,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun setupBottomNav() {
-    bottom_navigation.visibility = View.GONE
+    binding.bottomNavigation.visibility = View.GONE
     binding.bottomNavigation.setupWithNavController(navController)
   }
 
@@ -142,7 +141,7 @@ class MainActivity : AppCompatActivity() {
 
   fun loginPressed(view: View) {
     var success = false
-    val email = login_email.text.toString()
+    val email = binding.loginEmail.text.toString()
     if (isSignedUp || isValidEmailString(email)) {
       success = true
     } else {
@@ -172,10 +171,10 @@ class MainActivity : AppCompatActivity() {
     val fileExists = workingFile?.exists() ?: false
     if (fileExists) {
       isSignedUp = true
-      login_button.text = getString(R.string.login)
-      login_email.visibility = View.INVISIBLE
+      binding.loginButton.text = getString(R.string.login)
+      binding.loginEmail.visibility = View.INVISIBLE
     } else {
-      login_button.text = getString(R.string.signup)
+      binding.loginButton.text = getString(R.string.signup)
     }
   }
 
@@ -268,14 +267,17 @@ class MainActivity : AppCompatActivity() {
       a.sn() //API.setupNumbers
 
       //Show fragment
-      login_email.visibility = View.GONE
-      login_button.visibility = View.GONE
+      binding.loginEmail.visibility = View.GONE
+      binding.loginButton.visibility = View.GONE
       val fragmentManager = supportFragmentManager
-      fragmentManager.beginTransaction()
-          .show(nav_host_fragment)
+      val fragment = fragmentManager.findFragmentById(R.id.nav_host_fragment)
+      fragment?.let {
+        fragmentManager.beginTransaction()
+          .show(it)
           .commit()
+      }
       fragmentManager.executePendingTransactions()
-      bottom_navigation.visibility = View.VISIBLE
+      binding.bottomNavigation.visibility = View.VISIBLE
     }
   }
 
