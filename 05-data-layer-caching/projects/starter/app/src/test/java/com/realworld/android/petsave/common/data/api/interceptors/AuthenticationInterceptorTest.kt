@@ -1,6 +1,5 @@
 package com.realworld.android.petsave.common.data.api.interceptors
 
-import android.os.Build
 import com.google.common.truth.Truth.assertThat
 import com.realworld.android.petsave.common.data.api.ApiConstants
 import com.realworld.android.petsave.common.data.api.ApiParameters
@@ -18,11 +17,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.*
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
-import org.threeten.bp.Instant
+import java.time.Instant
 
 @RunWith(RobolectricTestRunner::class)
-@Config(manifest=Config.NONE, sdk = [Build.VERSION_CODES.P])
 class AuthenticationInterceptorTest {
 
   private lateinit var preferences: Preferences
