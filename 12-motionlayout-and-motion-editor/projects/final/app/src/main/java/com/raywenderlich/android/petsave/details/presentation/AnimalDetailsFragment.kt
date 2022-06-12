@@ -52,7 +52,6 @@ import androidx.dynamicanimation.animation.SpringForce.DAMPING_RATIO_HIGH_BOUNCY
 import androidx.dynamicanimation.animation.SpringForce.STIFFNESS_VERY_LOW
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.model.KeyPath
@@ -124,7 +123,7 @@ class AnimalDetailsFragment : Fragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
     _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
     return binding.root
@@ -231,11 +230,10 @@ class AnimalDetailsFragment : Fragment() {
     }
     binding.loader.addValueCallback(
         KeyPath("icon_circle", "**"),
-        LottieProperty.COLOR_FILTER,
-        {
-          PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
-        }
-    )
+        LottieProperty.COLOR_FILTER
+    ) {
+        PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
+    }
   }
 
   private fun stopAnimation() {

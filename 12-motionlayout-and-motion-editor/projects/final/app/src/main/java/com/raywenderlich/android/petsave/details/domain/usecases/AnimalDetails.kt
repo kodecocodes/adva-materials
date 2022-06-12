@@ -37,7 +37,6 @@ package com.raywenderlich.android.petsave.details.domain.usecases
 import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
 import io.reactivex.Single
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class AnimalDetails @Inject constructor(

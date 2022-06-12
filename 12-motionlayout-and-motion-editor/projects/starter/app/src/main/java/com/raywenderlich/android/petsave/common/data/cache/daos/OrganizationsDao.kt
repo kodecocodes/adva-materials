@@ -37,9 +37,8 @@ package com.raywenderlich.android.petsave.common.data.cache.daos
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
 import androidx.room.Query
-import io.reactivex.Flowable
+import com.raywenderlich.android.petsave.common.data.cache.model.cachedorganization.CachedOrganization
 import io.reactivex.Single
 
 @Dao

@@ -34,25 +34,30 @@
 
 package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.logging.Logger
-import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
-import com.raywenderlich.android.petsave.common.domain.model.pagination.Pagination
-import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
 import com.raywenderlich.android.petsave.animalsnearyou.domain.usecases.GetAnimals
 import com.raywenderlich.android.petsave.animalsnearyou.domain.usecases.RequestNextPageOfAnimals
+import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
+import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
+import com.raywenderlich.android.petsave.common.domain.model.pagination.Pagination
 import com.raywenderlich.android.petsave.common.presentation.Event
 import com.raywenderlich.android.petsave.common.presentation.model.mappers.UiAnimalMapper
 import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
 import com.raywenderlich.android.petsave.common.utils.createExceptionHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AnimalsNearYouFragmentViewModel @Inject constructor(
     private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
     private val getAnimals: GetAnimals,
     private val uiAnimalMapper: UiAnimalMapper,
@@ -126,7 +131,7 @@ class AnimalsNearYouFragmentViewModel @ViewModelInject constructor(
     // nice alternative to this would be to add an "updatedAt" field to the Room entities, so
     // that we could actually order them by something that we completely control.
     val currentList = state.value?.animals.orEmpty()
-    val newAnimals = animalsNearYou.subtract(currentList)
+    val newAnimals = animalsNearYou.subtract(currentList.toSet())
     val updatedList = currentList + newAnimals
 
     _state.value = state.value!!.copy(
