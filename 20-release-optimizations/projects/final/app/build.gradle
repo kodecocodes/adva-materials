@@ -11,7 +11,6 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 android {
 
-  buildToolsVersion rootProject.ext.buildToolsVersion
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
@@ -45,17 +44,18 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
   }
 
   kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
+    jvmTarget = JavaVersion.VERSION_11.toString()
   }
 
   buildFeatures {
     viewBinding true
   }
+  namespace 'com.raywenderlich.android.petsave'
 }
 
 dependencies {
