@@ -36,16 +36,16 @@ package com.realworld.android.petsave.core.utils
 
 import android.annotation.TargetApi
 import android.content.Context
+import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKey
-import androidx.security.crypto.MasterKeys
 import java.io.File
 import java.security.KeyStore
 import java.security.SecureRandom
-import java.util.HashMap
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
@@ -75,6 +75,7 @@ class Encryption {
           + KeyProperties.ENCRYPTION_PADDING_NONE)
     }
 
+    @TargetApi(Build.VERSION_CODES.R)
     fun generateSecretKey() {
       val keyGenParameterSpec = KeyGenParameterSpec.Builder(
           KEYSTORE_ALIAS,
@@ -82,7 +83,7 @@ class Encryption {
           .setBlockModes(KeyProperties.BLOCK_MODE_GCM) // 1
           .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
           .setUserAuthenticationRequired(true) // 2
-          .setUserAuthenticationValidityDurationSeconds(120) // 3
+          .setUserAuthenticationParameters(120, KeyProperties.AUTH_BIOMETRIC_STRONG) // 3
           .build()
       val keyGenerator = KeyGenerator.getInstance(
           KeyProperties.KEY_ALGORITHM_AES, PROVIDER) // 4
@@ -113,7 +114,9 @@ class Encryption {
     }
 
     fun encryptFile(context: Context, file: File): EncryptedFile {
-      val masterKey = MasterKey.Builder(context).build() // 1
+      val masterKey = MasterKey.Builder(context)
+        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+        .build() // 1
       return EncryptedFile.Builder(
           context,
           file,
@@ -248,9 +251,7 @@ class Encryption {
       return decrypted
     }
 
-    @TargetApi(23)
     fun keystoreTest() {
-
       //TODO - Add Test code here
       val keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore")
       val keyGenParameterSpec = KeyGenParameterSpec.Builder("MyKeyAlias",

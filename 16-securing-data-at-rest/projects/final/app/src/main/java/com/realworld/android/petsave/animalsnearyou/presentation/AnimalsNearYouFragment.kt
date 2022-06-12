@@ -46,10 +46,10 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.realworld.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import com.realworld.android.petsave.core.domain.model.NoMoreAnimalsException
 import com.realworld.android.petsave.core.presentation.AnimalsAdapter
 import com.realworld.android.petsave.core.presentation.Event
+import com.realworld.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import dagger.hilt.android.AndroidEntryPoint
 import okio.IOException
 import retrofit2.HttpException

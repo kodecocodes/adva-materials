@@ -53,7 +53,7 @@ class GetSearchFilters @Inject constructor(
   suspend operator fun invoke(): SearchFilters {
     val types = animalRepository.getAnimalTypes()
 
-    val filteringTypes = if (types.any { it.lowercase(Locale.ROOT) == DEFAULT_VALUE_LOWERCASE }) {
+    val filteringTypes = if (types.any { it.toLowerCase(Locale.ROOT) == DEFAULT_VALUE_LOWERCASE }) {
       types
     } else {
       listOf(DEFAULT_VALUE) + types
@@ -64,8 +64,7 @@ class GetSearchFilters @Inject constructor(
     val ages = animalRepository.getAnimalAges()
         .map { it.name }
         .replace(AnimalWithDetails.Details.Age.UNKNOWN.name, DEFAULT_VALUE)
-        .map { it.lowercase(Locale.ROOT)
-            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
+        .map { it.toLowerCase(Locale.ROOT).capitalize() }
 
     return SearchFilters(ages, filteringTypes)
   }
