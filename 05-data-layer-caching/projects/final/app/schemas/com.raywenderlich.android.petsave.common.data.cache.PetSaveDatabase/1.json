@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "591677d6659455985bfad1f1b5fc7f8f",
+    "identityHash": "d9a7bdc722341a9811ba5220cf17faf1",
     "entities": [
       {
         "tableName": "photos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`photoId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `animalId` INTEGER NOT NULL, `medium` TEXT NOT NULL, `full` TEXT NOT NULL, FOREIGN KEY(`animalId`) REFERENCES `animals`(`animalId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`photoId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `animalId` INTEGER NOT NULL, `medium` TEXT NOT NULL, `full` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "photoId",
@@ -39,29 +39,8 @@
           ],
           "autoGenerate": true
         },
-        "indices": [
-          {
-            "name": "index_photos_animalId",
-            "unique": false,
-            "columnNames": [
-              "animalId"
-            ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_photos_animalId` ON `${TABLE_NAME}` (`animalId`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "animals",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "animalId"
-            ],
-            "referencedColumns": [
-              "animalId"
-            ]
-          }
-        ]
+        "indices": [],
+        "foreignKeys": []
       },
       {
         "tableName": "videos",
@@ -388,48 +367,12 @@
         },
         "indices": [],
         "foreignKeys": []
-      },
-      {
-        "tableName": "CachedAnimalTagCrossRef",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`animalId` INTEGER NOT NULL, `tag` TEXT NOT NULL, PRIMARY KEY(`animalId`, `tag`))",
-        "fields": [
-          {
-            "fieldPath": "animalId",
-            "columnName": "animalId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "tag",
-            "columnName": "tag",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "animalId",
-            "tag"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [
-          {
-            "name": "index_CachedAnimalTagCrossRef_tag",
-            "unique": false,
-            "columnNames": [
-              "tag"
-            ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_CachedAnimalTagCrossRef_tag` ON `${TABLE_NAME}` (`tag`)"
-          }
-        ],
-        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '591677d6659455985bfad1f1b5fc7f8f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9a7bdc722341a9811ba5220cf17faf1')"
     ]
   }
 }
