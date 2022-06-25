@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.guardsquare.proguard'
+
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
@@ -54,6 +56,15 @@ android {
     viewBinding true
   }
   namespace 'com.realworld.android.petsave'
+}
+
+proguard {
+  configurations {
+    release {
+      defaultConfiguration 'proguard-android-optimize.txt'
+      configuration 'proguard-rules.pro'
+    }
+  }
 }
 
 dependencies {
