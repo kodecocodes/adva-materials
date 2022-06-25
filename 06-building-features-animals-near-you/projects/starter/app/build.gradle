@@ -7,12 +7,12 @@ android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "com.raywenderlich.android.petsave.HiltTestRunner"
+    testInstrumentationRunner "com.realworld.android.petsave.HiltTestRunner"
 
     javaCompileOptions {
       annotationProcessorOptions {
