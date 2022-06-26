@@ -51,6 +51,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.raywenderlich.android.petsave.core.MainActivity
@@ -72,6 +73,16 @@ class ReportDetailFragment : Fragment() {
 
   object ReportTracker {
     var reportNumber = AtomicInteger()
+  }
+
+  private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+    if (granted) {
+      selectImageFromGallery()
+    }
+  }
+
+  private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    showFilename(uri)
   }
 
   @Volatile
@@ -177,53 +188,15 @@ class ReportDetailFragment : Fragment() {
   private fun uploadPhotoPressed() {
     context?.let {
       if (ContextCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE)
-          != PackageManager.PERMISSION_GRANTED) {
-        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE), PIC_FROM_GALLERY)
+        != PackageManager.PERMISSION_GRANTED) {
+        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
       } else {
-        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(galleryIntent, PIC_FROM_GALLERY)
+        selectImageFromGallery()
       }
     }
   }
 
-  override fun onRequestPermissionsResult(requestCode: Int,
-                                          permissions: Array<String>, grantResults: IntArray) {
-    when (requestCode) {
-      PIC_FROM_GALLERY -> {
-        // If request is cancelled, the result arrays are empty.
-        if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-          // Permission was granted
-          val galleryIntent = Intent(Intent.ACTION_PICK,
-              MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-          startActivityForResult(galleryIntent, PIC_FROM_GALLERY)
-        }
-        return
-      }
-      else -> {
-        // Ignore all other requests.
-      }
-    }
-  }
-
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-
-    when (requestCode) {
-
-      PIC_FROM_GALLERY ->
-
-        if (resultCode == Activity.RESULT_OK) {
-
-          //image from gallery
-          val selectedImage = data?.data
-          selectedImage?.let {
-            showFilename(selectedImage)
-          }
-        }
-      else -> println("Didn't select picture option")
-    }
-  }
+  private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
   private fun showFilename(selectedImage: Uri) {
     //get filename
@@ -239,7 +212,7 @@ class ReportDetailFragment : Fragment() {
     nameCursor?.close()
 
     //update UI with filename
-    binding.uploadStatusTextview?.text = filename
+    binding.uploadStatusTextview.text = filename
   }
 
 }
