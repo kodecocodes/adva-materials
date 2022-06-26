@@ -43,8 +43,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputType
-import android.util.Base64
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -55,16 +53,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.raywenderlich.android.petsave.core.MainActivity
-import com.raywenderlich.android.petsave.core.data.api.ReportManager
-import com.raywenderlich.android.petsave.core.utils.Encryption
 import com.raywenderlich.android.petsave.core.utils.Encryption.Companion.encryptFile
 import com.raywenderlich.android.petsave.databinding.FragmentReportDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_report_detail.*
 import java.io.File
-import java.io.FileOutputStream
-import java.io.ObjectOutputStream
-import java.io.RandomAccessFile
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -88,7 +80,7 @@ class ReportDetailFragment : Fragment() {
   private var _binding: FragmentReportDetailBinding? = null
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
     _binding = FragmentReportDetailBinding.inflate(inflater, container, false)
 
     binding.sendButton.setOnClickListener {
@@ -109,8 +101,8 @@ class ReportDetailFragment : Fragment() {
   }
 
   private fun setupUI() {
-    details_edtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
-    details_edtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
+    binding.detailsEdtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
+    binding.detailsEdtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
   }
 
   private fun sendReportPressed() {
@@ -119,9 +111,9 @@ class ReportDetailFragment : Fragment() {
       var success = false
 
       //1. Save report
-      var reportString = category_edtxtview.text.toString()
+      var reportString = binding.categoryEdtxtview.text.toString()
       reportString += " : "
-      reportString += details_edtxtview.text.toString()
+      reportString += binding.detailsEdtxtview.text.toString()
       val reportID = UUID.randomUUID().toString()
 
       context?.let { theContext ->
@@ -242,7 +234,7 @@ class ReportDetailFragment : Fragment() {
     nameCursor?.close()
 
     //update UI with filename
-    upload_status_textview?.text = filename
+    binding.uploadStatusTextview.text = filename
   }
 
 }
