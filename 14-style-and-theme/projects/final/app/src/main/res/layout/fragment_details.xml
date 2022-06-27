@@ -259,6 +259,19 @@
               app:progressButton_text="@string/adopt"
               android:id="@+id/adopt_button" />
 
+            <com.google.android.material.button.MaterialButton
+              android:id="@+id/red_button"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:theme="@style/ThemeOverlay.PetSave.RedButton"
+              android:layout_marginTop="@dimen/default_margin"
+              android:text="Red Button"
+              app:layout_constraintBottom_toBottomOf="parent"
+              android:layout_marginBottom="@dimen/default_margin"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/adopt_button" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
