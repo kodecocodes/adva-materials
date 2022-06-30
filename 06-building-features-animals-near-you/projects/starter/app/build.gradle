@@ -65,6 +65,7 @@ dependencies {
   // Support Libraries
   implementation "androidx.appcompat:appcompat:$appcompat_version"
   implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+  implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
   // Testing Dependencies
   testImplementation "junit:junit:$junit_version"

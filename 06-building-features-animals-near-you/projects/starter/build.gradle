@@ -10,6 +10,7 @@ buildscript {
 
     // Tutorial dependency versions
     appcompat_version = '1.4.2'
+    lifecycle_version = '2.5.0'
     constraint_layout_version = '2.1.4'
     junit_version = '4.13.2'
     google_truth_version = '1.1.2'
@@ -24,7 +25,7 @@ buildscript {
     rxkotlin_version = '2.4.0'
     rxandroid_version = '2.1.1'
     hilt_version = '2.42'
-    nav_version = '2.4.2'
+    nav_version = '2.5.0'
     retrofit_version = '2.9.0'
     okHttp_version = '4.9.3'
     moshi_converter_version = '2.9.0'
