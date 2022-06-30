@@ -43,10 +43,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.realworld.android.petsave.R
 import com.realworld.android.petsave.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Main Screen
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
