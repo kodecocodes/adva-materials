@@ -60,8 +60,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.Instant
 import retrofit2.Retrofit
+import java.time.Instant
 import javax.inject.Inject
 
 @HiltAndroidTest
