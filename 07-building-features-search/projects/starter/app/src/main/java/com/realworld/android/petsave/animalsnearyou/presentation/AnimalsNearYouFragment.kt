@@ -79,7 +79,6 @@ class AnimalsNearYouFragment : Fragment() {
     requestInitialAnimalsList()
   }
 
-
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
@@ -89,7 +88,6 @@ class AnimalsNearYouFragment : Fragment() {
   private fun createAdapter(): AnimalsAdapter {
     return AnimalsAdapter()
   }
-
 
   private fun setupRecyclerView(animalsNearYouAdapter: AnimalsAdapter) {
     binding.animalsRecyclerView.apply {
@@ -135,7 +133,8 @@ class AnimalsNearYouFragment : Fragment() {
   }
 
   private fun handleNoMoreAnimalsNearby(noMoreAnimalsNearby: Boolean) {
-    // TODO: For future implementation
+    // Show a warning message and a prompt for the user to try a different
+    // distance or postcode
   }
 
   private fun handleFailures(failure: Event<Throwable>?) {
