@@ -57,10 +57,8 @@ import com.raywenderlich.android.petsave.core.MainActivity
 import com.raywenderlich.android.petsave.core.utils.Encryption.Companion.encryptFile
 import com.raywenderlich.android.petsave.databinding.FragmentReportDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_report_detail.*
 import java.io.File
 import java.util.*
-import java.util.concurrent.atomic.AtomicInteger
 
 @AndroidEntryPoint
 class ReportDetailFragment : Fragment() {
@@ -103,8 +101,8 @@ class ReportDetailFragment : Fragment() {
   }
 
   private fun setupUI() {
-    details_edtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
-    details_edtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
+    binding.detailsEdtxtview.imeOptions = EditorInfo.IME_ACTION_DONE
+    binding.detailsEdtxtview.setRawInputType(InputType.TYPE_CLASS_TEXT)
   }
 
   private fun sendReportPressed() {
@@ -112,9 +110,9 @@ class ReportDetailFragment : Fragment() {
     var success = false
 
     //1. Save report
-    var reportString = category_edtxtview.text.toString()
+    var reportString = binding.categoryEdtxtview.text.toString()
     reportString += " : "
-    reportString += details_edtxtview.text.toString()
+    reportString += binding.detailsEdtxtview.text.toString()
     //TODO: Sanitize string here
 
     val reportID = UUID.randomUUID().toString()
@@ -252,7 +250,7 @@ class ReportDetailFragment : Fragment() {
     nameCursor?.close()
 
     //update UI with filename
-    upload_status_textview?.text = filename
+    binding.uploadStatusTextview.text = filename
   }
 
 }
