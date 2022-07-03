@@ -41,6 +41,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -49,6 +52,7 @@ import com.realworld.android.petsave.common.presentation.AnimalsAdapter
 import com.realworld.android.petsave.common.presentation.Event
 import com.realworld.android.petsave.databinding.FragmentAnimalsNearYouBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AnimalsNearYouFragment : Fragment() {
@@ -62,7 +66,7 @@ class AnimalsNearYouFragment : Fragment() {
 
   private var _binding: FragmentAnimalsNearYouBinding? = null
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     _binding = FragmentAnimalsNearYouBinding.inflate(inflater, container, false)
 
     return binding.root
@@ -75,15 +79,17 @@ class AnimalsNearYouFragment : Fragment() {
     requestInitialAnimalsList()
   }
 
+
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewStateUpdates(adapter)
+    subscribeToViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsAdapter {
     return AnimalsAdapter()
   }
+
 
   private fun setupRecyclerView(animalsNearYouAdapter: AnimalsAdapter) {
     binding.animalsRecyclerView.apply {
@@ -95,7 +101,7 @@ class AnimalsNearYouFragment : Fragment() {
   }
 
   private fun createInfiniteScrollListener(
-      layoutManager: GridLayoutManager
+    layoutManager: GridLayoutManager
   ): RecyclerView.OnScrollListener {
     return object : InfiniteScrollListener(
       layoutManager,
@@ -111,9 +117,13 @@ class AnimalsNearYouFragment : Fragment() {
     viewModel.onEvent(AnimalsNearYouEvent.RequestMoreAnimals)
   }
 
-  private fun observeViewStateUpdates(adapter: AnimalsAdapter) {
-    viewModel.state.observe(viewLifecycleOwner) {
-      updateScreenState(it, adapter)
+  private fun subscribeToViewStateUpdates(adapter: AnimalsAdapter) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect {
+          updateScreenState(it, adapter)
+        }
+      }
     }
   }
 
@@ -125,20 +135,20 @@ class AnimalsNearYouFragment : Fragment() {
   }
 
   private fun handleNoMoreAnimalsNearby(noMoreAnimalsNearby: Boolean) {
-    // Show a warning message and a prompt for the user to try a different
-    // distance or postcode
+    // TODO: For future implementation
   }
 
   private fun handleFailures(failure: Event<Throwable>?) {
     val unhandledFailure = failure?.getContentIfNotHandled() ?: return
 
     val fallbackMessage = getString(R.string.an_error_occurred)
-
     val snackbarMessage = if (unhandledFailure.message.isNullOrEmpty()) {
       fallbackMessage
     }
     else {
-      unhandledFailure.message!! }
+      unhandledFailure.message!!
+    }
+
     if (snackbarMessage.isNotEmpty()) {
       Snackbar.make(requireView(), snackbarMessage, Snackbar.LENGTH_SHORT).show()
     }

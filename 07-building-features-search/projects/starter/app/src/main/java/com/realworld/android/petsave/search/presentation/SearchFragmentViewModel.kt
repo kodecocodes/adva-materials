@@ -34,8 +34,6 @@
 
 package com.realworld.android.petsave.search.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.realworld.android.petsave.common.domain.model.NoMoreAnimalsException
@@ -48,6 +46,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,18 +59,15 @@ class SearchFragmentViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
 
-  val state: LiveData<SearchViewState> get() = _state
+  private var currentPage = 0
 
-  private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
+  private val _state = MutableStateFlow(SearchViewState())
   private val querySubject = BehaviorSubject.create<String>()
   private val ageSubject = BehaviorSubject.createDefault("")
   private val typeSubject = BehaviorSubject.createDefault("")
 
-  private var currentPage = 0
 
-  init {
-    _state.value = SearchViewState()
-  }
+  val state: StateFlow<SearchViewState> = _state.asStateFlow()
 
   fun onEvent(event: SearchEvent) {
     when(event) {
@@ -92,16 +91,17 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun setSearchingState() {
-    _state.value = state.value!!.updateToSearching()
+    _state.update { oldState -> oldState.updateToSearching() }
   }
 
   private fun setNoSearchQueryState() {
-    _state.value = state.value!!.updateToNoSearchQuery()
+    _state.update { oldState -> oldState.updateToNoSearchQuery() }
   }
 
   private fun onAnimalList(animals: List<Animal>) {
-    _state.value =
-        state.value!!.updateToHasSearchResults(animals.map { uiAnimalMapper.mapToView(it) })
+    _state.update { oldState ->
+      oldState.updateToHasSearchResults(animals.map { uiAnimalMapper.mapToView(it) })
+    }
   }
 
   private fun resetPagination() {
@@ -113,12 +113,13 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun onFailure(throwable: Throwable) {
-    _state.value = if (throwable is NoMoreAnimalsException) {
-      state.value!!.updateToNoResultsAvailable()
-    } else {
-      state.value!!.updateToHasFailure(throwable)
+    _state.update { oldState ->
+      if (throwable is NoMoreAnimalsException) {
+        oldState.updateToNoResultsAvailable()
+      } else {
+        oldState.updateToHasFailure(throwable)
+      }
     }
-
   }
 
   override fun onCleared() {
