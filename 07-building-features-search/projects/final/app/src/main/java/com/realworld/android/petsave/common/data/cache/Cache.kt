@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,4 +43,5 @@ interface Cache {
   fun getNearbyAnimals(): Flowable<List<CachedAnimalAggregate>>
   suspend fun storeNearbyAnimals(animals: List<CachedAnimalAggregate>)
   suspend fun getAllTypes(): List<String>
+  fun searchAnimalsBy(name: String, age: String, type: String): Flowable<List<CachedAnimalAggregate>>
 }

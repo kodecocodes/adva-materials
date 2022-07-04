@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,19 +38,21 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.realworld.android.petsave.R
 import com.realworld.android.petsave.RxImmediateSchedulerRule
 import com.realworld.android.petsave.TestCoroutineRule
-import com.realworld.android.petsave.common.data.di.CacheModule
-import com.realworld.android.petsave.common.data.di.PreferencesModule
-import com.realworld.android.petsave.common.di.ActivityRetainedModule
+import com.realworld.android.petsave.common.data.FakeRepository
+import com.realworld.android.petsave.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -60,20 +62,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-@UninstallModules(PreferencesModule::class, CacheModule::class, ActivityRetainedModule::class)
 class SearchFragmentTest {
 
   @get:Rule
   var hiltRule = HiltAndroidRule(this)
-
-  @get:Rule
-  val instantExecutorRule = InstantTaskExecutorRule()
-
-  @get:Rule
-  val testCoroutineRule = TestCoroutineRule()
 
   @get:Rule
   val rxImmediateSchedulerRule = RxImmediateSchedulerRule()
@@ -86,10 +80,20 @@ class SearchFragmentTest {
   @Test
   fun searchFragment_testSearch_success() {
     // Given
+    val nameToSearch = FakeRepository().remotelySearchableAnimal.name
+    launchFragmentInHiltContainer<SearchFragment>()
 
     // When
+    with(onView(withId(R.id.search))) {
+      perform(click())
+      perform(typeSearchViewText(nameToSearch))
+    }
 
     // Then
+    with(onView(withId(R.id.searchRecyclerView))) {
+      check(matches(childCountIs(1)))
+      check(matches(hasDescendant(withText(nameToSearch))))
+    }
   }
 
   private fun typeSearchViewText(text: String): ViewAction {

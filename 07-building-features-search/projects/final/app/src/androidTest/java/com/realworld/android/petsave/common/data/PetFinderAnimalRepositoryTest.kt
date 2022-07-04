@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,7 @@ package com.realworld.android.petsave.common.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
+import com.realworld.android.petsave.RxImmediateSchedulerRule
 import com.realworld.android.petsave.common.data.api.PetFinderApi
 import com.realworld.android.petsave.common.data.api.model.mappers.ApiAnimalMapper
 import com.realworld.android.petsave.common.data.api.model.mappers.ApiPaginationMapper
@@ -61,7 +62,7 @@ import java.time.Instant
 import javax.inject.Inject
 
 @HiltAndroidTest
-@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class, ActivityRetainedModule::class)
+@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class)
 class PetFinderAnimalRepositoryTest {
 
   private val fakeServer = FakeServer()
@@ -71,6 +72,9 @@ class PetFinderAnimalRepositoryTest {
 
   @get:Rule
   var hiltRule = HiltAndroidRule(this)
+
+  @get:Rule
+  val rxImmediateSchedulerRule = RxImmediateSchedulerRule()
 
   @get:Rule
   var instantTaskExecutorRule = InstantTaskExecutorRule()

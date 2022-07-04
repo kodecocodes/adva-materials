@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,16 +38,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.realworld.android.petsave.R
 import com.realworld.android.petsave.common.presentation.AnimalsAdapter
 import com.realworld.android.petsave.common.presentation.Event
 import com.realworld.android.petsave.databinding.FragmentSearchBinding
+import com.realworld.android.petsave.search.domain.usecases.GetSearchFilters
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -65,7 +74,7 @@ class SearchFragment : Fragment() {
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
-  ): View? {
+  ): View {
     _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
     return binding.root
@@ -75,12 +84,13 @@ class SearchFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     setupUI()
+    prepareForSearch()
   }
 
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewStateUpdates(adapter)
+    subscribeToViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsAdapter {
@@ -95,9 +105,13 @@ class SearchFragment : Fragment() {
     }
   }
 
-  private fun observeViewStateUpdates(searchAdapter: AnimalsAdapter) {
-    viewModel.state.observe(viewLifecycleOwner) {
-      updateScreenState(it, searchAdapter)
+  private fun subscribeToViewStateUpdates(searchAdapter: AnimalsAdapter) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect {
+          updateScreenState(it, searchAdapter)
+        }
+      }
     }
   }
 
@@ -113,13 +127,31 @@ class SearchFragment : Fragment() {
     ) = newState
 
     updateInitialStateViews(inInitialState)
+    searchAdapter.submitList(searchResults)
 
+    with (binding.searchWidget) {
+      setupFilterValues(age, ageFilterValues.getContentIfNotHandled())
+      setupFilterValues(type, typeFilterValues.getContentIfNotHandled())
+    }
+
+    updateRemoteSearchViews(searchingRemotely)
+    updateNoResultsViews(noResultsState)
     handleFailures(failure)
   }
 
   private fun updateInitialStateViews(inInitialState: Boolean) {
     binding.initialSearchImageView.isVisible = inInitialState
     binding.initialSearchText.isVisible = inInitialState
+  }
+
+  private fun updateRemoteSearchViews(searchingRemotely: Boolean) {
+    binding.searchRemotelyProgressBar.isVisible = searchingRemotely
+    binding.searchRemotelyText.isVisible = searchingRemotely
+  }
+
+  private fun updateNoResultsViews(noResultsState: Boolean) {
+    binding.noSearchResultsImageView.isVisible = noResultsState
+    binding.noSearchResultsText.isVisible = noResultsState
   }
 
   private fun handleFailures(failure: Event<Throwable>?) {
@@ -136,6 +168,62 @@ class SearchFragment : Fragment() {
     if (snackbarMessage.isNotEmpty()) {
       Snackbar.make(requireView(), snackbarMessage, Snackbar.LENGTH_SHORT).show()
     }
+  }
+
+  private fun setupFilterValues(filter: AutoCompleteTextView, filterValues: List<String>?) {
+    if (filterValues == null || filterValues.isEmpty()) return
+
+    filter.setAdapter(createFilterAdapter(filterValues))
+    filter.setText(GetSearchFilters.NO_FILTER_SELECTED, false)
+  }
+
+  private fun createFilterAdapter(adapterValues: List<String>): ArrayAdapter<String> {
+    return ArrayAdapter(requireContext(), R.layout.dropdown_menu_popup_item, adapterValues)
+  }
+
+  private fun prepareForSearch() {
+    setupFilterListeners()
+    setupSearchViewListener()
+    viewModel.onEvent(SearchEvent.PrepareForSearch)
+  }
+
+  private fun setupSearchViewListener() {
+    val searchView = binding.searchWidget.search
+
+    searchView.setOnQueryTextListener(
+      object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+          viewModel.onEvent(SearchEvent.QueryInput(query.orEmpty()))
+          searchView.clearFocus()
+          return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+          viewModel.onEvent(SearchEvent.QueryInput(newText.orEmpty()))
+          return true
+        }
+      }
+    )
+  }
+
+  private fun setupFilterListeners() {
+    with (binding.searchWidget) {
+      setupFilterListenerFor(age) { item ->
+        viewModel.onEvent(SearchEvent.AgeValueSelected(item))
+      }
+
+      setupFilterListenerFor(type) { item ->
+        viewModel.onEvent(SearchEvent.TypeValueSelected(item))
+      }
+    }
+  }
+
+  private fun setupFilterListenerFor(filter: AutoCompleteTextView, block: (item: String) -> Unit) {
+    filter.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+        parent?.let {
+          block(it.adapter.getItem(position) as String)
+        }
+      }
   }
 
   override fun onDestroyView() {

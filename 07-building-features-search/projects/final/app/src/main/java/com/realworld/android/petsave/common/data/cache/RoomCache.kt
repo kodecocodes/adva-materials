@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -60,5 +60,13 @@ class RoomCache @Inject constructor(
 
   override suspend fun getAllTypes(): List<String> {
     return animalsDao.getAllTypes()
+  }
+
+  override fun searchAnimalsBy(
+      name: String,
+      age: String,
+      type: String
+  ): Flowable<List<CachedAnimalAggregate>> {
+    return animalsDao.searchAnimalsBy(name, age, type)
   }
 }

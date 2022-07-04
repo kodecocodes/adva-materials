@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,6 +46,8 @@ import com.realworld.android.petsave.common.domain.model.animal.details.Age
 import com.realworld.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.realworld.android.petsave.common.domain.model.pagination.PaginatedAnimals
 import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
+import com.realworld.android.petsave.search.domain.model.SearchParameters
+import com.realworld.android.petsave.search.domain.model.SearchResults
 import io.reactivex.Flowable
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -105,26 +107,42 @@ class PetFinderAnimalRepository @Inject constructor(
     return Age.values().toList()
   }
 
-//  TODO: Uncomment for remote search
-//  override suspend fun searchAnimalsRemotely(
-//      pageToLoad: Int,
-//      searchParameters: SearchParameters,
-//      numberOfItems: Int
-//  ): PaginatedAnimals {
-//
-//    val (apiAnimals, apiPagination) = api.searchAnimalsBy(
-//        searchParameters.name,
-//        searchParameters.age,
-//        searchParameters.type,
-//        pageToLoad,
-//        numberOfItems,
-//        postcode,
-//        maxDistanceMiles
-//    )
-//
-//    return PaginatedAnimals(
-//        apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty(),
-//        apiPaginationMapper.mapToDomain(apiPagination)
-//    )
-//  }
+  override fun searchCachedAnimalsBy(searchParameters: SearchParameters): Flowable<SearchResults> {
+    val (name, age, type) = searchParameters
+
+    return cache.searchAnimalsBy(name, age, type)
+        .distinctUntilChanged()
+        .map { animalList ->
+            animalList.map {
+                it.animal.toAnimalDomain(
+                    it.photos,
+                    it.videos,
+                    it.tags
+                )
+            }
+        }
+        .map { SearchResults(it, searchParameters) }
+}
+
+  override suspend fun searchAnimalsRemotely(
+      pageToLoad: Int,
+      searchParameters: SearchParameters,
+      numberOfItems: Int
+  ): PaginatedAnimals {
+
+    val (apiAnimals, apiPagination) = api.searchAnimalsBy(
+        searchParameters.name,
+        searchParameters.age,
+        searchParameters.type,
+        pageToLoad,
+        numberOfItems,
+        postcode,
+        maxDistanceMiles
+    )
+
+    return PaginatedAnimals(
+        apiAnimals?.map { apiAnimalMapper.mapToDomain(it) }.orEmpty(),
+        apiPaginationMapper.mapToDomain(apiPagination)
+    )
+  }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 razeware LLC
+ * Copyright (c) 2022 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,8 @@ import com.realworld.android.petsave.common.domain.model.animal.Animal
 import com.realworld.android.petsave.common.domain.model.animal.details.Age
 import com.realworld.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.realworld.android.petsave.common.domain.model.pagination.PaginatedAnimals
+import com.realworld.android.petsave.search.domain.model.SearchParameters
+import com.realworld.android.petsave.search.domain.model.SearchResults
 import io.reactivex.Flowable
 
 interface AnimalRepository {
@@ -46,11 +48,11 @@ interface AnimalRepository {
   suspend fun storeAnimals(animals: List<AnimalWithDetails>)
   suspend fun getAnimalTypes(): List<String>
   fun getAnimalAges(): List<Age>
+  fun searchCachedAnimalsBy(searchParameters: SearchParameters): Flowable<SearchResults>
 
-//  TODO: Uncomment for remote search
-//  suspend fun searchAnimalsRemotely(
-//      pageToLoad: Int,
-//      searchParameters: SearchParameters,
-//      numberOfItems: Int
-//  ): PaginatedAnimals
+  suspend fun searchAnimalsRemotely(
+      pageToLoad: Int,
+      searchParameters: SearchParameters,
+      numberOfItems: Int
+  ): PaginatedAnimals
 }

@@ -32,11 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.realworld.android.petsave.common.domain.model.animal
+package com.realworld.android.petsave.search.domain.model
 
-enum class AdoptionStatus {
-  UNKNOWN,
-  ADOPTABLE,
-  ADOPTED,
-  FOUND
-}
+import com.realworld.android.petsave.common.domain.model.animal.Animal
+
+data class SearchResults(
+    val animals: List<Animal>,
+    val searchParameters: SearchParameters
+)
