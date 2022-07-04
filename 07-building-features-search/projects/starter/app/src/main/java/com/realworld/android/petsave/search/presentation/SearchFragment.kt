@@ -51,7 +51,6 @@ import com.realworld.android.petsave.common.presentation.AnimalsAdapter
 import com.realworld.android.petsave.common.presentation.Event
 import com.realworld.android.petsave.databinding.FragmentSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -85,7 +84,7 @@ class SearchFragment : Fragment() {
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewStateUpdates(adapter)
+    subscribeToViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsAdapter {
@@ -100,7 +99,7 @@ class SearchFragment : Fragment() {
     }
   }
 
-  private fun observeViewStateUpdates(searchAdapter: AnimalsAdapter) {
+  private fun subscribeToViewStateUpdates(searchAdapter: AnimalsAdapter) {
     viewLifecycleOwner.lifecycleScope.launch {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         viewModel.state.collect {

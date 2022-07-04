@@ -39,12 +39,15 @@ import com.realworld.android.petsave.common.utils.DispatchersProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.testing.TestInstallIn
 import io.reactivex.disposables.CompositeDisposable
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@TestInstallIn(
+  components = [ActivityRetainedComponent::class],
+  replaces = [ActivityRetainedModule::class]
+)
 abstract class TestActivityRetainedModule {
 
 //  @Binds
@@ -52,8 +55,9 @@ abstract class TestActivityRetainedModule {
 //  abstract fun bindAnimalRepository(repository: FakeRepository): AnimalRepository
 
   @Binds
-  abstract fun bindDispatchersProvider(dispatchersProvider: CoroutineDispatchersProvider):
-      DispatchersProvider
+  abstract fun bindDispatchersProvider(
+    dispatchersProvider: CoroutineDispatchersProvider
+  ): DispatchersProvider
 
   companion object {
     @Provides

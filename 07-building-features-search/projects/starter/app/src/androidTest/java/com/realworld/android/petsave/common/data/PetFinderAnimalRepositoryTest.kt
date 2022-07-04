@@ -36,6 +36,7 @@ package com.realworld.android.petsave.common.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
+import com.realworld.android.petsave.RxImmediateSchedulerRule
 import com.realworld.android.petsave.common.data.api.PetFinderApi
 import com.realworld.android.petsave.common.data.api.model.mappers.ApiAnimalMapper
 import com.realworld.android.petsave.common.data.api.model.mappers.ApiPaginationMapper
@@ -48,7 +49,6 @@ import com.realworld.android.petsave.common.data.cache.PetSaveDatabase
 import com.realworld.android.petsave.common.data.cache.RoomCache
 import com.realworld.android.petsave.common.data.di.CacheModule
 import com.realworld.android.petsave.common.data.di.TestPreferencesModule
-import com.realworld.android.petsave.common.di.ActivityRetainedModule
 import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
 import dagger.hilt.android.testing.*
 import kotlinx.coroutines.runBlocking
@@ -61,7 +61,7 @@ import java.time.Instant
 import javax.inject.Inject
 
 @HiltAndroidTest
-@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class, ActivityRetainedModule::class)
+@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class)
 class PetFinderAnimalRepositoryTest {
 
   private val fakeServer = FakeServer()
@@ -71,6 +71,9 @@ class PetFinderAnimalRepositoryTest {
 
   @get:Rule
   var hiltRule = HiltAndroidRule(this)
+
+  @get:Rule
+  val rxImmediateSchedulerRule = RxImmediateSchedulerRule()
 
   @get:Rule
   var instantTaskExecutorRule = InstantTaskExecutorRule()

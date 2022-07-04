@@ -55,7 +55,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchFragmentViewModel @Inject constructor(
     private val uiAnimalMapper: UiAnimalMapper,
-    private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
 
