@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
   private fun setNavGraphStartDestination(startDestination: Int) {
     val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
 
-    navGraph.startDestination = startDestination
+    navGraph.setStartDestination(startDestination)
     navController.graph = navGraph
   }
 }
