@@ -12,6 +12,7 @@ android {
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
+    testInstrumentationRunner "com.raywenderlich.android.petsave.common.HiltTestRunner"
   }
 
   buildTypes {
@@ -24,10 +25,6 @@ android {
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
-  }
-
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
   }
 
   buildFeatures {
