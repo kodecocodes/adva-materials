@@ -101,15 +101,15 @@ class SearchFragmentViewModel @Inject constructor(
     }
   }
 
-  private fun updateStateWithFilterValues(ages: List<String>, types: List<String>) {
-    _state.update { oldState ->
-      oldState.updateToReadyToSearch(ages, types)
-    }
-  }
-
   private fun createExceptionHandler(message: String): CoroutineExceptionHandler {
     return viewModelScope.createExceptionHandler(message) {
       onFailure(it)
+    }
+  }
+
+  private fun updateStateWithFilterValues(ages: List<String>, types: List<String>) {
+    _state.update { oldState ->
+      oldState.updateToReadyToSearch(ages, types)
     }
   }
 
