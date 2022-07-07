@@ -11,7 +11,7 @@ class RequestNextPageOfAnimals @Inject constructor(
   private val animalRepository: AnimalRepository,
   private val dispatchersProvider: DispatchersProvider
 ) {
-  suspend operator fun invoke( // 1
+  suspend operator fun invoke(
     pageToLoad: Int,
     pageSize: Int = Pagination.DEFAULT_PAGE_SIZE
   ): Pagination {
