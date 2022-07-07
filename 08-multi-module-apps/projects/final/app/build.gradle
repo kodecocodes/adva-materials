@@ -7,7 +7,7 @@ android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
@@ -26,10 +26,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
-  }
-
   buildFeatures {
     viewBinding true
   }
@@ -46,7 +42,6 @@ dependencies {
   // Modules
   implementation project(":features:animalsnearyou")
   implementation project(":features:search")
-  implementation project(":features:onboarding")
   implementation project(":common")
   implementation project(":logging")
 

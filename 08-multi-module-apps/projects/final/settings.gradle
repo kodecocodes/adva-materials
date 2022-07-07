@@ -1,5 +1,4 @@
 include ':features:search'
-include ':features:onboarding'
 include ':features:animalsnearyou'
 include ':common'
 include ':logging'

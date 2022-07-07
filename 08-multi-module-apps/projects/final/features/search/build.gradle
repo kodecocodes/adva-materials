@@ -3,8 +3,10 @@ apply from: "$rootProject.projectDir/android-library.gradle"
 android {
   sourceSets {
     androidTest {
-      java.srcDir project(":common").file("src/androidTest/java/com/raywenderlich/android/petsave/common/HiltTestRunner.kt")
-      java.srcDir project(":common").file("src/androidTest/java/com/raywenderlich/android/petsave/common/TestApplication.kt")
+      java.srcDirs += [
+          project(":common").file("src/androidTest/java/com/realworld/android/petsave/common/testrunners"),
+          project(":common").file("src/androidTest/java/com/realworld/android/petsave/common/di")
+      ]
     }
   }
 }
