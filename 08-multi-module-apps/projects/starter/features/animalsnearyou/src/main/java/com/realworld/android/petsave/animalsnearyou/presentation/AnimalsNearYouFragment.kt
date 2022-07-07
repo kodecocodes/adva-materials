@@ -41,6 +41,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -49,6 +52,7 @@ import com.realworld.android.petsave.animalsnearyou.databinding.FragmentAnimalsN
 import com.realworld.android.petsave.common.presentation.AnimalsAdapter
 import com.realworld.android.petsave.common.presentation.Event
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AnimalsNearYouFragment : Fragment() {
@@ -77,7 +81,7 @@ class AnimalsNearYouFragment : Fragment() {
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewStateUpdates(adapter)
+    subscribeToViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsAdapter {
@@ -110,9 +114,13 @@ class AnimalsNearYouFragment : Fragment() {
     viewModel.onEvent(AnimalsNearYouEvent.RequestMoreAnimals)
   }
 
-  private fun observeViewStateUpdates(adapter: AnimalsAdapter) {
-    viewModel.state.observe(viewLifecycleOwner) {
-      updateScreenState(it, adapter)
+  private fun subscribeToViewStateUpdates(adapter: AnimalsAdapter) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect {
+          updateScreenState(it, adapter)
+        }
+      }
     }
   }
 

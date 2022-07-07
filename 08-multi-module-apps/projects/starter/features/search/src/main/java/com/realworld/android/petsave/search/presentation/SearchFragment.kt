@@ -45,6 +45,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.realworld.android.petsave.search.R
@@ -53,6 +56,7 @@ import com.realworld.android.petsave.common.presentation.Event
 import com.realworld.android.petsave.search.databinding.FragmentSearchBinding
 import com.realworld.android.petsave.search.domain.usecases.GetSearchFilters
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -86,7 +90,7 @@ class SearchFragment : Fragment() {
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewStateUpdates(adapter)
+    subscribeToViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsAdapter {
@@ -101,9 +105,13 @@ class SearchFragment : Fragment() {
     }
   }
 
-  private fun observeViewStateUpdates(searchAdapter: AnimalsAdapter) {
-    viewModel.state.observe(viewLifecycleOwner) {
-      updateScreenState(it, searchAdapter)
+  private fun subscribeToViewStateUpdates(searchAdapter: AnimalsAdapter) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect {
+          updateScreenState(it, searchAdapter)
+        }
+      }
     }
   }
 

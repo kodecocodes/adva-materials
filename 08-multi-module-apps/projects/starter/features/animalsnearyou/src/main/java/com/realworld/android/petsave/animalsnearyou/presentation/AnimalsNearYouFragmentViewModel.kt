@@ -47,6 +47,7 @@ import com.realworld.android.petsave.common.domain.model.NoMoreAnimalsException
 import com.realworld.android.petsave.common.domain.model.animal.Animal
 import com.realworld.android.petsave.common.domain.model.pagination.Pagination
 import com.realworld.android.petsave.common.presentation.Event
+import com.realworld.android.petsave.common.presentation.model.UIAnimal
 import com.realworld.android.petsave.common.presentation.model.mappers.UiAnimalMapper
 import com.realworld.android.petsave.common.utils.DispatchersProvider
 import com.realworld.android.petsave.common.utils.createExceptionHandler
@@ -54,6 +55,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -63,7 +68,6 @@ class AnimalsNearYouFragmentViewModel @Inject constructor(
     private val getAnimals: GetAnimals,
     private val requestNextPageOfAnimals: RequestNextPageOfAnimals,
     private val uiAnimalMapper: UiAnimalMapper,
-    private val dispatchersProvider: DispatchersProvider,
     private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
 
@@ -71,15 +75,14 @@ class AnimalsNearYouFragmentViewModel @Inject constructor(
     const val UI_PAGE_SIZE = Pagination.DEFAULT_PAGE_SIZE
   }
 
-  val state: LiveData<AnimalsNearYouViewState> get() = _state
+  private val _state = MutableStateFlow(AnimalsNearYouViewState())
+  private var currentPage = 0
+
+  val state: StateFlow<AnimalsNearYouViewState> = _state.asStateFlow()
   var isLoadingMoreAnimals: Boolean = false
   var isLastPage = false
 
-  private val _state = MutableLiveData<AnimalsNearYouViewState>()
-  private var currentPage = 0
-
   init {
-    _state.value = AnimalsNearYouViewState()
     subscribeToAnimalUpdates()
   }
 
@@ -92,6 +95,7 @@ class AnimalsNearYouFragmentViewModel @Inject constructor(
   private fun subscribeToAnimalUpdates() {
     getAnimals()
         .doOnNext { if (hasNoAnimalsStoredButCanLoadMore(it)) loadNextAnimalPage() }
+        .map { animals -> animals.map { uiAnimalMapper.mapToView(it) } }
         .filter { it.isNotEmpty() }
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
@@ -102,23 +106,17 @@ class AnimalsNearYouFragmentViewModel @Inject constructor(
   }
 
   private fun hasNoAnimalsStoredButCanLoadMore(animals: List<Animal>): Boolean {
-    return animals.isEmpty() && !state.value!!.noMoreAnimalsNearby
+    return animals.isEmpty() && !state.value.noMoreAnimalsNearby
   }
 
-  private fun onNewAnimalList(animals: List<Animal>) {
+  private fun onNewAnimalList(animals: List<UIAnimal>) {
     Logger.d("Got more animals!")
 
-    val animalsNearYou = animals.map { uiAnimalMapper.mapToView(it) }
+    val updatedAnimalSet = (state.value.animals + animals).toSet()
 
-    // This ensures that new items are added below the already existing ones, thus avoiding
-    // repositioning of items that are already visible, as it can provide for a confusing UX. A
-    // nice alternative to this would be to add an "updatedAt" field to the Room entities, so
-    // that we could actually order them by something that we completely control.
-    val currentList = state.value!!.animals
-    val newAnimals = animalsNearYou.subtract(currentList)
-    val updatedList = currentList + newAnimals
-
-    _state.value = state.value!!.copy( loading = false, animals = updatedList)
+    _state.update { oldState ->
+      oldState.copy(loading = false, animals = updatedAnimalSet.toList())
+    }
   }
 
   private fun loadNextAnimalPage() {
@@ -128,11 +126,8 @@ class AnimalsNearYouFragmentViewModel @Inject constructor(
     val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) { onFailure(it) }
 
     viewModelScope.launch(exceptionHandler) {
-      val pagination = withContext(dispatchersProvider.io()) {
-        Logger.d("Requesting more animals.")
-
-        requestNextPageOfAnimals(++currentPage)
-      }
+      Logger.d("Requesting more animals.")
+      val pagination = requestNextPageOfAnimals(++currentPage)
 
       onPaginationInfoObtained(pagination)
       isLoadingMoreAnimals = false
@@ -148,16 +143,14 @@ class AnimalsNearYouFragmentViewModel @Inject constructor(
     when (failure) {
       is NetworkException,
       is NetworkUnavailableException -> {
-        _state.value = state.value!!.copy(
-            loading = false,
-            failure = Event(failure)
-        )
+        _state.update { oldState ->
+          oldState.copy(loading = false, failure = Event(failure))
+        }
       }
       is NoMoreAnimalsException -> {
-        _state.value = state.value!!.copy(
-            noMoreAnimalsNearby = true,
-            failure = Event(failure)
-        )
+        _state.update { oldState ->
+          oldState.copy(noMoreAnimalsNearby = true, failure = Event(failure))
+        }
       }
     }
   }

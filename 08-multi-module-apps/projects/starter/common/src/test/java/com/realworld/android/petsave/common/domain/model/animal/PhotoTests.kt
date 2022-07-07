@@ -24,7 +24,7 @@ class PhotoTests {
     }
 
     @Test
-    fun photo_getSmallestAvailablePhoto_noMediumPhoto() {
+    fun photo_getSmallestAvailablePhoto_noMediumPhoto_hasFullPhoto() {
         // Given
         val photo = Media.Photo(invalidPhoto, fullPhoto)
         val expectedValue = fullPhoto
@@ -40,7 +40,7 @@ class PhotoTests {
     fun photo_getSmallestAvailablePhoto_noPhotos() {
         // Given
         val photo = Media.Photo(invalidPhoto, invalidPhoto)
-        val expectedValue = Media.Photo.EMPTY_PHOTO
+        val expectedValue = Media.Photo.NO_SIZE_AVAILABLE
 
         // When
         val smallestPhoto = photo.getSmallestAvailablePhoto()
