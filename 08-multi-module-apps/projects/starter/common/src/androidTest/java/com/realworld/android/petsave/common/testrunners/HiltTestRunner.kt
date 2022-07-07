@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.realworld.android.petsave.common
+package com.realworld.android.petsave.common.testrunners
 
 import android.app.Application
 import android.content.Context

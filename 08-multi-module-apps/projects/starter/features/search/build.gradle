@@ -1,5 +1,16 @@
 apply from: "$rootProject.projectDir/android-library.gradle"
 
+android {
+  sourceSets {
+    androidTest {
+      java.srcDirs += [
+          project(":common").file("src/androidTest/java/com/realworld/android/petsave/common/testrunners"),
+          project(":common").file("src/androidTest/java/com/realworld/android/petsave/common/di")
+      ]
+    }
+  }
+}
+
 dependencies {
   implementation project(":common")
 
