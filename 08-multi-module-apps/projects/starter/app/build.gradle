@@ -60,10 +60,4 @@ dependencies {
   implementation "com.google.dagger:hilt-android:$hilt_version"
 
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-
-  // Needed for DI to work properly
-  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-  implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
-  implementation "androidx.room:room-runtime:$room_version"
-  implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 }
