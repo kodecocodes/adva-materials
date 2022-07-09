@@ -37,20 +37,17 @@ package com.realworld.android.petsave.main.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.realworld.android.petsave.R
-import com.realworld.android.petsave.common.utils.DispatchersProvider
 import com.realworld.android.petsave.common.utils.createExceptionHandler
 import com.realworld.android.petsave.main.domain.usecases.OnboardingIsComplete
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val onboardingIsComplete: OnboardingIsComplete,
-    private val dispatchersProvider: DispatchersProvider
+    private val onboardingIsComplete: OnboardingIsComplete
 ): ViewModel() {
 
   val viewEffect: SharedFlow<MainActivityViewEffect> get() = _viewEffect
@@ -68,12 +65,10 @@ class MainActivityViewModel @Inject constructor(
     val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) { onFailure(it) }
 
     viewModelScope.launch(exceptionHandler) {
-      val destination = withContext(dispatchersProvider.io()) {
-        if (onboardingIsComplete()) {
-          R.id.nav_animalsnearyou
-        } else {
-          R.id.onboardingFragment
-        }
+      val destination = if (onboardingIsComplete()) {
+        R.id.nav_animalsnearyou
+      } else {
+        R.id.onboardingFragment
       }
 
       _viewEffect.emit(MainActivityViewEffect.SetStartDestination(destination))
