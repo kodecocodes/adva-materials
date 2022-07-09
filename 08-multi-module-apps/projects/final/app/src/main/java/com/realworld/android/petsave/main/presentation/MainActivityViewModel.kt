@@ -49,8 +49,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val onboardingIsComplete: OnboardingIsComplete,
-    private val dispatchersProvider: DispatchersProvider
+  private val onboardingIsComplete: OnboardingIsComplete
 ): ViewModel() {
 
   val viewEffect: SharedFlow<MainActivityViewEffect> get() = _viewEffect
@@ -68,12 +67,10 @@ class MainActivityViewModel @Inject constructor(
     val exceptionHandler = viewModelScope.createExceptionHandler(errorMessage) { onFailure(it) }
 
     viewModelScope.launch(exceptionHandler) {
-      val destination = withContext(dispatchersProvider.io()) {
-        if (onboardingIsComplete()) {
-          R.id.nav_animalsnearyou
-        } else {
-          R.id.onboardingFragment
-        }
+      val destination = if (onboardingIsComplete()) {
+        R.id.nav_animalsnearyou
+      } else {
+        R.id.onboardingFragment
       }
 
       _viewEffect.emit(MainActivityViewEffect.SetStartDestination(destination))
