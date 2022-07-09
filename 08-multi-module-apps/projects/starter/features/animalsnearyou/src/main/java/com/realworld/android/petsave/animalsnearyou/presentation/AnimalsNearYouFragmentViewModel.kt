@@ -34,8 +34,6 @@
 
 package com.realworld.android.petsave.animalsnearyou.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.realworld.android.logging.Logger
@@ -49,7 +47,6 @@ import com.realworld.android.petsave.common.domain.model.pagination.Pagination
 import com.realworld.android.petsave.common.presentation.Event
 import com.realworld.android.petsave.common.presentation.model.UIAnimal
 import com.realworld.android.petsave.common.presentation.model.mappers.UiAnimalMapper
-import com.realworld.android.petsave.common.utils.DispatchersProvider
 import com.realworld.android.petsave.common.utils.createExceptionHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -60,7 +57,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
