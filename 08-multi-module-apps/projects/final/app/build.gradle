@@ -42,6 +42,7 @@ dependencies {
   // Modules
   implementation project(":features:animalsnearyou")
   implementation project(":features:search")
+  implementation project(":features:onboarding")
   implementation project(":common")
   implementation project(":logging")
 

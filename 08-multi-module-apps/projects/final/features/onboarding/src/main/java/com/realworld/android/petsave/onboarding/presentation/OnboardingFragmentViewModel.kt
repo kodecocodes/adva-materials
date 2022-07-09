@@ -36,14 +36,12 @@ package com.realworld.android.petsave.onboarding.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.realworld.android.petsave.R
-import com.realworld.android.petsave.common.utils.DispatchersProvider
+import com.realworld.android.petsave.onboarding.R
 import com.realworld.android.petsave.common.utils.createExceptionHandler
 import com.realworld.android.petsave.onboarding.domain.usecases.StoreOnboardingData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel

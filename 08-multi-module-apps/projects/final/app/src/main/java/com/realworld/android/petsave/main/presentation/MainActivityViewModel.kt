@@ -70,7 +70,7 @@ class MainActivityViewModel @Inject constructor(
       val destination = if (onboardingIsComplete()) {
         R.id.nav_animalsnearyou
       } else {
-        R.id.onboardingFragment
+        R.id.nav_onboarding
       }
 
       _viewEffect.emit(MainActivityViewEffect.SetStartDestination(destination))

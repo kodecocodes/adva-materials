@@ -25,7 +25,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
 
-      <!--      TODO: Add nav-graph here-->
+      <nav-graph android:value="@navigation/nav_graph" />
     </activity>
 
   </application>
