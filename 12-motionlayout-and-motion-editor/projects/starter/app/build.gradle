@@ -111,8 +111,6 @@ dependencies {
   // Utils
   implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
 
-  debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
-
   // Physics - based animations
   implementation "androidx.dynamicanimation:dynamicanimation:$dynamic_animation_version"
 

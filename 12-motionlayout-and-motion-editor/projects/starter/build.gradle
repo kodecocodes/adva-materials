@@ -27,7 +27,6 @@ buildscript {
     glide_version = "4.13.2"
     material_version = '1.6.1'
     threetenabp_version = "1.2.4"
-    leakcanary_version = "2.8.1"
     dynamic_animation_version = "1.0.0"
     lottie_version = "5.0.1"
   }
