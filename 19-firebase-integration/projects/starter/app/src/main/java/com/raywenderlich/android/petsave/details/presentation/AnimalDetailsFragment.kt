@@ -124,7 +124,7 @@ class AnimalDetailsFragment : Fragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
     _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
     return binding.root
@@ -240,11 +240,10 @@ class AnimalDetailsFragment : Fragment() {
     }
     binding.loader.addValueCallback(
         KeyPath("icon_circle", "**"),
-        LottieProperty.COLOR_FILTER,
-        {
-          PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
-        }
-    )
+        LottieProperty.COLOR_FILTER
+    ) {
+      PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
+    }
   }
 
   private fun stopAnimation() {

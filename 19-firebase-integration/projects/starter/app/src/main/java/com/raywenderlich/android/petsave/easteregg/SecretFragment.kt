@@ -48,7 +48,7 @@ class SecretFragment : Fragment() {
   private var _binding: FragmentSecretBinding? = null
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
 
     _binding = FragmentSecretBinding.inflate(inflater, container, false)
 

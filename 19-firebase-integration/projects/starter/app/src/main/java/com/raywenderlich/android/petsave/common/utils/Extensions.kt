@@ -98,7 +98,7 @@ fun Boolean?.toEmoji() = if (this != null) {
   String(Character.toChars(QUESTION_EMOJI))
 }
 
-fun Context.dpToPx(dp: Float) = this.getResources().getDisplayMetrics().density * dp
+fun Context.dpToPx(dp: Float) = this.resources.displayMetrics.density * dp
 
 fun Paint.getTextWidth(string: String): Float {
   val rect = Rect()

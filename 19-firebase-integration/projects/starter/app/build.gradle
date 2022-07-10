@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'dagger.hilt.android.plugin'
@@ -14,7 +12,7 @@ android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
@@ -97,9 +95,6 @@ dependencies {
   // DI
   implementation "com.google.dagger:hilt-android:$hilt_version"
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-
-  implementation "androidx.hilt:hilt-lifecycle-viewmodel:$androidx_hilt_version"
-  kapt "androidx.hilt:hilt-compiler:$androidx_hilt_version"
 
   // UI
   implementation "com.github.bumptech.glide:glide:$glide_version"

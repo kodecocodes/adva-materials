@@ -37,10 +37,8 @@ package com.raywenderlich.android.petsave.common
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.view.menu.MenuBuilder
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -49,7 +47,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 
 /**
  * Main Screen
