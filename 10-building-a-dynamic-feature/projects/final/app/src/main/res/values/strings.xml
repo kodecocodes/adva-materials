@@ -1,5 +1,3 @@
 <resources>
   <string name="app_name">Pet Save</string>
-
-  <string name="dynamic_feature_sharing_title">Share an animal</string>
 </resources>

@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/searchFragment"
-    android:name="com.raywenderlich.android.petsave.search.presentation.SearchFragment"
+    android:name="com.realworld.android.petsave.search.presentation.SearchFragment"
     android:label="@string/search_screen_label"
     tools:layout="@layout/fragment_search" />
 </navigation>

@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/animalsNearYouFragment"
-    android:name="com.raywenderlich.android.petsave.animalsnearyou.presentation.main.AnimalsNearYouFragment"
+    android:name="com.realworld.android.petsave.animalsnearyou.presentation.main.AnimalsNearYouFragment"
     android:label="@string/animals_near_you_screen_label"
     tools:layout="@layout/fragment_animals_near_you">
     <deepLink app:uri="petsave://animalsnearyou" />
@@ -18,20 +18,12 @@
 
   <fragment
     android:id="@+id/animalDetailsFragment"
-    android:name="com.raywenderlich.android.petsave.animalsnearyou.presentation.animaldetails.AnimalDetailsFragment"
+    android:name="com.realworld.android.petsave.animalsnearyou.presentation.animaldetails.AnimalDetailsFragment"
     android:label="@string/animal_details_screen_label"
     tools:layout="@layout/fragment_details">
 
     <argument
       android:name="id"
       app:argType="long" />
-
-    <action
-      android:id="@+id/action_details_to_sharing"
-      app:destination="@+id/dynamicFeatureSharing">
-      <argument
-        android:name="id"
-        app:argType="long" />
-    </action>
   </fragment>
 </navigation>

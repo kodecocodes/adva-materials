@@ -7,7 +7,7 @@ android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
@@ -26,10 +26,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
-  }
-
   buildFeatures {
     viewBinding true
   }
@@ -38,8 +34,6 @@ android {
     exclude 'META-INF/AL2.0'
     exclude 'META-INF/LGPL2.1'
   }
-
-  dynamicFeatures = [":features:sharing"]
 }
 
 dependencies {
@@ -49,29 +43,22 @@ dependencies {
   implementation project(":features:animalsnearyou")
   implementation project(":features:search")
   implementation project(":features:onboarding")
-  api project(":common")
-  api project(":logging")
+  implementation project(":features:sharing")
+  implementation project(":common")
+  implementation project(":logging")
 
   // Kotlin
-  api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-  api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
   // Support Libraries and material
-  api "androidx.appcompat:appcompat:$appcompat_version"
-  api "com.google.android.material:material:$material_version"
+  implementation "androidx.appcompat:appcompat:$appcompat_version"
+  implementation "com.google.android.material:material:$material_version"
 
   // Navigation
-  api "androidx.navigation:navigation-fragment-ktx:$nav_version"
-  api "androidx.navigation:navigation-ui-ktx:$nav_version"
-  api "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+  implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+  implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
   // DI
   implementation "com.google.dagger:hilt-android:$hilt_version"
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-
-  // Needed for DI to work properly
-  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-  implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
-  implementation "androidx.room:room-runtime:$room_version"
-  implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 }
