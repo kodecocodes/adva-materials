@@ -32,8 +32,41 @@
  * THE SOFTWARE.
  */
 
-package com.realworld.android.petsave.sharing.presentation
+package com.realworld.android.petsave.sharing.di
 
-sealed class SharingEvent {
-  data class GetAnimalToShare(val animalId: Long): SharingEvent()
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.realworld.android.petsave.common.data.PetFinderAnimalRepository
+import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
+import com.realworld.android.petsave.common.utils.CoroutineDispatchersProvider
+import com.realworld.android.petsave.common.utils.DispatchersProvider
+import com.realworld.android.petsave.sharing.presentation.SharingFragmentViewModel
+import dagger.Binds
+import dagger.Module
+import dagger.Reusable
+import dagger.hilt.migration.DisableInstallInCheck
+import dagger.multibindings.IntoMap
+
+@Module
+@DisableInstallInCheck
+abstract class SharingModule {
+
+  @Binds
+  abstract fun bindDispatchersProvider(
+    dispatchersProvider: CoroutineDispatchersProvider
+  ): DispatchersProvider
+
+  @Binds
+  abstract fun bindRepository(repository: PetFinderAnimalRepository): AnimalRepository
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(SharingFragmentViewModel::class)
+  abstract fun bindSharingFragmentViewModel(
+      sharingFragmentViewModel: SharingFragmentViewModel
+  ): ViewModel
+
+  @Binds
+  @Reusable
+  abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

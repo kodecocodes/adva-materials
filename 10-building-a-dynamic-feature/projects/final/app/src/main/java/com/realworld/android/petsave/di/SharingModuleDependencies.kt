@@ -32,8 +32,20 @@
  * THE SOFTWARE.
  */
 
-package com.realworld.android.petsave.sharing.presentation
+package com.realworld.android.petsave.di
 
-sealed class SharingEvent {
-  data class GetAnimalToShare(val animalId: Long): SharingEvent()
+import com.realworld.android.petsave.common.data.api.PetFinderApi
+import com.realworld.android.petsave.common.data.cache.Cache
+import com.realworld.android.petsave.common.data.preferences.Preferences
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@EntryPoint
+@InstallIn(SingletonComponent::class)
+interface SharingModuleDependencies {
+
+  fun petFinderApi(): PetFinderApi
+  fun cache(): Cache
+  fun preferences(): Preferences
 }

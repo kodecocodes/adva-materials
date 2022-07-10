@@ -25,5 +25,14 @@
     <argument
       android:name="id"
       app:argType="long" />
+
+    <action
+      android:id="@+id/action_details_to_sharing"
+      app:destination="@+id/dynamicFeatureSharing">
+
+      <argument
+        android:name="id"
+        app:argType="long" />
+    </action>
   </fragment>
 </navigation>

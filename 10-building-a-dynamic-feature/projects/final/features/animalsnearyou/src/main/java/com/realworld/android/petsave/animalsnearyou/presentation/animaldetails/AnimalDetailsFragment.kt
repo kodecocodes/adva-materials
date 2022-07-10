@@ -117,12 +117,9 @@ class AnimalDetailsFragment : Fragment() {
 
   private fun navigateToSharing() {
     val animalId = requireArguments().getLong(ANIMAL_ID)
+    val directions = AnimalDetailsFragmentDirections.actionDetailsToSharing(animalId)
 
-    val deepLink = NavDeepLinkRequest.Builder
-        .fromUri("petsave://sharing/$animalId".toUri())
-        .build()
-
-    findNavController().navigate(deepLink)
+    findNavController().navigate(directions)
   }
 
   private fun subscribeToStateUpdates() {
