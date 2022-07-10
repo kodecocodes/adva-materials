@@ -34,9 +34,9 @@
 
 package com.realworld.android.petsave.common.utils
 
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.format.DateTimeFormatter
 import java.lang.Exception
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 object DateTimeUtils {
   fun parse(dateTimeString: String): LocalDateTime = try {

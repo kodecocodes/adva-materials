@@ -37,7 +37,7 @@ package com.realworld.android.petsave.common.domain.model.animal.details
 import com.realworld.android.petsave.common.domain.model.animal.AdoptionStatus
 import com.realworld.android.petsave.common.domain.model.animal.Media
 import com.realworld.android.petsave.common.domain.model.organization.Organization
-import org.threeten.bp.LocalDateTime
+import java.time.LocalDateTime
 
 data class AnimalWithDetails(
     val id: Long,

@@ -36,7 +36,7 @@ package com.realworld.android.petsave.common.data.api.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import org.threeten.bp.Instant
+import java.time.Instant
 
 @JsonClass(generateAdapter = true)
 data class ApiToken(

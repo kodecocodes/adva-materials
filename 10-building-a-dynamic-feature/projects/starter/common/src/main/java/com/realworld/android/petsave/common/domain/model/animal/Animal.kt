@@ -34,7 +34,7 @@
 
 package com.realworld.android.petsave.common.domain.model.animal
 
-import org.threeten.bp.LocalDateTime
+import java.time.LocalDateTime
 
 data class Animal(
     val id: Long,

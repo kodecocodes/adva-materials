@@ -46,7 +46,7 @@ import com.realworld.android.petsave.common.data.api.model.ApiToken
 import com.realworld.android.petsave.common.data.preferences.Preferences
 import com.squareup.moshi.Moshi
 import okhttp3.*
-import org.threeten.bp.Instant
+import java.time.Instant
 import javax.inject.Inject
 
 class AuthenticationInterceptor @Inject constructor(

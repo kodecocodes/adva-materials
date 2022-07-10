@@ -47,7 +47,7 @@ import com.realworld.android.petsave.common.domain.model.search.SearchResults
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import org.threeten.bp.LocalDateTime
+import java.time.LocalDateTime
 
 import javax.inject.Inject
 
