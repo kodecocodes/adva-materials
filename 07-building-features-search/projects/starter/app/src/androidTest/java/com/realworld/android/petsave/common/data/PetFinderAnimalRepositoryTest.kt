@@ -48,7 +48,6 @@ import com.realworld.android.petsave.common.data.api.utils.FakeServer
 import com.realworld.android.petsave.common.data.cache.PetSaveDatabase
 import com.realworld.android.petsave.common.data.cache.RoomCache
 import com.realworld.android.petsave.common.data.di.CacheModule
-import com.realworld.android.petsave.common.data.di.TestPreferencesModule
 import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
 import dagger.hilt.android.testing.*
 import kotlinx.coroutines.runBlocking
@@ -61,7 +60,7 @@ import java.time.Instant
 import javax.inject.Inject
 
 @HiltAndroidTest
-@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class)
+@UninstallModules(PreferencesModule::class, CacheModule::class)
 class PetFinderAnimalRepositoryTest {
 
   private val fakeServer = FakeServer()
