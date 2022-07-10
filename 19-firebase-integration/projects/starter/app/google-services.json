@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "323637451908",
+    "project_id": "petsave-432e7",
+    "storage_bucket": "petsave-432e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323637451908:android:91caa3dff65f6cd226f6d1",
+        "android_client_info": {
+          "package_name": "com.realworld.android.petsave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323637451908-him14htuqvdflukagtta9g5ckb90mg80.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWarDUIdY6nI_H54c9Ah47o54R2-Czc5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323637451908-him14htuqvdflukagtta9g5ckb90mg80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
