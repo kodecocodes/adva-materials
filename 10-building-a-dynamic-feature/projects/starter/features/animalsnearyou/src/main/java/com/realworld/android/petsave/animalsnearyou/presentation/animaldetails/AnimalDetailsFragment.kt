@@ -37,6 +37,7 @@ package com.realworld.android.petsave.animalsnearyou.presentation.animaldetails
 import android.os.Bundle
 import android.view.*
 import androidx.core.net.toUri
+import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -56,7 +57,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AnimalDetailsFragment : Fragment(), MenuProvider {
+class AnimalDetailsFragment : Fragment() {
 
   companion object {
     const val ANIMAL_ID = "id"
@@ -85,35 +86,43 @@ class AnimalDetailsFragment : Fragment(), MenuProvider {
     return binding.root
   }
 
-  override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-    menuInflater.inflate(R.menu.menu_share, menu)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    addShareMenu()
+    subscribeToStateUpdates()
+    val event = AnimalDetailsEvent.LoadAnimalDetails(animalId!!)
+    viewModel.handleEvent(event)
   }
 
-  override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-    return if (menuItem.itemId == R.id.share) {
-      navigateToSharing()
-      true
-    }
-    else {
-      false
-    }
+  private fun addShareMenu() {
+    val menuHost: MenuHost = requireActivity()
+
+    menuHost.addMenuProvider(object : MenuProvider {
+      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_share, menu)
+      }
+
+      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        return if (menuItem.itemId == R.id.share) {
+          navigateToSharing()
+          true
+        }
+        else {
+          false
+        }
+      }
+    }, viewLifecycleOwner, Lifecycle.State.RESUMED)
   }
 
   private fun navigateToSharing() {
     val animalId = requireArguments().getLong(ANIMAL_ID)
 
     val deepLink = NavDeepLinkRequest.Builder
-        .fromUri("petsave://sharing/$animalId".toUri())
-        .build()
+      .fromUri("petsave://sharing/$animalId".toUri())
+      .build()
 
     findNavController().navigate(deepLink)
-  }
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-
-    subscribeToStateUpdates()
-    val event = AnimalDetailsEvent.LoadAnimalDetails(animalId!!)
-    viewModel.handleEvent(event)
   }
 
   private fun subscribeToStateUpdates() {
