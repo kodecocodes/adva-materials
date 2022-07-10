@@ -12,7 +12,6 @@ android {
 
 dependencies {
   implementation project(":common")
-  androidTestImplementation project(":common")
 
   androidTestImplementation "com.squareup.retrofit2:retrofit:$retrofit_version"
   androidTestImplementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
