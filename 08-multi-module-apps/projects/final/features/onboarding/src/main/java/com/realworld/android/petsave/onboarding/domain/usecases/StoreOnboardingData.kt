@@ -44,9 +44,9 @@ class StoreOnboardingData @Inject constructor(
     private val dispatchersProvider: DispatchersProvider
 ) {
 
-    suspend operator fun invoke(postcode: String, distance: String) {
-        withContext(dispatchersProvider.io()) {
-            repository.storeOnboardingData(postcode, distance.toInt())
-        }
+  suspend operator fun invoke(postcode: String, distance: String) {
+    withContext(dispatchersProvider.io()) {
+      repository.storeOnboardingData(postcode, distance.toInt())
     }
+  }
 }

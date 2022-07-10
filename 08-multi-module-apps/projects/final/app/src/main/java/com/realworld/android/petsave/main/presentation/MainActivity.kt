@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     setupActionBar()
     setupBottomNav()
     triggerStartDestinationEvent()
-    observeViewEffects()
+    subscribeToViewEffects()
   }
 
   override fun onSupportNavigateUp(): Boolean {
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     viewModel.onEvent(MainActivityEvent.DefineStartDestination)
   }
 
-  private fun observeViewEffects() {
+  private fun subscribeToViewEffects() {
     lifecycleScope.launch {
       repeatOnLifecycle(Lifecycle.State.STARTED) {
         viewModel.viewEffect.collect { reactTo(it) }
