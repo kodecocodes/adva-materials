@@ -61,7 +61,7 @@ import java.time.Instant
 import javax.inject.Inject
 
 @HiltAndroidTest
-@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class)
+@UninstallModules(CacheModule::class)
 class PetFinderAnimalRepositoryTest {
 
   private val fakeServer = FakeServer()
@@ -90,13 +90,14 @@ class PetFinderAnimalRepositoryTest {
   @Inject
   lateinit var apiPaginationMapper: ApiPaginationMapper
 
-  @BindValue
-  @JvmField
-  val preferences: Preferences = FakePreferences()
+  @Inject
+  lateinit var preferences: Preferences
 
   @Before
   fun setup() {
     fakeServer.start()
+
+    hiltRule.inject()
 
     with (preferences) {
       deleteTokenInfo()
@@ -107,21 +108,19 @@ class PetFinderAnimalRepositoryTest {
       putMaxDistanceAllowedToGetAnimals(100)
     }
 
-    hiltRule.inject()
-
     api = retrofitBuilder
-        .baseUrl(fakeServer.baseEndpoint)
-        .build()
-        .create(PetFinderApi::class.java)
+      .baseUrl(fakeServer.baseEndpoint)
+      .build()
+      .create(PetFinderApi::class.java)
 
     cache = RoomCache(database.animalsDao(), database.organizationsDao())
 
     repository = PetFinderAnimalRepository(
-        api,
-        cache,
-        preferences,
-        apiAnimalMapper,
-        apiPaginationMapper
+      api,
+      cache,
+      preferences,
+      apiAnimalMapper,
+      apiPaginationMapper
     )
   }
 

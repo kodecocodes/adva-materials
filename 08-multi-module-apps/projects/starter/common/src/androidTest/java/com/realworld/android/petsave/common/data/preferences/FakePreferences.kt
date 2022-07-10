@@ -5,8 +5,9 @@ import com.realworld.android.petsave.common.data.preferences.PreferencesConstant
 import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN
 import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN_EXPIRATION_TIME
 import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN_TYPE
+import javax.inject.Inject
 
-class FakePreferences : Preferences {
+class FakePreferences @Inject constructor(): Preferences {
   private val preferences = mutableMapOf<String, Any>()
 
   override fun putToken(token: String) {
