@@ -41,18 +41,14 @@ import com.realworld.android.petsave.common.utils.DispatchersProvider
 import com.realworld.android.petsave.common.utils.createExceptionHandler
 import com.realworld.android.petsave.onboarding.domain.usecases.StoreOnboardingData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class OnboardingFragmentViewModel @Inject constructor(
-    private val storeOnboardingData: StoreOnboardingData,
-    private val dispatchersProvider: DispatchersProvider
+  private val storeOnboardingData: StoreOnboardingData
 ) : ViewModel() {
 
   companion object {
@@ -82,23 +78,27 @@ class OnboardingFragmentViewModel @Inject constructor(
       R.string.postcode_error
     }
 
-    _viewState.value = viewState.value.copy(
+    _viewState.update { oldState ->
+      oldState.copy(
         postcode = newPostcode,
         postcodeError = postcodeError
-    )
+      )
+    }
   }
 
   private fun validateNewDistanceValue(newDistance: String) {
     val distanceError = when {
       newDistance.isNotEmpty() && newDistance.toInt() > 500 -> { R.string.distance_error }
-      newDistance.toInt() == 0 -> { R.string.distance_error_cannot_be_zero }
+      newDistance.isNotEmpty() && newDistance.toInt() == 0 -> { R.string.distance_error_cannot_be_zero }
       else -> { R.string.no_error }
     }
 
-    _viewState.value = viewState.value.copy(
+    _viewState.update { oldState ->
+      oldState.copy(
         distance = newDistance,
         distanceError = distanceError
-    )
+      )
+    }
   }
 
   private fun wrapUpOnboarding() {
@@ -107,7 +107,7 @@ class OnboardingFragmentViewModel @Inject constructor(
     val (postcode, distance) = viewState.value
 
     viewModelScope.launch(exceptionHandler) {
-      withContext(dispatchersProvider.io()) { storeOnboardingData(postcode, distance) }
+      storeOnboardingData(postcode, distance)
       _viewEffects.emit(OnboardingViewEffect.NavigateToAnimalsNearYou)
     }
   }

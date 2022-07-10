@@ -34,8 +34,6 @@
 
 package com.realworld.android.petsave.search.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.realworld.android.logging.Logger
@@ -46,7 +44,6 @@ import com.realworld.android.petsave.common.utils.createExceptionHandler
 import com.realworld.android.petsave.common.domain.model.search.SearchParameters
 import com.realworld.android.petsave.common.domain.model.search.SearchResults
 import com.realworld.android.petsave.common.presentation.model.mappers.UiAnimalMapper
-import com.realworld.android.petsave.common.utils.DispatchersProvider
 import com.realworld.android.petsave.search.domain.usecases.GetSearchFilters
 import com.realworld.android.petsave.search.domain.usecases.SearchAnimals
 import com.realworld.android.petsave.search.domain.usecases.SearchAnimalsRemotely
@@ -56,48 +53,35 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchFragmentViewModel @Inject constructor(
-    private val searchAnimalsRemotely: SearchAnimalsRemotely,
-    private val searchAnimals: SearchAnimals,
-    private val getSearchFilters: GetSearchFilters,
-    private val uiAnimalMapper: UiAnimalMapper,
-    private val dispatchersProvider: DispatchersProvider,
-    private val compositeDisposable: CompositeDisposable
+  private val uiAnimalMapper: UiAnimalMapper,
+  private val searchAnimalsRemotely: SearchAnimalsRemotely,
+  private val searchAnimals: SearchAnimals,
+  private val getSearchFilters: GetSearchFilters,
+  private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
-
-  val state: LiveData<SearchViewState> get() = _state
-
-  private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
-  private val querySubject = BehaviorSubject.create<String>()
-  private val ageSubject = BehaviorSubject.createDefault("")
-  private val typeSubject = BehaviorSubject.createDefault("")
 
   private var remoteSearchJob: Job = Job()
   private var currentPage = 0
 
-  init {
-    _state.value = SearchViewState()
-  }
+  private val _state = MutableStateFlow(SearchViewState())
+  private val querySubject = BehaviorSubject.create<String>()
+  private val ageSubject = BehaviorSubject.createDefault("")
+  private val typeSubject = BehaviorSubject.createDefault("")
+
+  val state: StateFlow<SearchViewState> = _state.asStateFlow()
 
   fun onEvent(event: SearchEvent) {
     when(event) {
       is SearchEvent.PrepareForSearch -> prepareForSearch()
       else -> onSearchParametersUpdate(event)
-    }
-  }
-
-  private fun onSearchParametersUpdate(event: SearchEvent) {
-    remoteSearchJob.cancel(
-        CancellationException("New search parameters incoming!")
-    )
-
-    when (event) {
-      is SearchEvent.QueryInput -> updateQuery(event.input)
-      is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
-      is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
     }
   }
 
@@ -107,14 +91,10 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun loadFilterValues() {
-    val exceptionHandler =
-        createExceptionHandler(
-            message = "Failed to get filter values!"
-        )
+    val exceptionHandler = createExceptionHandler(message = "Failed to get filter values!")
 
     viewModelScope.launch(exceptionHandler) {
-      val (ages, types) = withContext(dispatchersProvider.io()) { getSearchFilters() }
-
+      val (ages, types) = getSearchFilters()
       updateStateWithFilterValues(ages, types)
     }
   }
@@ -126,16 +106,19 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun updateStateWithFilterValues(ages: List<String>, types: List<String>) {
-    _state.value = state.value!!.updateToReadyToSearch(ages, types)
+    _state.update { oldState ->
+      oldState.updateToReadyToSearch(ages, types)
+    }
   }
 
   private fun setupSearchSubscription() {
     searchAnimals(querySubject, ageSubject, typeSubject)
-        .observeOn(AndroidSchedulers.mainThread()) .subscribe(
-            { onSearchResults(it) },
-            { onFailure(it) }
-        )
-        .addTo(compositeDisposable)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(
+        { onSearchResults(it) },
+        { onFailure(it) }
+      )
+      .addTo(compositeDisposable)
   }
 
   private fun onSearchResults(searchResults: SearchResults) {
@@ -148,7 +131,9 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun onEmptyCacheResults(searchParameters: SearchParameters) {
-    _state.value = state.value!!.updateToSearchingRemotely()
+    _state.update { oldState ->
+      oldState.updateToSearchingRemotely()
+    }
     searchRemotely(searchParameters)
   }
 
@@ -156,16 +141,26 @@ class SearchFragmentViewModel @Inject constructor(
     val exceptionHandler = createExceptionHandler(message = "Failed to search remotely.")
 
     remoteSearchJob = viewModelScope.launch(exceptionHandler) {
-      val pagination = withContext(dispatchersProvider.io()) {
-        Logger.d("Searching remotely...")
-
-        searchAnimalsRemotely(++currentPage, searchParameters)
-      }
+      Logger.d("Searching remotely...")
+      val pagination = searchAnimalsRemotely(++currentPage, searchParameters)
 
       onPaginationInfoObtained(pagination)
     }
 
     remoteSearchJob.invokeOnCompletion { it?.printStackTrace() }
+  }
+
+  private fun onSearchParametersUpdate(event: SearchEvent) {
+    remoteSearchJob.cancel(
+      CancellationException("New search parameters incoming!")
+    )
+
+    when (event) {
+      is SearchEvent.QueryInput -> updateQuery(event.input)
+      is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
+      is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
+      else -> Logger.d("Wrong SearchEvent in onSearchParametersUpdate!")
+    }
   }
 
   private fun updateQuery(input: String) {
@@ -188,16 +183,17 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun setSearchingState() {
-    _state.value = state.value!!.updateToSearching()
+    _state.update { oldState -> oldState.updateToSearching() }
   }
 
   private fun setNoSearchQueryState() {
-    _state.value = state.value!!.updateToNoSearchQuery()
+    _state.update { oldState -> oldState.updateToNoSearchQuery() }
   }
 
   private fun onAnimalList(animals: List<Animal>) {
-    _state.value =
-        state.value!!.updateToHasSearchResults(animals.map { uiAnimalMapper.mapToView(it) })
+    _state.update { oldState ->
+      oldState.updateToHasSearchResults(animals.map { uiAnimalMapper.mapToView(it) })
+    }
   }
 
   private fun resetPagination() {
@@ -209,12 +205,13 @@ class SearchFragmentViewModel @Inject constructor(
   }
 
   private fun onFailure(throwable: Throwable) {
-    _state.value = if (throwable is NoMoreAnimalsException) {
-      state.value!!.updateToNoResultsAvailable()
-    } else {
-      state.value!!.updateToHasFailure(throwable)
+    _state.update { oldState ->
+      if (throwable is NoMoreAnimalsException) {
+        oldState.updateToNoResultsAvailable()
+      } else {
+        oldState.updateToHasFailure(throwable)
+      }
     }
-
   }
 
   override fun onCleared() {

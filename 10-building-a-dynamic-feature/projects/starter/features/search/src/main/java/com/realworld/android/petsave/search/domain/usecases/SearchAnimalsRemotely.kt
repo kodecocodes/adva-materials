@@ -39,10 +39,13 @@ import com.realworld.android.petsave.common.domain.model.pagination.Pagination
 import com.realworld.android.petsave.common.domain.model.pagination.Pagination.Companion.DEFAULT_PAGE_SIZE
 import com.realworld.android.petsave.common.domain.model.search.SearchParameters
 import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
+import com.realworld.android.petsave.common.utils.DispatchersProvider
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SearchAnimalsRemotely @Inject constructor(
-    private val animalRepository: AnimalRepository
+    private val animalRepository: AnimalRepository,
+    private val dispatchersProvider: DispatchersProvider
 ) {
 
   suspend operator fun invoke(
@@ -50,15 +53,17 @@ class SearchAnimalsRemotely @Inject constructor(
       searchParameters: SearchParameters,
       pageSize: Int = DEFAULT_PAGE_SIZE
   ): Pagination {
-    val (animals, pagination) =
-        animalRepository.searchAnimalsRemotely(pageToLoad, searchParameters, pageSize)
+    return withContext(dispatchersProvider.io()) {
+      val (animals, pagination) =
+          animalRepository.searchAnimalsRemotely(pageToLoad, searchParameters, pageSize)
 
-    if (animals.isEmpty()) {
-      throw NoMoreAnimalsException("Couldn't find more animals that match the search parameters.")
+      if (animals.isEmpty()) {
+        throw NoMoreAnimalsException("Couldn't find more animals that match the search parameters.")
+      }
+
+      animalRepository.storeAnimals(animals)
+
+      return@withContext pagination
     }
-
-    animalRepository.storeAnimals(animals)
-
-    return pagination
   }
 }

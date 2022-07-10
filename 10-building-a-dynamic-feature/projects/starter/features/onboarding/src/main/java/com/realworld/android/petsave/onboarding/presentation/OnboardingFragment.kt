@@ -42,13 +42,16 @@ import androidx.core.net.toUri
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.realworld.android.petsave.onboarding.R
 import com.realworld.android.petsave.onboarding.databinding.FragmentOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class OnboardingFragment: Fragment() {
@@ -102,8 +105,10 @@ class OnboardingFragment: Fragment() {
   }
 
   private fun observeViewStateUpdates() {
-    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-      viewModel.viewState.collect { render(it) }
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.viewState.collect { render(it) }
+      }
     }
   }
 
@@ -116,8 +121,10 @@ class OnboardingFragment: Fragment() {
   }
 
   private fun observeViewEffects() {
-    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-      viewModel.viewEffects.collect { reactTo(it) }
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.viewEffects.collect { reactTo(it) }
+      }
     }
   }
 

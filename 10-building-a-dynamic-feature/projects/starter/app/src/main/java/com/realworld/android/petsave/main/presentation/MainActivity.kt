@@ -38,7 +38,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -47,6 +49,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.realworld.android.petsave.R
 import com.realworld.android.petsave.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /**
  * Main Screen
@@ -83,7 +86,7 @@ class MainActivity : AppCompatActivity() {
     setupActionBar()
     setupBottomNav()
     triggerStartDestinationEvent()
-    observeViewEffects()
+    subscribeToViewEffects()
   }
 
   override fun onSupportNavigateUp(): Boolean {
@@ -113,9 +116,11 @@ class MainActivity : AppCompatActivity() {
     viewModel.onEvent(MainActivityEvent.DefineStartDestination)
   }
 
-  private fun observeViewEffects() {
-    lifecycleScope.launchWhenStarted {
-      viewModel.viewEffect.collect { reactTo(it) }
+  private fun subscribeToViewEffects() {
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.viewEffect.collect { reactTo(it) }
+      }
     }
   }
 

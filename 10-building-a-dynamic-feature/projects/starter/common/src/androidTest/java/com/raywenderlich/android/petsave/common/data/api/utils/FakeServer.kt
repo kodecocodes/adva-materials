@@ -48,6 +48,7 @@ class FakeServer {
   private val mockWebServer = MockWebServer()
 
   private val endpointSeparator = "/"
+  private val responsesBasePath = "networkresponses/"
   private val animalsEndpointPath = endpointSeparator + ApiConstants.ANIMALS_ENDPOINT
   private val notFoundResponse = MockResponse().setResponseCode(404)
 
@@ -66,7 +67,9 @@ class FakeServer {
         return with(path) {
           when {
             startsWith(animalsEndpointPath) -> {
-              MockResponse().setResponseCode(200).setBody(getJson("animals.json"))
+              MockResponse()
+                .setResponseCode(200)
+                .setBody(getJson("${responsesBasePath}animals.json"))
             }
             else -> {
               notFoundResponse
@@ -84,7 +87,7 @@ class FakeServer {
   private fun getJson(path: String): String {
     return try {
       val context = InstrumentationRegistry.getInstrumentation().context
-      val jsonStream: InputStream = context.assets.open("networkresponses/$path")
+      val jsonStream: InputStream = context.assets.open(path)
       String(jsonStream.readBytes())
     } catch (exception: IOException) {
       Logger.e(exception, "Error reading network response json asset")

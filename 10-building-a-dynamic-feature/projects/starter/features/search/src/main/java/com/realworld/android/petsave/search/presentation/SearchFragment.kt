@@ -45,6 +45,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.realworld.android.petsave.search.R
@@ -53,6 +56,7 @@ import com.realworld.android.petsave.common.presentation.Event
 import com.realworld.android.petsave.search.databinding.FragmentSearchBinding
 import com.realworld.android.petsave.search.domain.usecases.GetSearchFilters
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -67,9 +71,9 @@ class SearchFragment : Fragment() {
   private val viewModel: SearchFragmentViewModel by viewModels()
 
   override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
   ): View {
     _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
@@ -86,7 +90,7 @@ class SearchFragment : Fragment() {
   private fun setupUI() {
     val adapter = createAdapter()
     setupRecyclerView(adapter)
-    observeViewStateUpdates(adapter)
+    subscribeToViewStateUpdates(adapter)
   }
 
   private fun createAdapter(): AnimalsAdapter {
@@ -101,9 +105,13 @@ class SearchFragment : Fragment() {
     }
   }
 
-  private fun observeViewStateUpdates(searchAdapter: AnimalsAdapter) {
-    viewModel.state.observe(viewLifecycleOwner) {
-      updateScreenState(it, searchAdapter)
+  private fun subscribeToViewStateUpdates(searchAdapter: AnimalsAdapter) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect {
+          updateScreenState(it, searchAdapter)
+        }
+      }
     }
   }
 
@@ -116,18 +124,18 @@ class SearchFragment : Fragment() {
   private fun setupSearchViewListener() {
     val searchView = binding.searchWidget.search
     searchView.setOnQueryTextListener(
-        object : SearchView.OnQueryTextListener {
-          override fun onQueryTextSubmit(query: String?): Boolean {
-            viewModel.onEvent(SearchEvent.QueryInput(query.orEmpty()))
-            searchView.clearFocus()
-            return true
-          }
-
-          override fun onQueryTextChange(newText: String?): Boolean {
-            viewModel.onEvent(SearchEvent.QueryInput(newText.orEmpty()))
-            return true
-          }
+      object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+          viewModel.onEvent(SearchEvent.QueryInput(query.orEmpty()))
+          searchView.clearFocus()
+          return true
         }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+          viewModel.onEvent(SearchEvent.QueryInput(newText.orEmpty()))
+          return true
+        }
+      }
     )
   }
 
@@ -144,8 +152,8 @@ class SearchFragment : Fragment() {
   }
 
   private fun setupFilterListenerFor(
-      filter: AutoCompleteTextView,
-      block: (item: String) -> Unit
+    filter: AutoCompleteTextView,
+    block: (item: String) -> Unit
   ) {
     filter.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
       parent?.let { block(it.adapter.getItem(position) as String) }
@@ -154,13 +162,13 @@ class SearchFragment : Fragment() {
 
   private fun updateScreenState(newState: SearchViewState, searchAdapter: AnimalsAdapter) {
     val (
-        inInitialState,
-        searchResults,
-        ageFilterValues,
-        typeFilterValues,
-        searchingRemotely,
-        noResultsState,
-        failure
+      inInitialState,
+      searchResults,
+      ageFilterValues,
+      typeFilterValues,
+      searchingRemotely,
+      noResultsState,
+      failure
     ) = newState
 
     updateInitialStateViews(inInitialState)

@@ -8,6 +8,7 @@ import com.realworld.android.petsave.sharing.presentation.model.mappers.UiAnimal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -15,8 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SharingFragmentViewModel @Inject constructor(
     private val getAnimalDetails: GetAnimalDetails,
-    private val uiAnimalToShareMapper: UiAnimalToShareMapper,
-    private val dispatchersProvider: DispatchersProvider
+    private val uiAnimalToShareMapper: UiAnimalToShareMapper
 ): ViewModel() {
 
   val viewState: StateFlow<SharingViewState> get() = _viewState
@@ -31,11 +31,11 @@ class SharingFragmentViewModel @Inject constructor(
 
   private fun getAnimalToShare(animalId: Long) {
     viewModelScope.launch {
-      val animal = withContext(dispatchersProvider.io()) { getAnimalDetails(animalId) }
+      val animal = getAnimalDetails(animalId)
 
-      _viewState.value = viewState.value.copy(
-          animalToShare =  uiAnimalToShareMapper.mapToView(animal)
-      )
+      _viewState.update { oldState ->
+        oldState.copy(animalToShare = uiAnimalToShareMapper.mapToView(animal))
+      }
     }
   }
 }

@@ -37,9 +37,13 @@ package com.realworld.android.petsave.animalsnearyou.presentation.animaldetails
 import android.os.Bundle
 import android.view.*
 import androidx.core.net.toUri
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -49,9 +53,10 @@ import com.realworld.android.petsave.animalsnearyou.presentation.animaldetails.m
 import com.realworld.android.petsave.common.utils.setImage
 import com.realworld.android.petsave.common.utils.toEnglish
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AnimalDetailsFragment : Fragment() {
+class AnimalDetailsFragment : Fragment(), MenuProvider {
 
   companion object {
     const val ANIMAL_ID = "id"
@@ -76,23 +81,21 @@ class AnimalDetailsFragment : Fragment() {
       savedInstanceState: Bundle?
   ): View {
     _binding = FragmentDetailsBinding.inflate(inflater, container, false)
-    
-    setHasOptionsMenu(true)
+
     return binding.root
   }
 
-
-  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-    inflater.inflate(R.menu.menu_share, menu)
+  override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+    menuInflater.inflate(R.menu.menu_share, menu)
   }
 
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    return if (item.itemId == R.id.share) {
+  override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+    return if (menuItem.itemId == R.id.share) {
       navigateToSharing()
       true
     }
     else {
-      super.onOptionsItemSelected(item)
+      false
     }
   }
 
@@ -108,17 +111,21 @@ class AnimalDetailsFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    observeState()
+    subscribeToStateUpdates()
     val event = AnimalDetailsEvent.LoadAnimalDetails(animalId!!)
     viewModel.handleEvent(event)
   }
 
-  private fun observeState() {
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      when (state) {
-        is AnimalDetailsViewState.Loading -> { displayLoading() }
-        is AnimalDetailsViewState.Failure -> { displayError() }
-        is AnimalDetailsViewState.AnimalDetails -> { displayPetDetails(state.animal) }
+  private fun subscribeToStateUpdates() {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect { state ->
+          when (state) {
+            is AnimalDetailsViewState.Loading -> { displayLoading() }
+            is AnimalDetailsViewState.Failure -> { displayError() }
+            is AnimalDetailsViewState.AnimalDetails -> { displayPetDetails(state.animal) }
+          }
+        }
       }
     }
   }

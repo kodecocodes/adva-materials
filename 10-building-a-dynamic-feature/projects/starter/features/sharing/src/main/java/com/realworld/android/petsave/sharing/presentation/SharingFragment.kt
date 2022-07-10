@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.realworld.android.petsave.common.utils.setImage
 import com.realworld.android.petsave.sharing.databinding.FragmentSharingBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SharingFragment : Fragment() {
@@ -38,7 +41,7 @@ class SharingFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     setupUI()
-    observeViewStateUpdates()
+    subscribeToViewStateUpdates()
   }
 
   private fun setupUI() {
@@ -51,9 +54,11 @@ class SharingFragment : Fragment() {
     }
   }
 
-  private fun observeViewStateUpdates() {
-    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-      viewModel.viewState.collect { render(it) }
+  private fun subscribeToViewStateUpdates() {
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.viewState.collect { render(it) }
+      }
     }
   }
 
