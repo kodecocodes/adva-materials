@@ -115,5 +115,4 @@ dependencies {
 
   implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
 
-  debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }

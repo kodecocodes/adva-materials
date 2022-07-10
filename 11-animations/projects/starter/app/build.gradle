@@ -110,6 +110,4 @@ dependencies {
 
   // Utils
   implementation "com.jakewharton.threetenabp:threetenabp:1.2.4"
-
-  debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 }
