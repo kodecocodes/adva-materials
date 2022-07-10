@@ -40,11 +40,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
+import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@TestInstallIn(
+  components = [SingletonComponent::class],
+  replaces = [PreferencesModule::class]
+)
 abstract class TestPreferencesModule {
 
   @Binds
+  @Singleton
   abstract fun providePreferences(preferences: FakePreferences): Preferences
 }

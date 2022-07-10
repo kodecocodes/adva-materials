@@ -44,10 +44,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.testing.TestInstallIn
 import io.reactivex.disposables.CompositeDisposable
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@TestInstallIn(
+    components = [ActivityRetainedComponent::class],
+    replaces = [ActivityRetainedModule::class]
+)
 abstract class TestActivityRetainedModule {
 
   @Binds

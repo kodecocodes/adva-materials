@@ -36,19 +36,16 @@ package com.realworld.android.petsave.common.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
+import com.realworld.android.petsave.common.RxImmediateSchedulerRule
 import com.realworld.android.petsave.common.data.api.PetFinderApi
 import com.realworld.android.petsave.common.data.api.model.mappers.ApiAnimalMapper
 import com.realworld.android.petsave.common.data.api.model.mappers.ApiPaginationMapper
 import com.realworld.android.petsave.common.data.cache.Cache
-import com.realworld.android.petsave.common.data.di.PreferencesModule
-import com.realworld.android.petsave.common.data.preferences.FakePreferences
 import com.realworld.android.petsave.common.data.preferences.Preferences
 import com.realworld.android.petsave.common.data.api.utils.FakeServer
 import com.realworld.android.petsave.common.data.cache.PetSaveDatabase
 import com.realworld.android.petsave.common.data.cache.RoomCache
 import com.realworld.android.petsave.common.data.di.CacheModule
-import com.realworld.android.petsave.common.data.di.TestPreferencesModule
-import com.realworld.android.petsave.common.di.ActivityRetainedModule
 import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
 import dagger.hilt.android.testing.*
 import kotlinx.coroutines.runBlocking
@@ -56,12 +53,12 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.Instant
 import retrofit2.Retrofit
+import java.time.Instant
 import javax.inject.Inject
 
 @HiltAndroidTest
-@UninstallModules(PreferencesModule::class, TestPreferencesModule::class, CacheModule::class, ActivityRetainedModule::class)
+@UninstallModules(CacheModule::class)
 class PetFinderAnimalRepositoryTest {
 
   private val fakeServer = FakeServer()
@@ -71,6 +68,9 @@ class PetFinderAnimalRepositoryTest {
 
   @get:Rule
   var hiltRule = HiltAndroidRule(this)
+
+  @get:Rule
+  val rxImmediateSchedulerRule = RxImmediateSchedulerRule()
 
   @get:Rule
   var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -87,13 +87,14 @@ class PetFinderAnimalRepositoryTest {
   @Inject
   lateinit var apiPaginationMapper: ApiPaginationMapper
 
-  @BindValue
-  @JvmField
-  val preferences: Preferences = FakePreferences()
+  @Inject
+  lateinit var preferences: Preferences
 
   @Before
   fun setup() {
     fakeServer.start()
+
+    hiltRule.inject()
 
     with (preferences) {
       deleteTokenInfo()
@@ -104,21 +105,19 @@ class PetFinderAnimalRepositoryTest {
       putMaxDistanceAllowedToGetAnimals(100)
     }
 
-    hiltRule.inject()
-
     api = retrofitBuilder
-        .baseUrl(fakeServer.baseEndpoint)
-        .build()
-        .create(PetFinderApi::class.java)
+      .baseUrl(fakeServer.baseEndpoint)
+      .build()
+      .create(PetFinderApi::class.java)
 
     cache = RoomCache(database.animalsDao(), database.organizationsDao())
 
     repository = PetFinderAnimalRepository(
-        api,
-        cache,
-        preferences,
-        apiAnimalMapper,
-        apiPaginationMapper
+      api,
+      cache,
+      preferences,
+      apiAnimalMapper,
+      apiPaginationMapper
     )
   }
 
