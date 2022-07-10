@@ -32,24 +32,24 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data
+package com.realworld.android.petsave.common.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.raywenderlich.android.petsave.common.data.api.PetFinderApi
-import com.raywenderlich.android.petsave.common.data.api.model.mappers.ApiAnimalMapper
-import com.raywenderlich.android.petsave.common.data.api.model.mappers.ApiPaginationMapper
-import com.raywenderlich.android.petsave.common.data.cache.Cache
-import com.raywenderlich.android.petsave.common.data.di.PreferencesModule
-import com.raywenderlich.android.petsave.common.data.preferences.FakePreferences
-import com.raywenderlich.android.petsave.common.data.preferences.Preferences
-import com.raywenderlich.android.petsave.common.data.api.utils.FakeServer
-import com.raywenderlich.android.petsave.common.data.cache.PetSaveDatabase
-import com.raywenderlich.android.petsave.common.data.cache.RoomCache
-import com.raywenderlich.android.petsave.common.data.di.CacheModule
-import com.raywenderlich.android.petsave.common.data.di.TestPreferencesModule
-import com.raywenderlich.android.petsave.common.di.ActivityRetainedModule
-import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
+import com.realworld.android.petsave.common.data.api.PetFinderApi
+import com.realworld.android.petsave.common.data.api.model.mappers.ApiAnimalMapper
+import com.realworld.android.petsave.common.data.api.model.mappers.ApiPaginationMapper
+import com.realworld.android.petsave.common.data.cache.Cache
+import com.realworld.android.petsave.common.data.di.PreferencesModule
+import com.realworld.android.petsave.common.data.preferences.FakePreferences
+import com.realworld.android.petsave.common.data.preferences.Preferences
+import com.realworld.android.petsave.common.data.api.utils.FakeServer
+import com.realworld.android.petsave.common.data.cache.PetSaveDatabase
+import com.realworld.android.petsave.common.data.cache.RoomCache
+import com.realworld.android.petsave.common.data.di.CacheModule
+import com.realworld.android.petsave.common.data.di.TestPreferencesModule
+import com.realworld.android.petsave.common.di.ActivityRetainedModule
+import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
 import dagger.hilt.android.testing.*
 import kotlinx.coroutines.runBlocking
 import org.junit.After

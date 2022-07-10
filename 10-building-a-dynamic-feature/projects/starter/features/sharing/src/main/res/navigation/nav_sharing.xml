@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/sharingFragment"
-    android:name="com.raywenderlich.android.petsave.sharing.presentation.SharingFragment"
+    android:name="com.realworld.android.petsave.sharing.presentation.SharingFragment"
     android:label="@string/sharing_module_name"
     tools:layout="@layout/fragment_sharing">
     <deepLink app:uri="petsave://sharing/{id}" />

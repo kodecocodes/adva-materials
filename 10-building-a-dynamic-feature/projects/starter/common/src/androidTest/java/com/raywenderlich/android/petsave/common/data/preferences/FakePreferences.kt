@@ -1,10 +1,10 @@
-package com.raywenderlich.android.petsave.common.data.preferences
+package com.realworld.android.petsave.common.data.preferences
 
-import com.raywenderlich.android.petsave.common.data.preferences.PreferencesConstants.KEY_MAX_DISTANCE
-import com.raywenderlich.android.petsave.common.data.preferences.PreferencesConstants.KEY_POSTCODE
-import com.raywenderlich.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN
-import com.raywenderlich.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN_EXPIRATION_TIME
-import com.raywenderlich.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN_TYPE
+import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_MAX_DISTANCE
+import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_POSTCODE
+import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN
+import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN_EXPIRATION_TIME
+import com.realworld.android.petsave.common.data.preferences.PreferencesConstants.KEY_TOKEN_TYPE
 
 class FakePreferences : Preferences {
   private val preferences = mutableMapOf<String, Any>()

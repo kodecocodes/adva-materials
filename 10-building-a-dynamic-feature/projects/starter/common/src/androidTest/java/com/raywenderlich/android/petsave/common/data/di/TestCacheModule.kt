@@ -32,15 +32,15 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data.di
+package com.realworld.android.petsave.common.data.di
 
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import com.raywenderlich.android.petsave.common.data.cache.Cache
-import com.raywenderlich.android.petsave.common.data.cache.PetSaveDatabase
-import com.raywenderlich.android.petsave.common.data.cache.RoomCache
-import com.raywenderlich.android.petsave.common.data.cache.daos.AnimalsDao
-import com.raywenderlich.android.petsave.common.data.cache.daos.OrganizationsDao
+import com.realworld.android.petsave.common.data.cache.Cache
+import com.realworld.android.petsave.common.data.cache.PetSaveDatabase
+import com.realworld.android.petsave.common.data.cache.RoomCache
+import com.realworld.android.petsave.common.data.cache.daos.AnimalsDao
+import com.realworld.android.petsave.common.data.cache.daos.OrganizationsDao
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -32,11 +32,11 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data.api.utils
+package com.realworld.android.petsave.common.data.api.utils
 
 import androidx.test.platform.app.InstrumentationRegistry
-import com.raywenderlich.android.logging.Logger
-import com.raywenderlich.android.petsave.common.data.api.ApiConstants
+import com.realworld.android.logging.Logger
+import com.realworld.android.petsave.common.data.api.ApiConstants
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

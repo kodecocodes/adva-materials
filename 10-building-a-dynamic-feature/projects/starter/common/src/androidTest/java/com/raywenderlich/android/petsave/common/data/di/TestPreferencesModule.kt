@@ -32,10 +32,10 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.data.di
+package com.realworld.android.petsave.common.data.di
 
-import com.raywenderlich.android.petsave.common.data.preferences.FakePreferences
-import com.raywenderlich.android.petsave.common.data.preferences.Preferences
+import com.realworld.android.petsave.common.data.preferences.FakePreferences
+import com.realworld.android.petsave.common.data.preferences.Preferences
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

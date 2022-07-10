@@ -32,12 +32,12 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.petsave.common.di
+package com.realworld.android.petsave.common.di
 
-import com.raywenderlich.android.petsave.common.data.FakeRepository
-import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
-import com.raywenderlich.android.petsave.common.utils.CoroutineDispatchersProvider
-import com.raywenderlich.android.petsave.common.utils.DispatchersProvider
+import com.realworld.android.petsave.common.data.FakeRepository
+import com.realworld.android.petsave.common.domain.repositories.AnimalRepository
+import com.realworld.android.petsave.common.utils.CoroutineDispatchersProvider
+import com.realworld.android.petsave.common.utils.DispatchersProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
