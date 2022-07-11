@@ -34,9 +34,10 @@
 
 package com.raywenderlich.android.petsave.search.presentation
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.logging.Logger
 import com.raywenderlich.android.petsave.common.domain.model.NoMoreAnimalsException
 import com.raywenderlich.android.petsave.common.domain.model.animal.Animal
@@ -49,6 +50,7 @@ import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import com.raywenderlich.android.petsave.search.domain.usecases.GetSearchFilters
 import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimals
 import com.raywenderlich.android.petsave.search.domain.usecases.SearchAnimalsRemotely
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -57,9 +59,10 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class SearchFragmentViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
+@HiltViewModel
+class SearchFragmentViewModel @Inject constructor(
     private val getSearchFilters: GetSearchFilters,
     private val searchAnimals: SearchAnimals,
     private val searchAnimalsRemotely: SearchAnimalsRemotely,
@@ -74,8 +77,8 @@ class SearchFragmentViewModel @ViewModelInject constructor(
 
   private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
   private val querySubject = BehaviorSubject.create<String>()
-  private val ageSubject = BehaviorSubject.createDefault<String>("")
-  private val typeSubject = BehaviorSubject.createDefault<String>("")
+  private val ageSubject = BehaviorSubject.createDefault("")
+  private val typeSubject = BehaviorSubject.createDefault("")
 
   private var runningJobs = mutableListOf<Job>()
   private var isLastPage = false
@@ -101,6 +104,7 @@ class SearchFragmentViewModel @ViewModelInject constructor(
       is SearchEvent.QueryInput -> updateQuery(event.input)
       is SearchEvent.AgeValueSelected -> updateAgeValue(event.age)
       is SearchEvent.TypeValueSelected -> updateTypeValue(event.type)
+      else -> {}
     }
   }
 

@@ -99,7 +99,7 @@ class ApiAnimalMapper @Inject constructor(
     if (size.isNullOrEmpty()) return Size.UNKNOWN
 
     return Size.valueOf(
-        size.replace(' ', '_').toUpperCase(Locale.ROOT)
+        size.replace(' ', '_').uppercase(Locale.ROOT)
     )
   }
 

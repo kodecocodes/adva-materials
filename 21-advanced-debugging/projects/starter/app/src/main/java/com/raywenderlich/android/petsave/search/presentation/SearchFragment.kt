@@ -70,7 +70,7 @@ class SearchFragment: Fragment() {
   private val viewModel: SearchFragmentViewModel by viewModels()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+      savedInstanceState: Bundle?): View {
     _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
     return binding.root

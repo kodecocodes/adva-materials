@@ -253,11 +253,10 @@ class AnimalDetailsFragment : Fragment() {
     }
     binding.loader.addValueCallback(
         KeyPath("icon_circle", "**"),
-        LottieProperty.COLOR_FILTER,
-        {
-          PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
-        }
-    )
+        LottieProperty.COLOR_FILTER
+    ) {
+        PorterDuffColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP)
+    }
   }
 
   private fun stopAnimation() {
