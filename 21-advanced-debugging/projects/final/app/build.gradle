@@ -12,6 +12,8 @@ apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'com.google.firebase.crashlytics'
 
+apply plugin: 'com.squareup.leakcanary.deobfuscation'
+
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -40,7 +42,7 @@ android {
     }
 
     debug {
-      minifyEnabled true
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
       firebaseCrashlytics {
         mappingFileUploadEnabled false
@@ -59,6 +61,12 @@ android {
 
   buildFeatures {
     viewBinding true
+  }
+}
+
+leakCanary {
+  filterObfuscatedVariants { variant ->
+    variant.name == "debug"
   }
 }
 
