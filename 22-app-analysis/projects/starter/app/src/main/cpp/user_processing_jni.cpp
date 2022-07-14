@@ -47,7 +47,7 @@ public:
 
 void UserInfoHandler::UserInfoHandler()
 {
-  _passwordChar = "";
+  memset(&_passwordChar, 0, sizeof(char));
   _usernameString = "Anonymous";
 }
 
