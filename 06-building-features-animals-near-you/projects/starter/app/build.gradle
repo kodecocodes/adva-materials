@@ -1,23 +1,18 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "com.raywenderlich.android.petsave.HiltTestRunner"
+    testInstrumentationRunner "com.realworld.android.petsave.HiltTestRunner"
 
     javaCompileOptions {
       annotationProcessorOptions {
@@ -38,12 +33,10 @@ android {
   }
 
   compileOptions {
+    coreLibraryDesugaringEnabled true
+
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
-  }
-
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
   }
 
   buildFeatures {
@@ -72,6 +65,7 @@ dependencies {
   // Support Libraries
   implementation "androidx.appcompat:appcompat:$appcompat_version"
   implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+  implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
   // Testing Dependencies
   testImplementation "junit:junit:$junit_version"
@@ -115,9 +109,6 @@ dependencies {
   implementation "com.google.dagger:hilt-android:$hilt_version"
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-  implementation "androidx.hilt:hilt-lifecycle-viewmodel:$androidx_hilt_version"
-  kapt "androidx.hilt:hilt-compiler:$androidx_hilt_version"
-
   androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
   kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 
@@ -132,7 +123,7 @@ dependencies {
   implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
   // Utils
-  implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+  coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugar_jdk_libs_version"
 
   debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 }
