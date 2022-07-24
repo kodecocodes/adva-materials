@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -20,7 +19,7 @@ android {
       minifyEnabled false
     }
   }
-    namespace 'com.raywenderlich.android.logging'
+    namespace 'com.realworld.android.logging'
 }
 
 dependencies {
