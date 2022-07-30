@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.raywenderlich.android.petsave"
+<manifest package="com.realworld.android.petsave"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application android:networkSecurityConfig="@xml/network_security_config"
-      android:name="com.raywenderlich.android.petsave.PetSaveApplication"
+      android:name="com.realworld.android.petsave.PetSaveApplication"
       android:allowBackup="false"
       android:installLocation="internalOnly"
       android:icon="@mipmap/ic_launcher"
@@ -18,8 +18,9 @@
 
     <!-- Main Activity -->
     <activity
-        android:name="com.raywenderlich.android.petsave.core.MainActivity"
-        android:theme="@style/SplashTheme">
+        android:name="com.realworld.android.petsave.core.MainActivity"
+        android:theme="@style/SplashTheme"
+        android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
