@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#rules that allow the use of reflection with crypto.
+-keep class kotlin.reflect.jvm.internal.** { *; }
+-keep class kotlin.Metadata { *; }
+-dontwarn com.google.crypto.tink.**
+
+#From https://stackoverflow.com/questions/5333830/android-proguard-error-with-org-xmlpull-v1-xmlpullparser
+-dontwarn org.kobjects.**
+-dontwarn org.ksoap2.**
+-dontwarn org.kxml2.**
+-dontwarn org.xmlpull.v1.**
+
+-keep class org.kobjects.** { *; }
+-keep class org.ksoap2.** { *; }
+-keep class org.kxml2.** { *; }
+-keep class org.xmlpull.** { *; }
+
+-dontwarn javax.xml.stream.**
