@@ -5,8 +5,7 @@
     android:id="@+id/fragment_animals_near_you_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".animalsnearyou.presentation.AnimalsNearYouFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/animals_recycler_view"

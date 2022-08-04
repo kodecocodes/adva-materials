@@ -7,7 +7,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
-  tools:context=".common.MainActivity">
+  tools:context="com.realworld.android.petsave.common.MainActivity">
 
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbar"
