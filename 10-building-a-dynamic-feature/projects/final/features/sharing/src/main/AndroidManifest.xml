@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
   xmlns:dist="http://schemas.android.com/apk/distribution"
-  package="com.raywenderlich.android.petsave.sharing">
+  package="com.realworld.android.petsave.sharing">
 
   <dist:module
     dist:instant="false"

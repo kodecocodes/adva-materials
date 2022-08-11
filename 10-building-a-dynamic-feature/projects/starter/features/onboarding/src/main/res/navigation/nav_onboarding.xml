@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/onboardingFragment"
-    android:name="com.raywenderlich.android.petsave.onboarding.presentation.OnboardingFragment"
+    android:name="com.realworld.android.petsave.onboarding.presentation.OnboardingFragment"
     android:label="@string/onboarding_screen_label"
     tools:layout="@layout/fragment_onboarding" />
 </navigation>

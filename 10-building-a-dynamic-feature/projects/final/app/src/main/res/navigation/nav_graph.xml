@@ -10,7 +10,7 @@
 
   <include-dynamic
     android:id="@id/dynamicFeatureSharing"
-    app:graphPackage="com.raywenderlich.android.petsave.sharing"
+    app:graphPackage="com.realworld.android.petsave.sharing"
     app:graphResName="nav_sharing"
     app:moduleName="sharing" />
 </navigation>

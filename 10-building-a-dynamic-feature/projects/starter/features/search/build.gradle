@@ -3,14 +3,20 @@ apply from: "$rootProject.projectDir/android-library.gradle"
 android {
   sourceSets {
     androidTest {
-      java.srcDir project(":common").file("src/androidTest/java/com/raywenderlich/android/petsave/common/HiltTestRunner.kt")
-      java.srcDir project(":common").file("src/androidTest/java/com/raywenderlich/android/petsave/common/TestApplication.kt")
+      java.srcDirs += [
+          "${project(':common').projectDir}/src/androidTest/java"
+      ]
     }
   }
 }
 
 dependencies {
   implementation project(":common")
+
+  androidTestImplementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  androidTestImplementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
+  androidTestImplementation "androidx.room:room-runtime:$room_version"
+  androidTestImplementation("com.squareup.okhttp3:mockwebserver:$mockwebserver_version")
 
   // Navigation
   implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

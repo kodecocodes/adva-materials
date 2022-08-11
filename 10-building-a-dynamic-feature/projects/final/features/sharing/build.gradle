@@ -15,10 +15,6 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
-  }
-
   buildFeatures {
     viewBinding true
   }
@@ -36,8 +32,7 @@ dependencies {
 
   // DI
   implementation "com.google.dagger:hilt-android:$hilt_version"
-  implementation "com.google.dagger:dagger:$dagger_version"
-
   kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+  implementation "com.google.dagger:dagger:$dagger_version"
   kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }
