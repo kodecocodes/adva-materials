@@ -1,29 +1,23 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
 
   defaultConfig {
-    applicationId "com.raywenderlich.android.petsave"
+    applicationId "com.realworld.android.petsave"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "com.raywenderlich.android.petsave.HiltTestRunner"
+    testInstrumentationRunner "com.realworld.android.petsave.HiltTestRunner"
 
     javaCompileOptions {
       annotationProcessorOptions {
         arguments += [
                 "room.schemaLocation":"$projectDir/schemas".toString(),
-                "room.incremental":"true",
                 "room.expandProjection":"true"
         ]
       }
@@ -38,12 +32,10 @@ android {
   }
 
   compileOptions {
+    coreLibraryDesugaringEnabled true
+
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
-  }
-
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_1_8.toString()
   }
 
   buildFeatures {
@@ -82,17 +74,10 @@ dependencies {
   testImplementation "junit:junit:$junit_version"
   testImplementation "org.mockito:mockito-core:$mockito_version"
   testImplementation "org.robolectric:robolectric:$robolectric_version"
-  testImplementation("org.threeten:threetenbp:${threetenbp_version}") {
-    exclude module: "com.jakewharton.threetenabp:threetenabp:${threetenabp_version}"
-  }
 
   // Instrumented tests dependencies
   androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
   androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-
-  androidTestImplementation("org.threeten:threetenbp:${threetenbp_version}") {
-    exclude module: "com.jakewharton.threetenabp:threetenabp:${threetenabp_version}"
-  }
 
   // Dependencies for both test and AndroidTest
   debugImplementation "com.google.truth:truth:$google_truth_version"
@@ -148,7 +133,7 @@ dependencies {
   implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
   // Utils
-  implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+  coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugar_jdk_libs_version"
 
   debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 }
