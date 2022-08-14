@@ -5,7 +5,7 @@
   <string name="postcode">Postal code</string>
   <string name="max_distance_miles">Max distance (miles)</string>
   <string name="submit_button">Submit</string>
-  <string name="postcode_helper_text">5 digits. If yours has less (e.g. 397), fill with 0s (e.g. 00397).</string>
+  <string name="postcode_helper_text">5 digits. If yours has less (e.g. 8817), fill with 0s (e.g. 08817).</string>
   <string name="postcode_error">Needs 5 digits!</string>
   <string name="distance_helper_text">Max: 500 miles</string>
   <string name="distance_error">It\'s over 500!!!</string>
