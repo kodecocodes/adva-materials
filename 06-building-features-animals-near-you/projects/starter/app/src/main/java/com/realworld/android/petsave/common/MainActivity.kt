@@ -39,7 +39,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.realworld.android.petsave.R
 import com.realworld.android.petsave.databinding.ActivityMainBinding
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
   private fun setupActionBar() {
     setSupportActionBar(binding.toolbar)
-    setupActionBarWithNavController(navController, appBarConfiguration)
+    binding.toolbar.setupWithNavController(navController, appBarConfiguration)
   }
 
   private fun setupBottomNav() {
